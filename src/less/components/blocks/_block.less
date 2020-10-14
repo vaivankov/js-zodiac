@@ -1,0 +1,48 @@
+.block {
+  margin: 20px 0 0 0;
+
+  &__header {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 8px;
+    padding: 10px 0;
+
+    background-color: @color-main-background;
+    border-radius: 8px;
+  }
+
+  &__body {
+    border: 2px solid @color-main-background;
+    border-radius: 5px;
+
+    &--table {
+      overflow-x: scroll;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (min-width: @desktop-width) {
+  .block {
+    &:not(:last-of-type) {
+      margin-right: 10px;
+    }
+
+    &__body {
+      &--table {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    &--table {
+    }
+
+    &--chart {
+      flex-grow: 1;
+    }
+  }
+}
