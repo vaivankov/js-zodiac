@@ -15,6 +15,7 @@
   },
   "opts": {
     "recurse": true,
-    "destination": "./notes/"
+    "destination": "./notes/",
+    "template": "jsdoc-template"
   }
 }
