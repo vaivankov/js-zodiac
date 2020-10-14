@@ -1,0 +1,96 @@
+.row {
+  display: inline-flex;
+  margin: 2px 5px;
+  padding: 8px 5px;
+
+  font-weight: bold;
+
+  border-radius: 5px;
+
+  &:nth-child(even) {
+    background-color: @color-row-even;
+  }
+
+  &:nth-child(odd) {
+    background-color: @color-row-odd;
+  }
+
+  &:hover {
+    background-color: @color-row-hover;
+  }
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 5px;
+  }
+
+  &__division,
+  &__similarity,
+  &__house,
+  &__planet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    background-color: @color-white;
+    border: 2px solid @color-black;
+    border-radius: 5px;
+  }
+
+  &__division {
+    width: 50px;
+  }
+
+  &__similarity {
+    width: 50px;
+  }
+
+  &__planet {
+    width: 45px;
+    margin: 0 2px;
+  }
+
+  &__house {
+    width: 25px;
+  }
+
+  &__division {
+    position: relative;
+
+    display: inline-flex;
+
+    &:not(:last-of-type)::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -10px;
+
+      width: 2px;
+      height: 20px;
+
+      background-color: @color-black;
+    }
+
+    &:not(:last-of-type) {
+      margin-right: 15px;
+    }
+  }
+
+  &__input {
+    width: 110px;
+
+    text-align: center;
+
+    border: 2px solid @color-black;
+    border-radius: 5px;
+
+    &:not(:last-of-type) {
+      margin-right: 10px;
+    }
+  }
+
+  &__similarity {
+  }
+}
