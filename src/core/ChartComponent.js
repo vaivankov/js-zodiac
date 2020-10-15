@@ -16,4 +16,20 @@ export class ChartComponent extends DOMListener {
         options.listeners
     );
   }
+
+  /**
+   * @property {Function} template Возвращает шаблон компонента
+   * @return {String}
+   */
+  get template() {
+    return "";
+  }
+
+  /**
+   * @property {Function} getTemplate Запрашивает шаблон компонента
+   * @return {String}
+   */
+  getTemplate() {
+    return this.template;
+  }
 }
