@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: core/ChartComponent</title>
+    <title>JSDoc: Source: index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,139 +17,39 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: core/ChartComponent</h1>
+    <h1 class="page-title">Source: index.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>Общий класс для компонентов страницы с зодиаком</p></div>
-        
-
-        
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_ChartComponent.js.html">core/ChartComponent.js</a>, <a href="core_ChartComponent.js.html#line3">line 3</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="module-core_ChartComponent.ChartComponent.html">ChartComponent</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {Chart} from "./components/chart/Chart";
+import {Table} from "./components/table/Table";
+import {TableHeader} from "./components/table_header/TableHeader";
+import {ZodiacHeader} from "./components/zodiac_header/ZodiacHeader";
+import {Zodiac} from "./components/zodiac/Zodiac";
+import "./less/style.less";
+
+/**
+ * Объект с параметрами для создания основного интерфейса программы
+ * @type {Object}
+ */
+const options = {
+  components: [TableHeader, Table, ZodiacHeader, Zodiac],
+};
+
+const chart = new Chart(
+    '#app',
+    options
+);
+
+chart.render();
+</code></pre>
+        </article>
+    </section>
 
 
 
