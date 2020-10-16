@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/zodiac/Zodiac.js</title>
+    <title>JSDoc: Source: components/table_header/createTableHeader.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/zodiac/Zodiac.js</h1>
+    <h1 class="page-title">Source: components/table_header/createTableHeader.js</h1>
 
     
 
@@ -26,32 +26,50 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import {ChartComponent} from "../../core/ChartComponent";
-import {createZodiac} from "./createZodiac";
+            <pre class="prettyprint source linenums"><code>/**
+ * Массив с параметрами для создания кнопок
+ * @type {Array}
+ */
+const buttons = [
+  {
+    "classes": ["button", "button--header", "material-icons"],
+    "icon": 'filter_1',
+  },
+  {
+    "classes": ["button", "button--header", "material-icons"],
+    "icon": 'filter_2',
+  },
+];
 
 /**
- * Класс визуализации зодиака
- * * @module components/zodiac/Zodiac
+ * @property {Function} createButton Создаёт кнопки
+ * @param {Array&lt;Object>} buttons Массив с параметрами кнопок
+ * @return {String} Строка с кнопками
  */
-export class Zodiac extends ChartComponent {
-  /**
-   *
-   * @param {Object} $root Корневой тег элемента
-   * @param {Object} options Параметры компонента
-   */
-  constructor($root, options) {
-    super(
-        $root,
-        {
-          name: 'Zodiac',
-          ...options,
-        }
-    );
-  }
+function createButton(buttons) {
+  return buttons
+      .map((button) => {
+        return `&lt;button 
+            class="${button.classes.join(' ')}">
+            ${button.icon}
+            &lt;/button>`;
+      })
+      .join(' ');
+}
 
-  get template() {
-    return createZodiac();
-  }
+/**
+ * @module components/table_header/createTableHeader
+ * @property {Function} createTableHeader Создаёт блок tableHeader
+ * @return {HTMLDivElement} Блок с кнопками
+ */
+export function createTableHeader() {
+  const content = createButton(buttons);
+  const container = document.createElement('div');
+
+  container.classList.add('block__header');
+  container.innerHTML = content;
+
+  return container;
 }
 </code></pre>
         </article>

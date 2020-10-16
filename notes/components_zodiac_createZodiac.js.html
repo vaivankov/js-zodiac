@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/zodiac/Zodiac.js</title>
+    <title>JSDoc: Source: components/zodiac/createZodiac.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/zodiac/Zodiac.js</h1>
+    <h1 class="page-title">Source: components/zodiac/createZodiac.js</h1>
 
     
 
@@ -26,32 +26,22 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import {ChartComponent} from "../../core/ChartComponent";
-import {createZodiac} from "./createZodiac";
-
-/**
- * Класс визуализации зодиака
- * * @module components/zodiac/Zodiac
+            <pre class="prettyprint source linenums"><code>/**
+ * @module components/table/createZodiac
+ * @property {Function} createZodiac Создаёт блок zodiac
+ * @return {HTMLDivElement} Блок с зодиаком
  */
-export class Zodiac extends ChartComponent {
-  /**
-   *
-   * @param {Object} $root Корневой тег элемента
-   * @param {Object} options Параметры компонента
-   */
-  constructor($root, options) {
-    super(
-        $root,
-        {
-          name: 'Zodiac',
-          ...options,
-        }
-    );
-  }
+export function createZodiac() {
+  const content = '&lt;img src="../../assets/zodiac.svg" alt="Зодиак">';
+  const block = document.createElement('div');
 
-  get template() {
-    return createZodiac();
-  }
+  block.classList.add(
+      'block__body',
+      'block__body--zodiac'
+  );
+  block.innerHTML = content;
+
+  return block;
 }
 </code></pre>
         </article>
