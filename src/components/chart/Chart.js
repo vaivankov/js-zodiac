@@ -19,11 +19,11 @@ export class Chart {
    * @return {String}
    */
   getRootElement() {
-    const components = this.components
+    return this.components
         .map((Comp) => new Comp)
         .map((comp) => comp.getTemplate())
-        .join('');
-    return components;
+        .map((comp) => comp.outerHTML)
+        .join(" ");
   }
 
   /**
@@ -31,6 +31,6 @@ export class Chart {
    * @return {void}
    */
   render() {
-    this.$root.innerHTML = (this.getRootElement());
+    this.$root.innerHTML = this.getRootElement();
   }
 }

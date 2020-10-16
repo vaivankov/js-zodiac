@@ -2,7 +2,7 @@ import {ChartComponent} from "../../core/ChartComponent";
 
 /**
  * Класс визуализации зодиака
- * * @module components/zodiac_header/ZodiacHeader
+ * @module components/zodiac_header/ZodiacHeader
  */
 export class ZodiacHeader extends ChartComponent {
   /**

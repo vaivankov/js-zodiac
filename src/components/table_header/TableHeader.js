@@ -1,4 +1,5 @@
 import {ChartComponent} from "../../core/ChartComponent";
+import {createTableHeader} from "./createTableHeader";
 
 /**
  * Класс визуализации зодиака
@@ -18,5 +19,9 @@ export class TableHeader extends ChartComponent {
           ...options,
         }
     );
+  }
+
+  get template() {
+    return createTableHeader();
   }
 }
