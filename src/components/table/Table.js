@@ -1,4 +1,5 @@
 import {ChartComponent} from "../../core/ChartComponent";
+import {createTable} from "./createTable";
 
 /**
  * Класс таблицы с значениями
@@ -18,5 +19,9 @@ export class Table extends ChartComponent {
           ...options,
         }
     );
+  }
+
+  get template() {
+    return createTable();
   }
 }

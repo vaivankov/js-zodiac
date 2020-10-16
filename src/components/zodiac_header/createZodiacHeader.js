@@ -1,5 +1,5 @@
 /**
- * Объект с параметрами для создания кнопок
+ * Массив с параметрами для создания кнопок
  * @type {Array}
  */
 const buttons = [
@@ -34,7 +34,7 @@ function createButton(buttons) {
 }
 
 /**
- * @module components/table_header/createZodiacHeader
+ * @module components/zodiac_header/createZodiacHeader
  * @property {Function} createZodiacHeader Создаёт блок zodiacHeader
  * @return {HTMLDivElement} Блок с кнопками
  */
