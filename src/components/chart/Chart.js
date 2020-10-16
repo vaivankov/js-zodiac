@@ -16,7 +16,7 @@ export class Chart {
   /**
    * @property {Function} getRootElement
    * Собирает основной рабочий интерфейс программы
-   * @return {String}
+   * @return {String} Вёрстка интерфейса
    */
   getRootElement() {
     return this.components
