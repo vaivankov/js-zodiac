@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: components/table/Table</title>
+    <title>JSDoc: Source: components/chart/createChartWrapper.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,139 +17,34 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: components/table/Table</h1>
+    <h1 class="page-title">Source: components/chart/createChartWrapper.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>Класс таблицы с значениями</p></div>
-        
-
-        
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_table_Table.js.html">components/table/Table.js</a>, <a href="components_table_Table.js.html#line4">line 4</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="module-components_table_Table.Table.html">Table</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module components/chart/createChartWrapper
+ * @property {Function} createChartWrapper Создаёт обёртку с блоками
+ * @param {Array} args Массив компонентов страницы
+ * @return {String} Основной интерфейс программы
+ */
+export function createChartWrapper(args) {
+  return `&lt;div class="chart-container">
+      &lt;div class="block block--table">
+        ${args[0].outerHTML + args[1].outerHTML}
+      &lt;/div>
+      &lt;div class="block block--chart">
+        ${args[2].outerHTML + args[3].outerHTML}
+      &lt;/div>
+    &lt;/div>`;
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

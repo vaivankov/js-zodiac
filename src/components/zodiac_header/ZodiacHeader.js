@@ -1,8 +1,9 @@
 import {ChartComponent} from "../../core/ChartComponent";
+import {createZodiacHeader} from "./createZodiacHeader";
 
 /**
  * Класс визуализации зодиака
- * * @module components/zodiac_header/ZodiacHeader
+ * @module components/zodiac_header/ZodiacHeader
  */
 export class ZodiacHeader extends ChartComponent {
   /**
@@ -18,5 +19,9 @@ export class ZodiacHeader extends ChartComponent {
           ...options,
         }
     );
+  }
+
+  get template() {
+    return createZodiacHeader();
   }
 }

@@ -19,15 +19,15 @@ export class ChartComponent extends DOMListener {
 
   /**
    * @property {Function} template Возвращает шаблон компонента
-   * @return {String}
+   * @return {HTMLDivElement}
    */
   get template() {
-    return "";
+    return document.createElement('div');
   }
 
   /**
    * @property {Function} getTemplate Запрашивает шаблон компонента
-   * @return {String}
+   * @return {HTMLDivElement}
    */
   getTemplate() {
     return this.template;

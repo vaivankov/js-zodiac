@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: components/table/Table</title>
+    <title>JSDoc: Source: components/table_header/createTableHeader.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,139 +17,63 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: components/table/Table</h1>
+    <h1 class="page-title">Source: components/table_header/createTableHeader.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>Класс таблицы с значениями</p></div>
-        
-
-        
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_table_Table.js.html">components/table/Table.js</a>, <a href="components_table_Table.js.html#line4">line 4</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="module-components_table_Table.Table.html">Table</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Массив с параметрами для создания кнопок
+ * @type {Array}
+ */
+const buttons = [
+  {
+    "classes": ["button", "button--header", "material-icons"],
+    "icon": 'filter_1',
+  },
+  {
+    "classes": ["button", "button--header", "material-icons"],
+    "icon": 'filter_2',
+  },
+];
+
+/**
+ * @property {Function} createButton Создаёт кнопки
+ * @param {Array&lt;Object>} buttons Массив с параметрами кнопок
+ * @return {String} Строка с кнопками
+ */
+function createButton(buttons) {
+  return buttons
+      .map((button) => {
+        return `&lt;button 
+            class="${button.classes.join(' ')}">
+            ${button.icon}
+            &lt;/button>`;
+      })
+      .join(' ');
+}
+
+/**
+ * @module components/table_header/createTableHeader
+ * @property {Function} createTableHeader Создаёт блок tableHeader
+ * @return {HTMLDivElement} Блок с кнопками
+ */
+export function createTableHeader() {
+  const content = createButton(buttons);
+  const container = document.createElement('div');
+
+  container.classList.add('block__header');
+  container.innerHTML = content;
+
+  return container;
+}
+</code></pre>
+        </article>
+    </section>
 
 
 
