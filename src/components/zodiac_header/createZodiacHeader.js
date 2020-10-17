@@ -1,3 +1,5 @@
+import {$$} from "../../utils/Dom";
+
 /**
  * Массив с параметрами для создания кнопок
  * @type {Array}
@@ -36,14 +38,14 @@ function createButton(buttons) {
 /**
  * @module components/zodiac_header/createZodiacHeader
  * @property {Function} createZodiacHeader Создаёт блок zodiacHeader
- * @return {HTMLDivElement} Блок с кнопками
+ * @return {Element} Блок с кнопками
  */
 export function createZodiacHeader() {
   const content = createButton(buttons);
-  const container = document.createElement('div');
+  const container = $$.create('div');
 
-  container.classList.add('block__header');
-  container.innerHTML = content;
+  container.addClasses('block__header');
+  container.setHTML(content);
 
-  return container;
+  return container.$element;
 }

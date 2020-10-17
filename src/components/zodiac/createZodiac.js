@@ -1,17 +1,19 @@
+import {$$} from "../../utils/Dom";
+
 /**
  * @module components/table/createZodiac
  * @property {Function} createZodiac Создаёт блок zodiac
- * @return {HTMLDivElement} Блок с зодиаком
+ * @return {Element} Блок с зодиаком
  */
 export function createZodiac() {
   const content = '<img src="../../assets/zodiac.svg" alt="Зодиак">';
-  const block = document.createElement('div');
+  const container = $$.create('div');
 
-  block.classList.add(
+  container.addClasses(
       'block__body',
       'block__body--zodiac'
   );
-  block.innerHTML = content;
+  container.setHTML(content);
 
-  return block;
+  return container.$element;
 }

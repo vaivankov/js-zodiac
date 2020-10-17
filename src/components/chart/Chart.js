@@ -1,3 +1,4 @@
+import {$$} from "../../utils/Dom";
 import {createChartWrapper} from "./createChartWrapper";
 
 /**
@@ -12,7 +13,7 @@ export class Chart {
    */
   constructor($root, options) {
     this.components = options.components || [];
-    this.$root = document.querySelector($root);
+    this.$root = $$($root);
   }
 
   /**
@@ -33,6 +34,6 @@ export class Chart {
    * @return {void}
    */
   render() {
-    this.$root.innerHTML = this.getRootElement();
+    this.$root.setHTML(this.getRootElement());
   }
 }

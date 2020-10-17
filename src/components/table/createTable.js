@@ -1,3 +1,5 @@
+import {$$} from "../../utils/Dom";
+
 /**
  * Массив с параметрами для создания строк
  * @type {Array}
@@ -124,17 +126,17 @@ function createRows(rowParams) {
 /**
  * @module components/table/createTable
  * @property {Function} createTable Создаёт блок table
- * @return {HTMLDivElement} Таблица по каждой планете
+ * @return {Element} Таблица по каждой планете
  */
 export function createTable() {
   const content = createRows(rowParams);
-  const block = document.createElement('div');
+  const container = $$.create('div');
 
-  block.classList.add(
+  container.addClasses(
       'block__body',
       'block__body--table'
   );
-  block.innerHTML = content;
+  container.setHTML(content);
 
-  return block;
+  return container.$element;
 }
