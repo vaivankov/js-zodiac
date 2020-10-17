@@ -1,3 +1,5 @@
+import {createChartWrapper} from "./createChartWrapper";
+
 /**
  * Класс объединяющий все компоненты в единое целое
  * @module components/Chart
@@ -19,11 +21,11 @@ export class Chart {
    * @return {String} Вёрстка интерфейса
    */
   getRootElement() {
-    return this.components
+    this.components = this.components
         .map((Comp) => new Comp)
-        .map((comp) => comp.getTemplate())
-        .map((comp) => comp.outerHTML)
-        .join(" ");
+        .map((comp) => comp.getTemplate());
+
+    return createChartWrapper(this.components);
   }
 
   /**
