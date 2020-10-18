@@ -5,8 +5,8 @@
 export class DOMListener {
   /**
    *
-   * @param {Object} $root Корневой тег элемента
-   * @param {Array} listeners События, которые слушает данный элемент
+   * @param {Object} $root - Корневой тег элемента
+   * @param {Array} listeners - События, которые слушает данный элемент
    */
   constructor($root, listeners = []) {
     this.$root = $root;

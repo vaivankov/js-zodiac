@@ -1,5 +1,3 @@
-import {$$} from "../../utils/Dom";
-
 /**
  * Массив с параметрами для создания кнопок
  * @type {Array}
@@ -20,32 +18,29 @@ const buttons = [
 ];
 
 /**
- * @property {Function} createButton Создаёт кнопки
- * @param {Array<Object>} buttons Массив с параметрами кнопок
+ * @property {Function} createButton - Создаёт кнопки
+ * @param {Array<Object>} buttons - Массив с параметрами кнопок
  * @return {String} Строка с кнопками
  */
 function createButton(buttons) {
   return buttons
       .map((button) => {
         return `<button 
-            class="${button.classes.join(' ')}">
-            ${button.icon}
-            </button>`;
+    class="${button.classes.join(' ')}">
+    ${button.icon}
+    </button>`;
       })
       .join(' ');
 }
 
 /**
  * @module components/zodiac_header/createZodiacHeader
- * @property {Function} createZodiacHeader Создаёт блок zodiacHeader
+ * @property {Function} createZodiacHeader - Создаёт блок zodiacHeader
+ * @param {Object} $root - Dom instance div контейнера
  * @return {Element} Блок с кнопками
  */
-export function createZodiacHeader() {
+export function createZodiacHeader($root) {
   const content = createButton(buttons);
-  const container = $$.create('div');
-
-  container.addClasses('block__header');
-  container.setHTML(content);
-
-  return container.$element;
+  $root.setHTML(content);
+  return $root;
 }

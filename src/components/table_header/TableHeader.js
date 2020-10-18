@@ -8,20 +8,18 @@ import {createTableHeader} from "./createTableHeader";
 export class TableHeader extends ChartComponent {
   /**
    *
-   * @param {Object} $root Корневой тег элемента
-   * @param {Object} options Параметры компонента
+   * @param {Object} $root - Корневой тег элемента
+   * @param {Object} options - Параметры компонента
    */
+  static className = ["block__header"];
   constructor($root, options) {
     super(
         $root,
         {
-          name: 'Table Header',
           ...options,
         }
     );
-  }
 
-  get template() {
-    return createTableHeader();
+    this.$root = createTableHeader($root);
   }
 }

@@ -1,5 +1,3 @@
-import {$$} from "../../utils/Dom";
-
 /**
  * Массив с параметрами для создания строк
  * @type {Array}
@@ -78,8 +76,8 @@ const rowParams = [
 ];
 
 /**
- * @property {Function} createRows Создаёт строки
- * @param {Array<Object>} rowParams Массив с параметрами строк
+ * @property {Function} createRows - Создаёт строки
+ * @param {Array<Object>} rowParams - Массив с параметрами строк
  * @return {String} Строка с вёрсткой строк
  */
 function createRows(rowParams) {
@@ -125,18 +123,12 @@ function createRows(rowParams) {
 
 /**
  * @module components/table/createTable
- * @property {Function} createTable Создаёт блок table
- * @return {Element} Таблица по каждой планете
+ * @param {Object} $root - Dom instance div контейнера
+ * @property {Function} createTable - Создаёт блок table
+ * @return {*} Dom instance c таблицей по каждой планете
  */
-export function createTable() {
+export function createTable($root) {
   const content = createRows(rowParams);
-  const container = $$.create('div');
-
-  container.addClasses(
-      'block__body',
-      'block__body--table'
-  );
-  container.setHTML(content);
-
-  return container.$element;
+  $root.setHTML(content);
+  return $root;
 }

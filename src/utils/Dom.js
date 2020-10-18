@@ -37,10 +37,12 @@ class Dom {
    * @param {Array} className Имя классов
    * @return {Object} this
    */
-  addClasses(...className) {
-    className.forEach((cl)=>{
-      this.$element.classList.add(cl);
-    });
+  addClasses(className) {
+    if (className) {
+      className.forEach((cl)=>{
+        this.$element.classList.add(cl);
+      });
+    }
 
     return this;
   }
@@ -50,10 +52,12 @@ class Dom {
    * @param {Array} className Имя классов
    * @return {Object} this
    */
-  removeClasses(...className) {
-    className.forEach((cl)=>{
-      this.$element.classList.remove(cl);
-    });
+  removeClasses(className) {
+    if (className) {
+      className.forEach((cl)=>{
+        this.$element.classList.remove(cl);
+      });
+    }
 
     return this;
   }

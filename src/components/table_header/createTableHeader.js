@@ -1,5 +1,3 @@
-import {$$} from "../../utils/Dom";
-
 /**
  * Массив с параметрами для создания кнопок
  * @type {Array}
@@ -16,8 +14,8 @@ const buttons = [
 ];
 
 /**
- * @property {Function} createButton Создаёт кнопки
- * @param {Array<Object>} buttons Массив с параметрами кнопок
+ * @property {Function} createButton - Создаёт кнопки
+ * @param {Array<Object>} buttons - Массив с параметрами кнопок
  * @return {String} Строка с кнопками
  */
 function createButton(buttons) {
@@ -33,15 +31,12 @@ function createButton(buttons) {
 
 /**
  * @module components/table_header/createTableHeader
- * @property {Function} createTableHeader Создаёт блок tableHeader
+ * @property {Function} createTableHeader - Создаёт блок tableHeader
+ * @param {Object} $root - Dom instance div контейнера
  * @return {Element} Блок с кнопками
  */
-export function createTableHeader() {
+export function createTableHeader($root) {
   const content = createButton(buttons);
-  const container = $$.create('div');
-
-  container.addClasses('block__header');
-  container.setHTML(content);
-
-  return container.$element;
+  $root.setHTML(content);
+  return $root;
 }

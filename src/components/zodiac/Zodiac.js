@@ -8,20 +8,18 @@ import {createZodiac} from "./createZodiac";
 export class Zodiac extends ChartComponent {
   /**
    *
-   * @param {Object} $root Корневой тег элемента
-   * @param {Object} options Параметры компонента
+   * @param {Object} $root - Корневой тег элемента
+   * @param {Object} options - Параметры компонента
    */
+  static className = ["block__body"];
   constructor($root, options) {
     super(
         $root,
         {
-          name: 'Zodiac',
           ...options,
         }
     );
-  }
 
-  get template() {
-    return createZodiac();
+    this.$root = createZodiac($root);
   }
 }

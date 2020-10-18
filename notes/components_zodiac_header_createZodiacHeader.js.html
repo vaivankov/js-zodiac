@@ -46,34 +46,31 @@ const buttons = [
 ];
 
 /**
- * @property {Function} createButton Создаёт кнопки
- * @param {Array&lt;Object>} buttons Массив с параметрами кнопок
+ * @property {Function} createButton - Создаёт кнопки
+ * @param {Array&lt;Object>} buttons - Массив с параметрами кнопок
  * @return {String} Строка с кнопками
  */
 function createButton(buttons) {
   return buttons
       .map((button) => {
         return `&lt;button 
-            class="${button.classes.join(' ')}">
-            ${button.icon}
-            &lt;/button>`;
+    class="${button.classes.join(' ')}">
+    ${button.icon}
+    &lt;/button>`;
       })
       .join(' ');
 }
 
 /**
  * @module components/zodiac_header/createZodiacHeader
- * @property {Function} createZodiacHeader Создаёт блок zodiacHeader
- * @return {HTMLDivElement} Блок с кнопками
+ * @property {Function} createZodiacHeader - Создаёт блок zodiacHeader
+ * @param {Object} $root - Dom instance div контейнера
+ * @return {Element} Блок с кнопками
  */
-export function createZodiacHeader() {
+export function createZodiacHeader($root) {
   const content = createButton(buttons);
-  const container = document.createElement('div');
-
-  container.classList.add('block__header');
-  container.innerHTML = content;
-
-  return container;
+  $root.setHTML(content);
+  return $root;
 }
 </code></pre>
         </article>
@@ -85,13 +82,13 @@ export function createZodiacHeader() {
 </div>
 
 <nav>
-    <h2><a href="index.html">Project documentation</a></h2><h3>Modules</h3><ul><li><a href="module-components_Chart.html">components/Chart</a></li><li><a href="module-components_chart_createChartWrapper.html">components/chart/createChartWrapper</a></li><li><a href="module-components_table_createTable.html">components/table/createTable</a></li><li><a href="module-components_table_createZodiac.html">components/table/createZodiac</a></li><li><a href="module-components_table_Table.html">components/table/Table</a></li><li><a href="module-components_table_header_createTableHeader.html">components/table_header/createTableHeader</a></li><li><a href="module-components_zodiac_header_createZodiacHeader.html">components/zodiac_header/createZodiacHeader</a></li><li><a href="module-components_zodiac_header_ZodiacHeader.html">components/zodiac_header/ZodiacHeader</a></li><li><a href="module-core_ChartComponent.html">core/ChartComponent</a></li><li><a href="module-core_DOMListener.html">core/DOMListener</a></li></ul><h3>Classes</h3><ul><li><a href="module-components_Chart.Chart.html">Chart</a></li><li><a href="module-components_table_Table.Table.html">Table</a></li><li><a href="module-components_zodiac_header_ZodiacHeader.ZodiacHeader.html">ZodiacHeader</a></li><li><a href="module-core_ChartComponent.ChartComponent.html">ChartComponent</a></li><li><a href="module-core_DOMListener.DOMListener.html">DOMListener</a></li><li><a href="TableHeader.html">TableHeader</a></li><li><a href="Zodiac.html">Zodiac</a></li></ul><h3>Global</h3><ul><li><a href="global.html#buttons">buttons</a></li><li><a href="global.html#createButton">createButton</a></li><li><a href="global.html#createRows">createRows</a></li><li><a href="global.html#options">options</a></li><li><a href="global.html#rowParams">rowParams</a></li></ul>
+    <h2><a href="index.html">Project documentation</a></h2><h3>Modules</h3><ul><li><a href="module-components_Chart.html">components/Chart</a></li><li><a href="module-components_chart_createChartWrapper.html">components/chart/createChartWrapper</a></li><li><a href="module-components_table_createTable.html">components/table/createTable</a></li><li><a href="module-components_table_createZodiac.html">components/table/createZodiac</a></li><li><a href="module-components_table_Table.html">components/table/Table</a></li><li><a href="module-components_table_header_createTableHeader.html">components/table_header/createTableHeader</a></li><li><a href="module-components_zodiac_header_createZodiacHeader.html">components/zodiac_header/createZodiacHeader</a></li><li><a href="module-components_zodiac_header_ZodiacHeader.html">components/zodiac_header/ZodiacHeader</a></li><li><a href="module-core_ChartComponent.html">core/ChartComponent</a></li><li><a href="module-core_DOMListener.html">core/DOMListener</a></li></ul><h3>Classes</h3><ul><li><a href="Dom.html">Dom</a></li><li><a href="module-components_Chart.Chart.html">Chart</a></li><li><a href="module-core_ChartComponent.ChartComponent.html">ChartComponent</a></li><li><a href="module-core_DOMListener.DOMListener.html">DOMListener</a></li><li><a href="TableHeader.html">TableHeader</a></li><li><a href="Zodiac.html">Zodiac</a></li></ul><h3>Global</h3><ul><li><a href="global.html#$$">$$</a></li><li><a href="global.html#buttons">buttons</a></li><li><a href="global.html#createButton">createButton</a></li><li><a href="global.html#createRows">createRows</a></li><li><a href="global.html#options">options</a></li><li><a href="global.html#rowParams">rowParams</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Oct 17 2020 06:50:14 GMT+0300 (GMT+03:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Oct 18 2020 14:18:43 GMT+0300 (GMT+03:00)
 </footer>
 
 <script> prettyPrint(); </script>
