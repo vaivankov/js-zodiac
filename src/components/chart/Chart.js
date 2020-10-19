@@ -1,3 +1,4 @@
+import {Emitter} from "../../core/Emitter";
 import {$$} from "../../utils/Dom";
 import {createChartWrapper} from "./createChartWrapper";
 
@@ -14,6 +15,7 @@ export class Chart {
   constructor($root, options) {
     this.components = options.components || [];
     this.$root = $$($root);
+    this.emitter = new Emitter();
   }
 
   /**

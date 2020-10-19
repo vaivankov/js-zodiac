@@ -19,7 +19,8 @@ export class DOMListener {
   }
 
   /**
-   * @property {Function} initDOMListeners
+   * @property {Function} initDOMListeners -
+   * Связывает слушаемые компонентами события и функции
    * @return {void}
    */
   initDOMListeners() {
@@ -39,7 +40,8 @@ export class DOMListener {
   }
 
   /**
-   * @property {Function} removeDOMListeners
+   * @property {Function} removeDOMListeners -
+   * Удаляет связанные события компонентов и функции
    * @return {void}
    * */
   removeDOMListeners() {

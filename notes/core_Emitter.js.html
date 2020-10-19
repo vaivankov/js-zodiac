@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: components/Chart</title>
+    <title>JSDoc: Source: core/Emitter.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,139 +17,62 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: components/Chart</h1>
+    <h1 class="page-title">Source: core/Emitter.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>Класс объединяющий все компоненты в единое целое</p></div>
-        
-
-        
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_chart_Chart.js.html">components/chart/Chart.js</a>, <a href="components_chart_Chart.js.html#line5">line 5</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="module-components_Chart.Chart.html">Chart</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Класс, управляющий общими событиями в приложении
+ * @module core/Emitter
+ */
+export class Emitter {
+  constructor() {
+    this.listeners = {};
+  }
+
+  /**
+   * @property {Function} emit - Вызывает функцию на слушаемое событие
+   * @param {String} event - Название события
+   * @param {Array} args - Массив с параметрами
+   * @return {Boolean}
+   */
+  emit(event, ...args) {
+    if (!Array.isArray(this.listeners[event])) {
+      return false;
+    }
+
+    this.listeners[event].forEach((listener) => {
+      listener(...args);
+    });
+
+    return true;
+  }
+
+  /**
+   * @property {Function} subscribe -
+   * Подписывает новую функцию на слушаемое событие
+   * @param {String} event - Название события
+   * @param {Function} func - callback function
+   * @return {Function} anonymous - Функция отписчик
+   */
+  subscribe(event, func) {
+    this.listeners[event] = this.listeners[event] || [];
+    this.listeners[event].push(func);
+    return () => {
+      this.listeners[event] = this.listeners[event]
+          .filter((listener) => listener !== func);
+    };
+  }
+}
+
+</code></pre>
+        </article>
+    </section>
 
 
 
