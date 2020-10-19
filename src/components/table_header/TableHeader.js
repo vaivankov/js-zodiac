@@ -16,6 +16,7 @@ export class TableHeader extends ChartComponent {
     super(
         $root,
         {
+          name: "Table Header",
           ...options,
         }
     );
