@@ -91,12 +91,11 @@ function createRows(rowParams) {
               <span class="row__house"></span>
             </div>
             <div class="row__item">
-              <input class="row__input"
-                placeholder="накшатра"
+              <input class="row__input" placeholder="накшатра" 
+                type="text" list="nakshatrasList"
                 ${row.isActive ? "" : "disabled"}>
-              <input
-                class="row__input"
-                placeholder="накшатра"
+              <input class="row__input" placeholder="накшатра" 
+                type="text" list="nakshatrasList"
                 ${row.isActive ? "" : "disabled"}>
             </div>
             <div class="row__item">
