@@ -42,4 +42,12 @@ export class Chart {
   render() {
     this.$root.setHTML(this.getRootElement());
   }
+
+  /**
+   * @property {Function} init - Вставляет шаблон программы на страницу
+   * @return {void}
+   */
+  init() {
+    this.components.forEach((component) => component.init());
+  }
 }
