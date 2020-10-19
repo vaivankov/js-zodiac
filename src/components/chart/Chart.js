@@ -17,20 +17,24 @@ export class Chart {
   }
 
   /**
-   * @property {Function} getRootElement
+   * @property {Function} getRootElement -
    * Собирает основной рабочий интерфейс программы
    * @return {String} Вёрстка интерфейса
    */
   getRootElement() {
     this.components = this.components
-        .map((Comp) => new Comp)
-        .map((comp) => comp.getTemplate());
+        .map((Comp) => {
+          const container = $$.create('div');
+          container.addClasses(Comp.className);
+          const instance = new Comp(container);
+          return instance;
+        });
 
     return createChartWrapper(this.components);
   }
 
   /**
-   * @property {Function} render Вставляет шаблон программы на страницу
+   * @property {Function} render - Вставляет шаблон программы на страницу
    * @return {void}
    */
   render() {

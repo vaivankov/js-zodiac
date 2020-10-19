@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: index.js</title>
+    <title>JSDoc: Source: utils/Dom.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: index.js</h1>
+    <h1 class="page-title">Source: utils/Dom.js</h1>
 
     
 
@@ -26,27 +26,96 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import {Chart} from "./components/chart/Chart";
-import {Table} from "./components/table/Table";
-import {TableHeader} from "./components/table_header/TableHeader";
-import {ZodiacHeader} from "./components/zodiac_header/ZodiacHeader";
-import {Zodiac} from "./components/zodiac/Zodiac";
-import "./less/style.less";
+            <pre class="prettyprint source linenums"><code>/**
+ * Служебный класс позволяющий удобно работать с nodes
+ */
+class Dom {
+  /**
+   *
+   * @param {String|HTMLElement} selector Имя селектора или нода
+   */
+  constructor(selector) {
+    this.$element = typeof selector === 'string' ?
+      document.querySelector(selector) :
+      selector;
+  }
+
+  /**
+   * @property {Function} getHTML Достаёт вёрстку из $element
+   * @return {String} Node
+   */
+  getHTML() {
+    return this.$element.outerHTML.trim();
+  }
+
+  /**
+   * @property {Function} setHTML Меняет содержимое $element
+   * @param {*} html Контент
+   * @return {Object} this
+   */
+  setHTML(html) {
+    if (typeof html === 'string') {
+      this.$element.innerHTML = html;
+      return this;
+    }
+  }
+
+  /**
+   * @property {Function} addClasses Добавляет css-классы к $element
+   * @param {Array} className Имя классов
+   * @return {Object} this
+   */
+  addClasses(className) {
+    if (className) {
+      className.forEach((cl)=>{
+        this.$element.classList.add(cl);
+      });
+    }
+
+    return this;
+  }
+
+  /**
+   * @property {Function} removeClasses Удаляет css-классы у $element
+   * @param {Array} className Имя классов
+   * @return {Object} this
+   */
+  removeClasses(className) {
+    if (className) {
+      className.forEach((cl)=>{
+        this.$element.classList.remove(cl);
+      });
+    }
+
+    return this;
+  }
+}
 
 /**
- * Объект с параметрами для создания основного интерфейса программы
- * @type {Object}
+ *
+ * @param {String|HTMLElement} selector Имя селектора или нода
+ * @return {Dom} Новый Dom instance
  */
-const options = {
-  components: [TableHeader, Table, ZodiacHeader, Zodiac],
+export function $$(selector) {
+  return new Dom(selector);
+}
+
+/**
+ * @property {Function} create Создаёт новый тег и
+ * оборачивает его в Dom instance
+ * @param {String} tagName Название тега
+ * @param {String} className Имя css-класса
+ * @return {Dom} Новый Dom instance
+ */
+$$.create = (tagName, className = '') => {
+  const el = document.createElement(tagName);
+
+  if (className) {
+    el.classList.add(className);
+  }
+
+  return $$(el);
 };
-
-const chart = new Chart(
-    '#app',
-    options
-);
-
-chart.render();
 </code></pre>
         </article>
     </section>

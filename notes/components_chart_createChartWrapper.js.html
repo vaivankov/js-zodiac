@@ -28,17 +28,129 @@
         <article>
             <pre class="prettyprint source linenums"><code>/**
  * @module components/chart/createChartWrapper
- * @property {Function} createChartWrapper Создаёт обёртку с блоками
- * @param {Array} args Массив компонентов страницы
+ * @property {Function} createChartWrapper - Создаёт обёртку с блоками
+ * @param {Array} args - Массив компонентов страницы
  * @return {String} Основной интерфейс программы
  */
 export function createChartWrapper(args) {
   return `&lt;div class="chart-container">
       &lt;div class="block block--table">
-        ${args[0].outerHTML + args[1].outerHTML}
+        ${args[0].$root.getHTML() + args[1].$root.getHTML()}
+        &lt;div>
+          &lt;datalist class="visually-hidden" id="nakshatrasList">
+            &lt;option>ашвини 1&lt;/option>
+            &lt;option>ашвини 2&lt;/option>
+            &lt;option>ашвини 3&lt;/option>
+            &lt;option>ашвини 4&lt;/option>
+            &lt;option>бхарани 1&lt;/option>
+            &lt;option>бхарани 2&lt;/option>
+            &lt;option>бхарани 3&lt;/option>
+            &lt;option>бхарани 4&lt;/option>
+            &lt;option>криттика 1&lt;/option>
+            &lt;option>криттика 2&lt;/option>
+            &lt;option>криттика 3&lt;/option>
+            &lt;option>криттика 4&lt;/option>
+            &lt;option>рохини 1&lt;/option>
+            &lt;option>рохини 2&lt;/option>
+            &lt;option>рохини 3&lt;/option>
+            &lt;option>рохини 4&lt;/option>
+            &lt;option>мригашира 1&lt;/option>
+            &lt;option>мригашира 2&lt;/option>
+            &lt;option>мригашира 3&lt;/option>
+            &lt;option>мригашира 4&lt;/option>
+            &lt;option>ардра 1&lt;/option>
+            &lt;option>ардра 2&lt;/option>
+            &lt;option>ардра 3&lt;/option>
+            &lt;option>ардра 4&lt;/option>
+            &lt;option>пунарвасу 1&lt;/option>
+            &lt;option>пунарвасу 2&lt;/option>
+            &lt;option>пунарвасу 3&lt;/option>
+            &lt;option>пунарвасу 4&lt;/option>
+            &lt;option>пушья 1&lt;/option>
+            &lt;option>пушья 2&lt;/option>
+            &lt;option>пушья 3&lt;/option>
+            &lt;option>пушья 4&lt;/option>
+            &lt;option>ашлеша 1&lt;/option>
+            &lt;option>ашлеша 2&lt;/option>
+            &lt;option>ашлеша 3&lt;/option>
+            &lt;option>ашлеша 4&lt;/option>
+            &lt;option>магха 1&lt;/option>
+            &lt;option>магха 2&lt;/option>
+            &lt;option>магха 3&lt;/option>
+            &lt;option>магха 4&lt;/option>
+            &lt;option>пурва-пхалгуни 1&lt;/option>
+            &lt;option>пурва-пхалгуни 2&lt;/option>
+            &lt;option>пурва-пхалгуни 3&lt;/option>
+            &lt;option>пурва-пхалгуни 4&lt;/option>
+            &lt;option>уттара-пхалгуни 1&lt;/option>
+            &lt;option>уттара-пхалгуни 2&lt;/option>
+            &lt;option>уттара-пхалгуни 3&lt;/option>
+            &lt;option>уттара-пхалгуни 4&lt;/option>
+            &lt;option>хаста 1&lt;/option>
+            &lt;option>хаста 2&lt;/option>
+            &lt;option>хаста 3&lt;/option>
+            &lt;option>хаста 4&lt;/option>
+            &lt;option>читра 1&lt;/option>
+            &lt;option>читра 2&lt;/option>
+            &lt;option>читра 3&lt;/option>
+            &lt;option>читра 4&lt;/option>
+            &lt;option>свати 1&lt;/option>
+            &lt;option>свати 2&lt;/option>
+            &lt;option>свати 3&lt;/option>
+            &lt;option>свати 4&lt;/option>
+            &lt;option>вишакха 1&lt;/option>
+            &lt;option>вишакха 2&lt;/option>
+            &lt;option>вишакха 3&lt;/option>
+            &lt;option>вишакха 4&lt;/option>
+            &lt;option>анурадха 1&lt;/option>
+            &lt;option>анурадха 2&lt;/option>
+            &lt;option>анурадха 3&lt;/option>
+            &lt;option>анурадха 4&lt;/option>
+            &lt;option>джьештха 1&lt;/option>
+            &lt;option>джьештха 2&lt;/option>
+            &lt;option>джьештха 3&lt;/option>
+            &lt;option>джьештха 4&lt;/option>
+            &lt;option>мула 1&lt;/option>
+            &lt;option>мула 2&lt;/option>
+            &lt;option>мула 3&lt;/option>
+            &lt;option>мула 4&lt;/option>
+            &lt;option>пурва-ашадха 1&lt;/option>
+            &lt;option>пурва-ашадха 2&lt;/option>
+            &lt;option>пурва-ашадха 3&lt;/option>
+            &lt;option>пурва-ашадха 4&lt;/option>
+            &lt;option>уттара-ашадха 1&lt;/option>
+            &lt;option>уттара-ашадха 2&lt;/option>
+            &lt;option>уттара-ашадха 3&lt;/option>
+            &lt;option>уттара-ашадха 4&lt;/option>
+            &lt;option>шравана 1&lt;/option>
+            &lt;option>шравана 2&lt;/option>
+            &lt;option>шравана 3&lt;/option>
+            &lt;option>шравана 4&lt;/option>
+            &lt;option>дхаништха 1&lt;/option>
+            &lt;option>дхаништха 2&lt;/option>
+            &lt;option>дхаништха 3&lt;/option>
+            &lt;option>дхаништха 4&lt;/option>
+            &lt;option>шатабхиша 1&lt;/option>
+            &lt;option>шатабхиша 2&lt;/option>
+            &lt;option>шатабхиша 3&lt;/option>
+            &lt;option>шатабхиша 4&lt;/option>
+            &lt;option>пурва-бхадра 1&lt;/option>
+            &lt;option>пурва-бхадра 2&lt;/option>
+            &lt;option>пурва-бхадра 3&lt;/option>
+            &lt;option>пурва-бхадра 4&lt;/option>
+            &lt;option>уттара-бхадра 1&lt;/option>
+            &lt;option>уттара-бхадра 2&lt;/option>
+            &lt;option>уттара-бхадра 3&lt;/option>
+            &lt;option>уттара-бхадра 4&lt;/option>
+            &lt;option>ревати 1&lt;/option>
+            &lt;option>ревати 2&lt;/option>
+            &lt;option>ревати 3&lt;/option>
+            &lt;option>ревати 4&lt;/option>
+          &lt;/datalist>
+        &lt;/div>
       &lt;/div>
       &lt;div class="block block--chart">
-        ${args[2].outerHTML + args[3].outerHTML}
+        ${args[2].$root.getHTML() + args[3].$root.getHTML()}
       &lt;/div>
     &lt;/div>`;
 }
@@ -52,13 +164,13 @@ export function createChartWrapper(args) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Project documentation</a></h2><h3>Modules</h3><ul><li><a href="module-components_Chart.html">components/Chart</a></li><li><a href="module-components_chart_createChartWrapper.html">components/chart/createChartWrapper</a></li><li><a href="module-components_table_createTable.html">components/table/createTable</a></li><li><a href="module-components_table_createZodiac.html">components/table/createZodiac</a></li><li><a href="module-components_table_Table.html">components/table/Table</a></li><li><a href="module-components_table_header_createTableHeader.html">components/table_header/createTableHeader</a></li><li><a href="module-components_zodiac_header_createZodiacHeader.html">components/zodiac_header/createZodiacHeader</a></li><li><a href="module-components_zodiac_header_ZodiacHeader.html">components/zodiac_header/ZodiacHeader</a></li><li><a href="module-core_ChartComponent.html">core/ChartComponent</a></li><li><a href="module-core_DOMListener.html">core/DOMListener</a></li></ul><h3>Classes</h3><ul><li><a href="module-components_Chart.Chart.html">Chart</a></li><li><a href="module-components_table_Table.Table.html">Table</a></li><li><a href="module-components_zodiac_header_ZodiacHeader.ZodiacHeader.html">ZodiacHeader</a></li><li><a href="module-core_ChartComponent.ChartComponent.html">ChartComponent</a></li><li><a href="module-core_DOMListener.DOMListener.html">DOMListener</a></li><li><a href="TableHeader.html">TableHeader</a></li><li><a href="Zodiac.html">Zodiac</a></li></ul><h3>Global</h3><ul><li><a href="global.html#buttons">buttons</a></li><li><a href="global.html#createButton">createButton</a></li><li><a href="global.html#createRows">createRows</a></li><li><a href="global.html#options">options</a></li><li><a href="global.html#rowParams">rowParams</a></li></ul>
+    <h2><a href="index.html">Project documentation</a></h2><h3>Modules</h3><ul><li><a href="module-components_Chart.html">components/Chart</a></li><li><a href="module-components_chart_createChartWrapper.html">components/chart/createChartWrapper</a></li><li><a href="module-components_table_createTable.html">components/table/createTable</a></li><li><a href="module-components_table_createZodiac.html">components/table/createZodiac</a></li><li><a href="module-components_table_Table.html">components/table/Table</a></li><li><a href="module-components_table_header_createTableHeader.html">components/table_header/createTableHeader</a></li><li><a href="module-components_zodiac_header_createZodiacHeader.html">components/zodiac_header/createZodiacHeader</a></li><li><a href="module-components_zodiac_header_ZodiacHeader.html">components/zodiac_header/ZodiacHeader</a></li><li><a href="module-core_ChartComponent.html">core/ChartComponent</a></li><li><a href="module-core_DOMListener.html">core/DOMListener</a></li></ul><h3>Classes</h3><ul><li><a href="Dom.html">Dom</a></li><li><a href="module-components_Chart.Chart.html">Chart</a></li><li><a href="module-core_ChartComponent.ChartComponent.html">ChartComponent</a></li><li><a href="module-core_DOMListener.DOMListener.html">DOMListener</a></li><li><a href="TableHeader.html">TableHeader</a></li><li><a href="Zodiac.html">Zodiac</a></li></ul><h3>Global</h3><ul><li><a href="global.html#$$">$$</a></li><li><a href="global.html#buttons">buttons</a></li><li><a href="global.html#createButton">createButton</a></li><li><a href="global.html#createRows">createRows</a></li><li><a href="global.html#options">options</a></li><li><a href="global.html#rowParams">rowParams</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Oct 17 2020 06:50:14 GMT+0300 (GMT+03:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Mon Oct 19 2020 08:13:47 GMT+0300 (GMT+03:00)
 </footer>
 
 <script> prettyPrint(); </script>

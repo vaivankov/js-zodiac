@@ -8,20 +8,18 @@ import {createZodiacHeader} from "./createZodiacHeader";
 export class ZodiacHeader extends ChartComponent {
   /**
    *
-   * @param {Object} $root Корневой тег элемента
-   * @param {Object} options Параметры компонента
+   * @param {Object} $root - Корневой тег элемента
+   * @param {Object} options - Параметры компонента
    */
+  static className = ["block__header"];
   constructor($root, options) {
     super(
         $root,
         {
-          name: 'Zodiac Header',
           ...options,
         }
     );
-  }
 
-  get template() {
-    return createZodiacHeader();
+    this.$root = createZodiacHeader($root);
   }
 }

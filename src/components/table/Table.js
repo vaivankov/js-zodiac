@@ -8,20 +8,18 @@ import {createTable} from "./createTable";
 export class Table extends ChartComponent {
   /**
    *
-   * @param {Object} $root Корневой тег элемента
-   * @param {Object} options Параметры компонента
+   * @param {Object} $root - Корневой тег элемента
+   * @param {Object} options - Параметры компонента
    */
+  static className = ["block__body", "block__body--table"];
   constructor($root, options) {
     super(
         $root,
         {
-          name: 'Table',
           ...options,
         }
     );
-  }
 
-  get template() {
-    return createTable();
+    this.$root = createTable($root);
   }
 }
