@@ -16,6 +16,7 @@ export class Table extends ChartComponent {
     super(
         $root,
         {
+          name: "Table",
           ...options,
         }
     );

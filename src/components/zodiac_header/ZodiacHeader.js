@@ -16,6 +16,7 @@ export class ZodiacHeader extends ChartComponent {
     super(
         $root,
         {
+          name: "Zodiac Header",
           ...options,
         }
     );
