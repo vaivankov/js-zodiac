@@ -16,6 +16,7 @@ export class Zodiac extends ChartComponent {
     super(
         $root,
         {
+          name: "Zodiac",
           ...options,
         }
     );
