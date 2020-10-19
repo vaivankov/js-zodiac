@@ -1,3 +1,5 @@
+import * as utils from '../utils/utils';
+
 /**
  * Класс, инициализирующий события на элементах
  * @module core/DOMListener
@@ -9,6 +11,9 @@ export class DOMListener {
    * @param {Array} listeners - События, которые слушает данный элемент
    */
   constructor($root, listeners = []) {
+    if (!$root) {
+      throw new Error(`No $root provided for DOMListener!`);
+    }
     this.$root = $root;
     this.listeners = listeners;
   }
@@ -18,6 +23,19 @@ export class DOMListener {
    * @return {void}
    */
   initDOMListeners() {
+    this.listeners.forEach((listener) => {
+      const methodName = utils.getMethodName(listener);
+      if (!this[methodName]) {
+        throw new Error(`
+        Method ${methodName} does not exist in ${this.name} Component!
+        `);
+      }
+      this[methodName] = this[methodName].bind(this);
+      this.$root.on(
+          listener,
+          this[methodName]
+      );
+    });
   }
 
   /**
@@ -25,6 +43,12 @@ export class DOMListener {
    * @return {void}
    * */
   removeDOMListeners() {
-
+    this.listeners.forEach((listener) => {
+      const methodName = utils.getMethodName(listener);
+      this.$root.off(
+          listener,
+          this[methodName]
+      );
+    });
   }
 }
