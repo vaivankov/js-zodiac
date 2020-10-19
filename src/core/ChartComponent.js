@@ -15,6 +15,11 @@ export class ChartComponent extends DOMListener {
         $root,
         options.listeners
     );
+
+    this.name = options.name || '';
+    this.emitter = options.emitter;
+    this.subscribes = options.subscribes || [];
+    this.unsubscribers = [];
   }
 
   /**
