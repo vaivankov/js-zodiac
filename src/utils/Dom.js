@@ -14,7 +14,7 @@ export function $$(selector) {
  * @param {String|Array} className - Имя css-класса
  * @return {Dom} Новый Dom instance
  */
-$$.create = (tagName, className = '') => {
+$$.create = (tagName, className) => {
   const el = document.createElement(tagName);
 
   if (Array.isArray(className)) {
