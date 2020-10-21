@@ -19,3 +19,4 @@ const chart = new Chart(
 );
 
 chart.render();
+console.log(chart);

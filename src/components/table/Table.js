@@ -17,10 +17,23 @@ export class Table extends ChartComponent {
         $root,
         {
           name: "Table",
+          listeners: ['click'],
           ...options,
         }
     );
 
     this.$root = createTable($root);
+  }
+
+  /**
+   * @property {Function} init - Инициализирует слушатели компонента
+   * @return {void}
+   */
+  init() {
+    super.init();
+  }
+
+  onClick() {
+    console.log('ok');
   }
 }

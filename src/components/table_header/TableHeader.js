@@ -23,4 +23,12 @@ export class TableHeader extends ChartComponent {
 
     this.$root = createTableHeader($root);
   }
+
+  /**
+   * @property {Function} init - Инициализирует слушатели компонента
+   * @return {void}
+   */
+  init() {
+    super.init();
+  }
 }

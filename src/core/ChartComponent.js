@@ -23,10 +23,45 @@ export class ChartComponent extends DOMListener {
   }
 
   /**
+   * @property {Function} init - Инициализирует слушатели компонента
+   * @return {void}
+   */
+  init() {
+    this.initDOMListeners();
+  }
+
+  /**
    * @property {Function} template - Возвращает шаблон компонента
    * @return {Element}
    */
   get template() {
     return this.$root.getHTML();
+  }
+
+  /**
+   * @property {Function} $emit - Закидывает в Emitter событие
+   * @param {String} event - Название события
+   * @param {Array} args - Массив с параметрами
+   * @return {void}
+   */
+  $emit(event, ...args) {
+    this.emitter.emit(
+        event,
+        ...args
+    );
+  }
+
+  /**
+   * @property {Function} $sub - Подписывается в Emitter на событие
+   * @param {String} event - Название события
+   * @param {Function} func - Callback function
+   * @return {void}
+   */
+  $sub(event, func) {
+    const unsub = this.emitter.subscribe(
+        event,
+        func
+    );
+    this.unsubscribers.push(unsub);
   }
 }
