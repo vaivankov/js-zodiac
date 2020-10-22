@@ -1,4 +1,6 @@
+import {nakshatrasList} from "../../constants";
 import {ChartComponent} from "../../core/ChartComponent";
+import {$$} from "../../utils/Dom";
 import {createTable} from "./createTable";
 
 /**
@@ -17,12 +19,14 @@ export class Table extends ChartComponent {
         $root,
         {
           name: "Table",
-          listeners: ['click'],
+          listeners: ['change'],
           ...options,
         }
     );
 
     this.$root = createTable($root);
+    this.nakshatrasList = nakshatrasList;
+    this.currentInput = null;
   }
 
   /**
@@ -33,7 +37,15 @@ export class Table extends ChartComponent {
     super.init();
   }
 
-  onClick() {
-    console.log('ok');
+  onChange(evt) {
+    this.currentInput = $$(evt.target);
+
+    this.validateInput();
+  }
+
+  validateInput() {
+    !this.nakshatrasList.includes(event.target.value) ?
+      this.currentInput.addClasses(['row__input--error']) :
+      this.currentInput.removeClasses(['row__input--error']);
   }
 }

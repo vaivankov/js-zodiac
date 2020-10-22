@@ -1,3 +1,7 @@
+/**
+ * @module constants
+ * @type {Array} nakshatrasList - список накшатр
+ */
 export const nakshatrasList =
 ["ашвини 1",
   "ашвини 2",
