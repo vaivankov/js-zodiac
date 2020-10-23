@@ -4,74 +4,74 @@
  */
 const rowParams = [
   {
-    name: "row--atma",
+    name: "atma",
     symbol: "АК",
-    isActive: true,
+    isActive: "",
   },
   {
-    name: "row--dara",
+    name: "dara",
     symbol: "ДК",
-    isActive: true,
+    isActive: "",
   },
   {
-    name: "row--atmadara",
+    name: "atmadara",
     symbol: "А|Д",
-    isActive: false,
+    isActive: "disabled",
   },
   {
-    name: "row--daraatma",
+    name: "daraatma",
     symbol: "Д|А",
-    isActive: false,
+    isActive: "disabled",
   },
   {
-    name: "row--lagna",
+    name: "lagna",
     symbol: "Ⓛ",
-    isActive: false,
+    isActive: "disabled",
   },
   {
-    name: "row--surya",
+    name: "surya",
     symbol: "Ⓢ",
-    isActive: true,
+    isActive: "",
   },
   {
-    name: "row--chandra",
+    name: "chandra",
     symbol: "Ⓒ",
-    isActive: true,
+    isActive: "",
   },
   {
-    name: "row--mangala",
+    name: "mangala",
     symbol: "Ⓜ",
-    isActive: true,
+    isActive: "",
   },
   {
-    name: "row--buddha",
+    name: "buddha",
     symbol: "Ⓑ",
-    isActive: true,
+    isActive: "",
   },
   {
-    name: "row--guru",
+    name: "guru",
     symbol: "Ⓖ",
-    isActive: true,
+    isActive: "",
   },
   {
-    name: "row--zukra",
+    name: "zukra",
     symbol: "Ⓩ",
-    isActive: true,
+    isActive: "",
   },
   {
-    name: "row--zani",
+    name: "zani",
     symbol: "Ⓩ",
-    isActive: true,
+    isActive: "",
   },
   {
-    name: "row--rahu",
+    name: "rahu",
     symbol: "Ⓡ",
-    isActive: true,
+    isActive: "",
   },
   {
-    name: "row--ketu",
+    name: "ketu",
     symbol: "Ⓚ",
-    isActive: true,
+    isActive: "",
   },
 ];
 
@@ -84,19 +84,23 @@ function createRows(rowParams) {
   return rowParams
       .map((row) => {
         return `
-          <div class="row ${row.name}">
+          <div class="row row--${row.name}">
             <div class="row__item">
               <span class="row__house"></span>
               <span class="row__planet">${row.symbol}</span>
               <span class="row__house"></span>
             </div>
             <div class="row__item">
-              <input class="row__input" placeholder="накшатра" 
+              <input class="row__input"
+                data-chart="left"
+                data-planet="${row.name}"
                 type="text" list="nakshatrasList"
-                ${row.isActive ? "" : "disabled"}>
-              <input class="row__input" placeholder="накшатра" 
+                ${row.isActive}>
+              <input class="row__input"
+                data-chart="right"
+                data-planet="${row.name}"
                 type="text" list="nakshatrasList"
-                ${row.isActive ? "" : "disabled"}>
+                ${row.isActive}>
             </div>
             <div class="row__item">
               <span class="row__similarity"></span>

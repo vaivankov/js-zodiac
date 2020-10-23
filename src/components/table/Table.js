@@ -46,13 +46,36 @@ export class Table extends ChartComponent {
   onChange(evt) {
     this.currentInput = $$(evt.target);
 
-    this.validateInput();
+    if (!this.validateInput()) {
+      return;
+    }
+
+    this.setInputState();
+  }
+
+  /**
+   * @property {Function} selectedInputData -
+   * getter данных текущего input
+   * @return {Object}
+   */
+  get selectedInputData() {
+    const chart = this.currentInput.elementDataChart;
+    const planet = this.currentInput.elementDataPlanet;
+    const index = this.nakshatrasList.indexOf(this.currentInput.elementValue);
+    return {
+      name: `${planet + '-' + chart}`,
+      data: {
+        chart,
+        planet,
+        index,
+      },
+    };
   }
 
   /**
    * @property {Function} validateInput -
    * Проверка валидности введённого значения в input
-   * @return {void}
+   * @return {Boolean}
    */
   validateInput() {
     let inputText = event.target.value === "" ?
@@ -64,13 +87,18 @@ export class Table extends ChartComponent {
     switch (inputText) {
       case "empty":
         this.currentInput.removeClasses('row__input--error');
-        break;
+        return false;
       case "includes":
         this.currentInput.removeClasses('row__input--error');
-        break;
+        return true;
       default:
         this.currentInput.addClasses('row__input--error');
-        break;
+        return false;
     }
+  }
+
+  setInputState() {
+    const inputData = this.selectedInputData;
+    console.log(inputData);
   }
 }

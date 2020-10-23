@@ -145,5 +145,32 @@ class Dom {
         callback
     );
   }
+
+  /**
+   * @property {Function} elementValue -
+   * getter значения элемента
+   * @return {String|Number|HTMLElement}
+   */
+  get elementValue() {
+    return this.$element.value;
+  }
+
+  /**
+   * @property {Function} elementDataChart -
+   * getter data аттрибута позиции карты
+   * @return {String}
+   */
+  get elementDataChart() {
+    return this.$element.dataset.chart;
+  }
+
+  /**
+   * @property {Function} elementDataPlanet -
+   * getter data аттрибута имени планеты
+   * @return {String}
+   */
+  get elementDataPlanet() {
+    return this.$element.dataset.planet;
+  }
 }
 
