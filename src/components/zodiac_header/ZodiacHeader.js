@@ -23,4 +23,12 @@ export class ZodiacHeader extends ChartComponent {
 
     this.$root = createZodiacHeader($root);
   }
+
+  /**
+   * @property {Function} init - Инициализирует слушатели компонента
+   * @return {void}
+   */
+  init() {
+    super.init();
+  }
 }

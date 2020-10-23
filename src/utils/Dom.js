@@ -11,14 +11,20 @@ export function $$(selector) {
  * @property {Function} create - Создаёт новый тег и
  * оборачивает его в Dom instance
  * @param {String} tagName - Название тега
- * @param {String} className - Имя css-класса
+ * @param {String|Array} className - Имя css-класса
  * @return {Dom} Новый Dom instance
  */
-$$.create = (tagName, className = '') => {
+$$.create = (tagName, className) => {
   const el = document.createElement(tagName);
 
-  if (className) {
+  if (Array.isArray(className)) {
+    className.forEach((cl)=>{
+      el.classList.add(cl);
+    });
+  } else if (typeof className === 'string') {
     el.classList.add(className);
+  } else {
+    throw new Error(`Creating Dom instance without css class name!`);
   }
 
   return $$(el);
@@ -48,26 +54,49 @@ class Dom {
 
   /**
    * @property {Function} setHTML - Меняет содержимое $element
-   * @param {*} html - Контент
+   * @param {String|Dom} html - Контент
    * @return {Object} this
    */
   setHTML(html) {
     if (typeof html === 'string') {
       this.$element.innerHTML = html;
-      return this;
+    } else if (html instanceof Dom) {
+      this.$element.innerHTML = html.getHTML();
     }
+    return this;
+  }
+
+  /**
+   * @property {Function} append - Добавляет новый узел в $element
+   * @param {Node|Dom} node - Контент
+   * @return {Object} this
+   */
+  append(node) {
+    if (node instanceof Dom) {
+      node = node.$element;
+    }
+
+    if (Element.prototype.append) {
+      this.$element.append(node);
+    } else {
+      this.$element.appendChild(node);
+    }
+
+    return this;
   }
 
   /**
    * @property {Function} addClasses - Добавляет css-классы к $element
-   * @param {Array} className - Имя классов
+   * @param {Array|String} className - Название класса
    * @return {Object} this
    */
   addClasses(className) {
-    if (className) {
+    if (Array.isArray(className)) {
       className.forEach((cl)=>{
         this.$element.classList.add(cl);
       });
+    } else {
+      this.$element.classList.add(className);
     }
 
     return this;
@@ -75,14 +104,16 @@ class Dom {
 
   /**
    * @property {Function} removeClasses - Удаляет css-классы у $element
-   * @param {Array} className - Имя классов
+   * @param {Array|String} className - Название класса
    * @return {Object} this
    */
   removeClasses(className) {
-    if (className) {
-      className.forEach((cl)=>{
+    if (Array.isArray(className)) {
+      className.forEach((cl) => {
         this.$element.classList.remove(cl);
       });
+    } else {
+      this.$element.classList.remove(className);
     }
 
     return this;
@@ -113,6 +144,33 @@ class Dom {
         eventType,
         callback
     );
+  }
+
+  /**
+   * @property {Function} elementValue -
+   * getter значения элемента
+   * @return {String|Number|HTMLElement}
+   */
+  get elementValue() {
+    return this.$element.value;
+  }
+
+  /**
+   * @property {Function} elementDataChart -
+   * getter data аттрибута позиции карты
+   * @return {String}
+   */
+  get elementDataChart() {
+    return this.$element.dataset.chart;
+  }
+
+  /**
+   * @property {Function} elementDataPlanet -
+   * getter data аттрибута имени планеты
+   * @return {String}
+   */
+  get elementDataPlanet() {
+    return this.$element.dataset.planet;
   }
 }
 

@@ -21,14 +21,23 @@ export class Chart {
   /**
    * @property {Function} getRootElement -
    * Собирает основной рабочий интерфейс программы
-   * @return {String} Вёрстка интерфейса
+   * @return {Object} Dom instance вёрстки интерфейса
    */
   getRootElement() {
+    const componentOptions = {
+      emitter: this.emitter,
+    };
+
     this.components = this.components
         .map((Comp) => {
-          const container = $$.create('div');
-          container.addClasses(Comp.className);
-          const instance = new Comp(container);
+          const container = $$.create(
+              'div',
+              Comp.className
+          );
+          const instance = new Comp(
+              container,
+              componentOptions
+          );
           return instance;
         });
 
@@ -40,11 +49,12 @@ export class Chart {
    * @return {void}
    */
   render() {
-    this.$root.setHTML(this.getRootElement());
+    this.$root.append(this.getRootElement());
+    this.init();
   }
 
   /**
-   * @property {Function} init - Вставляет шаблон программы на страницу
+   * @property {Function} init - Инициализирует слушатели компонента
    * @return {void}
    */
   init() {

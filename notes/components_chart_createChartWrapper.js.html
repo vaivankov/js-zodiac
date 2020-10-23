@@ -26,133 +26,43 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
+            <pre class="prettyprint source linenums"><code>import {nakshatrasList} from "../../constants";
+import {$$} from "../../utils/Dom";
+/**
  * @module components/chart/createChartWrapper
  * @property {Function} createChartWrapper - Создаёт обёртку с блоками
- * @param {Array} args - Массив компонентов страницы
- * @return {String} Основной интерфейс программы
+ * @param {Array} args - Массив Dom instances компонентов страницы
+ * @return {Object} Dom instance основного интерфейса программы
  */
 export function createChartWrapper(args) {
-  return `&lt;div class="chart-container">
-      &lt;div class="block block--table">
-        ${args[0].$root.getHTML() + args[1].$root.getHTML()}
-        &lt;div>
-          &lt;datalist class="visually-hidden" id="nakshatrasList">
-            &lt;option>ашвини 1&lt;/option>
-            &lt;option>ашвини 2&lt;/option>
-            &lt;option>ашвини 3&lt;/option>
-            &lt;option>ашвини 4&lt;/option>
-            &lt;option>бхарани 1&lt;/option>
-            &lt;option>бхарани 2&lt;/option>
-            &lt;option>бхарани 3&lt;/option>
-            &lt;option>бхарани 4&lt;/option>
-            &lt;option>криттика 1&lt;/option>
-            &lt;option>криттика 2&lt;/option>
-            &lt;option>криттика 3&lt;/option>
-            &lt;option>криттика 4&lt;/option>
-            &lt;option>рохини 1&lt;/option>
-            &lt;option>рохини 2&lt;/option>
-            &lt;option>рохини 3&lt;/option>
-            &lt;option>рохини 4&lt;/option>
-            &lt;option>мригашира 1&lt;/option>
-            &lt;option>мригашира 2&lt;/option>
-            &lt;option>мригашира 3&lt;/option>
-            &lt;option>мригашира 4&lt;/option>
-            &lt;option>ардра 1&lt;/option>
-            &lt;option>ардра 2&lt;/option>
-            &lt;option>ардра 3&lt;/option>
-            &lt;option>ардра 4&lt;/option>
-            &lt;option>пунарвасу 1&lt;/option>
-            &lt;option>пунарвасу 2&lt;/option>
-            &lt;option>пунарвасу 3&lt;/option>
-            &lt;option>пунарвасу 4&lt;/option>
-            &lt;option>пушья 1&lt;/option>
-            &lt;option>пушья 2&lt;/option>
-            &lt;option>пушья 3&lt;/option>
-            &lt;option>пушья 4&lt;/option>
-            &lt;option>ашлеша 1&lt;/option>
-            &lt;option>ашлеша 2&lt;/option>
-            &lt;option>ашлеша 3&lt;/option>
-            &lt;option>ашлеша 4&lt;/option>
-            &lt;option>магха 1&lt;/option>
-            &lt;option>магха 2&lt;/option>
-            &lt;option>магха 3&lt;/option>
-            &lt;option>магха 4&lt;/option>
-            &lt;option>пурва-пхалгуни 1&lt;/option>
-            &lt;option>пурва-пхалгуни 2&lt;/option>
-            &lt;option>пурва-пхалгуни 3&lt;/option>
-            &lt;option>пурва-пхалгуни 4&lt;/option>
-            &lt;option>уттара-пхалгуни 1&lt;/option>
-            &lt;option>уттара-пхалгуни 2&lt;/option>
-            &lt;option>уттара-пхалгуни 3&lt;/option>
-            &lt;option>уттара-пхалгуни 4&lt;/option>
-            &lt;option>хаста 1&lt;/option>
-            &lt;option>хаста 2&lt;/option>
-            &lt;option>хаста 3&lt;/option>
-            &lt;option>хаста 4&lt;/option>
-            &lt;option>читра 1&lt;/option>
-            &lt;option>читра 2&lt;/option>
-            &lt;option>читра 3&lt;/option>
-            &lt;option>читра 4&lt;/option>
-            &lt;option>свати 1&lt;/option>
-            &lt;option>свати 2&lt;/option>
-            &lt;option>свати 3&lt;/option>
-            &lt;option>свати 4&lt;/option>
-            &lt;option>вишакха 1&lt;/option>
-            &lt;option>вишакха 2&lt;/option>
-            &lt;option>вишакха 3&lt;/option>
-            &lt;option>вишакха 4&lt;/option>
-            &lt;option>анурадха 1&lt;/option>
-            &lt;option>анурадха 2&lt;/option>
-            &lt;option>анурадха 3&lt;/option>
-            &lt;option>анурадха 4&lt;/option>
-            &lt;option>джьештха 1&lt;/option>
-            &lt;option>джьештха 2&lt;/option>
-            &lt;option>джьештха 3&lt;/option>
-            &lt;option>джьештха 4&lt;/option>
-            &lt;option>мула 1&lt;/option>
-            &lt;option>мула 2&lt;/option>
-            &lt;option>мула 3&lt;/option>
-            &lt;option>мула 4&lt;/option>
-            &lt;option>пурва-ашадха 1&lt;/option>
-            &lt;option>пурва-ашадха 2&lt;/option>
-            &lt;option>пурва-ашадха 3&lt;/option>
-            &lt;option>пурва-ашадха 4&lt;/option>
-            &lt;option>уттара-ашадха 1&lt;/option>
-            &lt;option>уттара-ашадха 2&lt;/option>
-            &lt;option>уттара-ашадха 3&lt;/option>
-            &lt;option>уттара-ашадха 4&lt;/option>
-            &lt;option>шравана 1&lt;/option>
-            &lt;option>шравана 2&lt;/option>
-            &lt;option>шравана 3&lt;/option>
-            &lt;option>шравана 4&lt;/option>
-            &lt;option>дхаништха 1&lt;/option>
-            &lt;option>дхаништха 2&lt;/option>
-            &lt;option>дхаништха 3&lt;/option>
-            &lt;option>дхаништха 4&lt;/option>
-            &lt;option>шатабхиша 1&lt;/option>
-            &lt;option>шатабхиша 2&lt;/option>
-            &lt;option>шатабхиша 3&lt;/option>
-            &lt;option>шатабхиша 4&lt;/option>
-            &lt;option>пурва-бхадра 1&lt;/option>
-            &lt;option>пурва-бхадра 2&lt;/option>
-            &lt;option>пурва-бхадра 3&lt;/option>
-            &lt;option>пурва-бхадра 4&lt;/option>
-            &lt;option>уттара-бхадра 1&lt;/option>
-            &lt;option>уттара-бхадра 2&lt;/option>
-            &lt;option>уттара-бхадра 3&lt;/option>
-            &lt;option>уттара-бхадра 4&lt;/option>
-            &lt;option>ревати 1&lt;/option>
-            &lt;option>ревати 2&lt;/option>
-            &lt;option>ревати 3&lt;/option>
-            &lt;option>ревати 4&lt;/option>
-          &lt;/datalist>
-        &lt;/div>
-      &lt;/div>
-      &lt;div class="block block--chart">
-        ${args[2].$root.getHTML() + args[3].$root.getHTML()}
-      &lt;/div>
-    &lt;/div>`;
+  const container = $$.create(
+      'div',
+      'chart-container'
+  );
+  const table = $$.create(
+      'div',
+      ["block", "block--table"]
+  );
+  const chart = $$.create(
+      'div',
+      ["block", "block--chart"]
+  );
+  const list = $$.create(
+      'div',
+      'visually-hidden'
+  );
+  const options = nakshatrasList.map((i)=>`&lt;option>${i}&lt;/option>`).join('');
+  list.setHTML(`&lt;datalist id="nakshatrasList">${options}&lt;/datalist>`);
+
+  table.append(args[0].$root);
+  table.append(args[1].$root);
+  table.append(list);
+  chart.append(args[2].$root);
+  chart.append(args[3].$root);
+  container.append(table);
+  container.append(chart);
+
+  return container;
 }
 </code></pre>
         </article>
@@ -164,13 +74,13 @@ export function createChartWrapper(args) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Project documentation</a></h2><h3>Modules</h3><ul><li><a href="module-components_Chart.html">components/Chart</a></li><li><a href="module-components_chart_createChartWrapper.html">components/chart/createChartWrapper</a></li><li><a href="module-components_table_createTable.html">components/table/createTable</a></li><li><a href="module-components_table_createZodiac.html">components/table/createZodiac</a></li><li><a href="module-components_table_Table.html">components/table/Table</a></li><li><a href="module-components_table_header_createTableHeader.html">components/table_header/createTableHeader</a></li><li><a href="module-components_zodiac_header_createZodiacHeader.html">components/zodiac_header/createZodiacHeader</a></li><li><a href="module-components_zodiac_header_ZodiacHeader.html">components/zodiac_header/ZodiacHeader</a></li><li><a href="module-core_ChartComponent.html">core/ChartComponent</a></li><li><a href="module-core_DOMListener.html">core/DOMListener</a></li><li><a href="module-core_Emitter.html">core/Emitter</a></li><li><a href="module-utils_utils.html">utils/utils</a></li></ul><h3>Classes</h3><ul><li><a href="Dom.html">Dom</a></li><li><a href="module-components_Chart.Chart.html">Chart</a></li><li><a href="module-core_ChartComponent.ChartComponent.html">ChartComponent</a></li><li><a href="module-core_DOMListener.DOMListener.html">DOMListener</a></li><li><a href="TableHeader.html">TableHeader</a></li><li><a href="Zodiac.html">Zodiac</a></li></ul><h3>Global</h3><ul><li><a href="global.html#$$">$$</a></li><li><a href="global.html#buttons">buttons</a></li><li><a href="global.html#createButton">createButton</a></li><li><a href="global.html#createRows">createRows</a></li><li><a href="global.html#options">options</a></li><li><a href="global.html#rowParams">rowParams</a></li></ul>
+    <h2><a href="index.html">Project documentation</a></h2><h3>Modules</h3><ul><li><a href="module-components_Chart.html">components/Chart</a></li><li><a href="module-components_chart_createChartWrapper.html">components/chart/createChartWrapper</a></li><li><a href="module-components_table_createTable.html">components/table/createTable</a></li><li><a href="module-components_table_createZodiac.html">components/table/createZodiac</a></li><li><a href="module-components_table_Table.html">components/table/Table</a></li><li><a href="module-components_table_header_createTableHeader.html">components/table_header/createTableHeader</a></li><li><a href="module-components_zodiac_header_createZodiacHeader.html">components/zodiac_header/createZodiacHeader</a></li><li><a href="module-components_zodiac_header_ZodiacHeader.html">components/zodiac_header/ZodiacHeader</a></li><li><a href="module-constants.html">constants</a></li><li><a href="module-core_ChartComponent.html">core/ChartComponent</a></li><li><a href="module-core_DOMListener.html">core/DOMListener</a></li><li><a href="module-core_Emitter.html">core/Emitter</a></li><li><a href="module-utils_utils.html">utils/utils</a></li></ul><h3>Classes</h3><ul><li><a href="Dom.html">Dom</a></li><li><a href="module-components_Chart.Chart.html">Chart</a></li><li><a href="module-core_ChartComponent.ChartComponent.html">ChartComponent</a></li><li><a href="module-core_DOMListener.DOMListener.html">DOMListener</a></li><li><a href="TableHeader.html">TableHeader</a></li><li><a href="Zodiac.html">Zodiac</a></li></ul><h3>Global</h3><ul><li><a href="global.html#$$">$$</a></li><li><a href="global.html#buttons">buttons</a></li><li><a href="global.html#createButton">createButton</a></li><li><a href="global.html#createRows">createRows</a></li><li><a href="global.html#options">options</a></li><li><a href="global.html#rowParams">rowParams</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Mon Oct 19 2020 09:37:53 GMT+0300 (GMT+03:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Fri Oct 23 2020 20:15:08 GMT+0300 (GMT+03:00)
 </footer>
 
 <script> prettyPrint(); </script>

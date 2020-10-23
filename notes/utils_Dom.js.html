@@ -39,14 +39,20 @@ export function $$(selector) {
  * @property {Function} create - Создаёт новый тег и
  * оборачивает его в Dom instance
  * @param {String} tagName - Название тега
- * @param {String} className - Имя css-класса
+ * @param {String|Array} className - Имя css-класса
  * @return {Dom} Новый Dom instance
  */
-$$.create = (tagName, className = '') => {
+$$.create = (tagName, className) => {
   const el = document.createElement(tagName);
 
-  if (className) {
+  if (Array.isArray(className)) {
+    className.forEach((cl)=>{
+      el.classList.add(cl);
+    });
+  } else if (typeof className === 'string') {
     el.classList.add(className);
+  } else {
+    throw new Error(`Creating Dom instance without css class name!`);
   }
 
   return $$(el);
@@ -76,26 +82,49 @@ class Dom {
 
   /**
    * @property {Function} setHTML - Меняет содержимое $element
-   * @param {*} html - Контент
+   * @param {String|Dom} html - Контент
    * @return {Object} this
    */
   setHTML(html) {
     if (typeof html === 'string') {
       this.$element.innerHTML = html;
-      return this;
+    } else if (html instanceof Dom) {
+      this.$element.innerHTML = html.getHTML();
     }
+    return this;
+  }
+
+  /**
+   * @property {Function} append - Добавляет новый узел в $element
+   * @param {Node|Dom} node - Контент
+   * @return {Object} this
+   */
+  append(node) {
+    if (node instanceof Dom) {
+      node = node.$element;
+    }
+
+    if (Element.prototype.append) {
+      this.$element.append(node);
+    } else {
+      this.$element.appendChild(node);
+    }
+
+    return this;
   }
 
   /**
    * @property {Function} addClasses - Добавляет css-классы к $element
-   * @param {Array} className - Имя классов
+   * @param {Array|String} className - Название класса
    * @return {Object} this
    */
   addClasses(className) {
-    if (className) {
+    if (Array.isArray(className)) {
       className.forEach((cl)=>{
         this.$element.classList.add(cl);
       });
+    } else {
+      this.$element.classList.add(className);
     }
 
     return this;
@@ -103,14 +132,16 @@ class Dom {
 
   /**
    * @property {Function} removeClasses - Удаляет css-классы у $element
-   * @param {Array} className - Имя классов
+   * @param {Array|String} className - Название класса
    * @return {Object} this
    */
   removeClasses(className) {
-    if (className) {
-      className.forEach((cl)=>{
+    if (Array.isArray(className)) {
+      className.forEach((cl) => {
         this.$element.classList.remove(cl);
       });
+    } else {
+      this.$element.classList.remove(className);
     }
 
     return this;
@@ -142,6 +173,33 @@ class Dom {
         callback
     );
   }
+
+  /**
+   * @property {Function} elementValue -
+   * getter значения элемента
+   * @return {String|Number|HTMLElement}
+   */
+  get elementValue() {
+    return this.$element.value;
+  }
+
+  /**
+   * @property {Function} elementDataChart -
+   * getter data аттрибута позиции карты
+   * @return {String}
+   */
+  get elementDataChart() {
+    return this.$element.dataset.chart;
+  }
+
+  /**
+   * @property {Function} elementDataPlanet -
+   * getter data аттрибута имени планеты
+   * @return {String}
+   */
+  get elementDataPlanet() {
+    return this.$element.dataset.planet;
+  }
 }
 
 </code></pre>
@@ -154,13 +212,13 @@ class Dom {
 </div>
 
 <nav>
-    <h2><a href="index.html">Project documentation</a></h2><h3>Modules</h3><ul><li><a href="module-components_Chart.html">components/Chart</a></li><li><a href="module-components_chart_createChartWrapper.html">components/chart/createChartWrapper</a></li><li><a href="module-components_table_createTable.html">components/table/createTable</a></li><li><a href="module-components_table_createZodiac.html">components/table/createZodiac</a></li><li><a href="module-components_table_Table.html">components/table/Table</a></li><li><a href="module-components_table_header_createTableHeader.html">components/table_header/createTableHeader</a></li><li><a href="module-components_zodiac_header_createZodiacHeader.html">components/zodiac_header/createZodiacHeader</a></li><li><a href="module-components_zodiac_header_ZodiacHeader.html">components/zodiac_header/ZodiacHeader</a></li><li><a href="module-core_ChartComponent.html">core/ChartComponent</a></li><li><a href="module-core_DOMListener.html">core/DOMListener</a></li><li><a href="module-core_Emitter.html">core/Emitter</a></li><li><a href="module-utils_utils.html">utils/utils</a></li></ul><h3>Classes</h3><ul><li><a href="Dom.html">Dom</a></li><li><a href="module-components_Chart.Chart.html">Chart</a></li><li><a href="module-core_ChartComponent.ChartComponent.html">ChartComponent</a></li><li><a href="module-core_DOMListener.DOMListener.html">DOMListener</a></li><li><a href="TableHeader.html">TableHeader</a></li><li><a href="Zodiac.html">Zodiac</a></li></ul><h3>Global</h3><ul><li><a href="global.html#$$">$$</a></li><li><a href="global.html#buttons">buttons</a></li><li><a href="global.html#createButton">createButton</a></li><li><a href="global.html#createRows">createRows</a></li><li><a href="global.html#options">options</a></li><li><a href="global.html#rowParams">rowParams</a></li></ul>
+    <h2><a href="index.html">Project documentation</a></h2><h3>Modules</h3><ul><li><a href="module-components_Chart.html">components/Chart</a></li><li><a href="module-components_chart_createChartWrapper.html">components/chart/createChartWrapper</a></li><li><a href="module-components_table_createTable.html">components/table/createTable</a></li><li><a href="module-components_table_createZodiac.html">components/table/createZodiac</a></li><li><a href="module-components_table_Table.html">components/table/Table</a></li><li><a href="module-components_table_header_createTableHeader.html">components/table_header/createTableHeader</a></li><li><a href="module-components_zodiac_header_createZodiacHeader.html">components/zodiac_header/createZodiacHeader</a></li><li><a href="module-components_zodiac_header_ZodiacHeader.html">components/zodiac_header/ZodiacHeader</a></li><li><a href="module-constants.html">constants</a></li><li><a href="module-core_ChartComponent.html">core/ChartComponent</a></li><li><a href="module-core_DOMListener.html">core/DOMListener</a></li><li><a href="module-core_Emitter.html">core/Emitter</a></li><li><a href="module-utils_utils.html">utils/utils</a></li></ul><h3>Classes</h3><ul><li><a href="Dom.html">Dom</a></li><li><a href="module-components_Chart.Chart.html">Chart</a></li><li><a href="module-core_ChartComponent.ChartComponent.html">ChartComponent</a></li><li><a href="module-core_DOMListener.DOMListener.html">DOMListener</a></li><li><a href="TableHeader.html">TableHeader</a></li><li><a href="Zodiac.html">Zodiac</a></li></ul><h3>Global</h3><ul><li><a href="global.html#$$">$$</a></li><li><a href="global.html#buttons">buttons</a></li><li><a href="global.html#createButton">createButton</a></li><li><a href="global.html#createRows">createRows</a></li><li><a href="global.html#options">options</a></li><li><a href="global.html#rowParams">rowParams</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Mon Oct 19 2020 09:37:53 GMT+0300 (GMT+03:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Fri Oct 23 2020 20:15:08 GMT+0300 (GMT+03:00)
 </footer>
 
 <script> prettyPrint(); </script>
