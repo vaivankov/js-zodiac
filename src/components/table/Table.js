@@ -55,8 +55,22 @@ export class Table extends ChartComponent {
    * @return {void}
    */
   validateInput() {
-    !this.nakshatrasList.includes(event.target.value) ?
-      this.currentInput.addClasses('row__input--error') :
-      this.currentInput.removeClasses('row__input--error');
+    let inputText = event.target.value === "" ?
+      'empty' :
+      event.target.value;
+    inputText = this.nakshatrasList.includes(inputText) ?
+      'includes' :
+      inputText;
+    switch (inputText) {
+      case "empty":
+        this.currentInput.removeClasses('row__input--error');
+        break;
+      case "includes":
+        this.currentInput.removeClasses('row__input--error');
+        break;
+      default:
+        this.currentInput.addClasses('row__input--error');
+        break;
+    }
   }
 }
