@@ -37,15 +37,26 @@ export class Table extends ChartComponent {
     super.init();
   }
 
+  /**
+   * @property {Function} onChange -
+   * Callback function при изменении значения input
+   * @param {Object} evt - Событие
+   * @return {void}
+   */
   onChange(evt) {
     this.currentInput = $$(evt.target);
 
     this.validateInput();
   }
 
+  /**
+   * @property {Function} validateInput -
+   * Проверка валидности введённого значения в input
+   * @return {void}
+   */
   validateInput() {
     !this.nakshatrasList.includes(event.target.value) ?
-      this.currentInput.addClasses(['row__input--error']) :
-      this.currentInput.removeClasses(['row__input--error']);
+      this.currentInput.addClasses('row__input--error') :
+      this.currentInput.removeClasses('row__input--error');
   }
 }

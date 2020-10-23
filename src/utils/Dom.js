@@ -87,7 +87,7 @@ class Dom {
 
   /**
    * @property {Function} addClasses - Добавляет css-классы к $element
-   * @param {Array} className - Имя классов
+   * @param {Array|String} className - Название класса
    * @return {Object} this
    */
   addClasses(className) {
@@ -104,14 +104,16 @@ class Dom {
 
   /**
    * @property {Function} removeClasses - Удаляет css-классы у $element
-   * @param {Array} className - Имя классов
+   * @param {Array|String} className - Название класса
    * @return {Object} this
    */
   removeClasses(className) {
-    if (className) {
-      className.forEach((cl)=>{
+    if (Array.isArray(className)) {
+      className.forEach((cl) => {
         this.$element.classList.remove(cl);
       });
+    } else {
+      this.$element.classList.remove(className);
     }
 
     return this;
