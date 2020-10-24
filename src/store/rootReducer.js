@@ -1,13 +1,22 @@
 import * as types from './types';
 
+/**
+ * @property {Function} rootReducer -
+ * Обновляет данные в State
+ * @param {Object} state - Текущее состояние приложения
+ * @param {Object} action - Новые данные
+ * @return {void}
+ */
 export function rootReducer(state, action) {
-  let prevState;
+  const data = action.data;
+  let newState;
   switch (action.type) {
     case types.INPUT_DATA:
-      prevState = state.inputState || {};
-      prevState[action.data.id] = action.data.value;
-      return {...state,
-        inputState: prevState};
+      newState = {
+        ...state,
+        [data.planet]: data.index,
+      };
+      return newState;
     default: return state;
   }
 }

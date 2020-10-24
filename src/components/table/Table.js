@@ -1,7 +1,8 @@
+import {$$} from "../../utils/Dom";
 import {nakshatrasList} from "../../constants";
 import {ChartComponent} from "../../core/ChartComponent";
-import {$$} from "../../utils/Dom";
 import {createTable} from "./createTable";
+import * as actions from "./../../store/actions";
 
 /**
  * Класс таблицы с значениями
@@ -53,6 +54,8 @@ export class Table extends ChartComponent {
     }
 
     this.setInputState = this.selectedInputData;
+
+    this.$dispatch(actions.inputData(this.selectedInputData));
   }
 
   /**
@@ -62,9 +65,11 @@ export class Table extends ChartComponent {
    */
   get selectedInputData() {
     const chartPosition = this.currentInput.elementDataChart;
+    const personName = 'name' + chartPosition;
     const planet = this.currentInput.elementDataPlanet;
     const index = this.nakshatrasList.indexOf(this.currentInput.elementValue);
     return {
+      personName,
       chartPosition,
       planet,
       index,
