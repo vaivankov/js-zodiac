@@ -15,6 +15,7 @@ export class Chart {
   constructor($root, options) {
     this.components = options.components || [];
     this.$root = $$($root);
+    this.store = options.store;
     this.emitter = new Emitter();
   }
 
@@ -26,6 +27,7 @@ export class Chart {
   getRootElement() {
     const componentOptions = {
       emitter: this.emitter,
+      store: this.store,
     };
 
     this.components = this.components

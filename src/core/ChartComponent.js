@@ -18,8 +18,10 @@ export class ChartComponent extends DOMListener {
 
     this.name = options.name || '';
     this.emitter = options.emitter;
+    this.store = options.store;
     this.subscribes = options.subscribes || [];
     this.unsubscribers = [];
+    this.storeSub = null;
   }
 
   /**
@@ -63,5 +65,36 @@ export class ChartComponent extends DOMListener {
         func
     );
     this.unsubscribers.push(unsub);
+  }
+
+  /**
+   * @property {Function} $dispatch -
+   * Отправляет действие на сохранение в Store
+   * @param {*} data - Данные
+   * @return {void}
+   */
+  $dispatch(data) {
+    this.store.dispatch(data);
+  }
+
+  /**
+   * @property {Function} $subscribe -
+   * Отправляет функцию в список подписок Store
+   * @param {Function} fn - Функция
+   * @return {void}
+   */
+  $subscribe(fn) {
+    this.storeSub = this.store.subscribe(fn);
+  }
+
+  /**
+   * @property {Function} destroy -
+   * Удаляет подписки класса
+   * @return {void}
+   */
+  destroy() {
+    this.removeDOMListeners();
+    this.unsubscribers.forEach((unsub) => unsub());
+    this.storeSub.unsubscribe();
   }
 }

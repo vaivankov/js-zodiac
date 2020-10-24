@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: components/table/createTable</title>
+    <title>JSDoc: Source: store/rootReducer.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,52 +17,40 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: components/table/createTable</h1>
+    <h1 class="page-title">Source: store/rootReducer.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import * as types from './types';
 
-<article>
-    <div class="container-overview">
-    
-        
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+/**
+ * @property {Function} rootReducer -
+ * Обновляет данные в State
+ * @param {Object} state - Текущее состояние приложения
+ * @param {Object} action - Новые данные
+ * @return {void}
+ */
+export function rootReducer(state, action) {
+  const data = action.data;
+  let newState;
+  switch (action.type) {
+    case types.INPUT_DATA:
+      newState = {
+        ...state,
+        [data.planet]: data.index,
+      };
+      return newState;
+    default: return state;
+  }
+}
+</code></pre>
+        </article>
+    </section>
 
 
 
