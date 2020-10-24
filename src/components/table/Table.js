@@ -27,6 +27,8 @@ export class Table extends ChartComponent {
     this.$root = createTable($root);
     this.nakshatrasList = nakshatrasList;
     this.currentInput = null;
+    this.leftChart = null;
+    this.rightChart = null;
   }
 
   /**
@@ -50,7 +52,7 @@ export class Table extends ChartComponent {
       return;
     }
 
-    this.setInputState();
+    this.setInputState = this.selectedInputData;
   }
 
   /**
@@ -59,16 +61,29 @@ export class Table extends ChartComponent {
    * @return {Object}
    */
   get selectedInputData() {
-    const chart = this.currentInput.elementDataChart;
+    const chartPosition = this.currentInput.elementDataChart;
     const planet = this.currentInput.elementDataPlanet;
     const index = this.nakshatrasList.indexOf(this.currentInput.elementValue);
     return {
-      name: `${planet + '-' + chart}`,
-      data: {
-        chart,
-        planet,
-        index,
-      },
+      chartPosition,
+      planet,
+      index,
+    };
+  }
+
+  /**
+   * @property {Function} setInputState -
+   * @param {Object} data - Данные выбранного input
+   * setter данных текущего input
+   * @return {void}
+   */
+  set setInputState(data) {
+    const chart = data.chartPosition + 'Chart';
+    const newData = {};
+    newData[data.planet] = data.index;
+    this[chart] = {
+      ...this[chart],
+      ...newData,
     };
   }
 
@@ -95,10 +110,5 @@ export class Table extends ChartComponent {
         this.currentInput.addClasses('row__input--error');
         return false;
     }
-  }
-
-  setInputState() {
-    const inputData = this.selectedInputData;
-    console.log(inputData);
   }
 }
