@@ -2,29 +2,42 @@
  * Массив с параметрами для создания кнопок
  * @type {Array}
  */
-const buttons = [
+const blocks = [
   {
-    "classes": ["button", "button--header", "material-icons"],
-    "icon": 'filter_1',
+    "button_classes": ["button", "button--header", "material-icons"],
+    "icon_open": 'folder_open',
+    "icon_save": 'save',
   },
   {
-    "classes": ["button", "button--header", "material-icons"],
-    "icon": 'filter_2',
+    "button_classes": ["button", "button--header", "material-icons"],
+    "icon_open": 'folder_open',
+    "icon_save": 'save',
   },
 ];
 
 /**
  * @property {Function} createButton - Создаёт кнопки
- * @param {Array<Object>} buttons - Массив с параметрами кнопок
+ * @param {Array<Object>} blocks - Массив с параметрами блока
  * @return {String} Строка с кнопками
  */
-function createButton(buttons) {
-  return buttons
-      .map((button) => {
-        return `<button 
-            class="${button.classes.join(' ')}">
-            ${button.icon}
-            </button>`;
+function createButton(blocks) {
+  return blocks
+      .map((block) => {
+        return `<div class="block__controls">
+            <button 
+              class="${block.button_classes.join(' ')}"
+              type="button"
+              >
+              ${block.icon_open}
+            </button>
+            <input class="block__input" type="text">
+            <button 
+              class="${block.button_classes.join(' ')}"
+              type="button"
+              >
+              ${block.icon_save}
+            </button>
+          </div>`;
       })
       .join(' ');
 }
@@ -36,7 +49,7 @@ function createButton(buttons) {
  * @return {Element} Блок с кнопками
  */
 export function createTableHeader($root) {
-  const content = createButton(buttons);
+  const content = createButton(blocks);
   $root.setHTML(content);
   return $root;
 }

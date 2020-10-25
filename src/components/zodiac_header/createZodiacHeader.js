@@ -4,16 +4,19 @@
  */
 const buttons = [
   {
-    "classes": ["button", "button--header", "material-icons"],
-    "icon": 'help_outline',
-  },
-  {
-    "classes": ["button", "button--header", "material-icons"],
     "icon": 'aspect_ratio',
   },
   {
-    "classes": ["button", "button--header", "material-icons"],
     "icon": 'straighten',
+  },
+  {
+    "icon": 'brightness_7',
+  },
+  {
+    "icon": 'help_outline',
+  },
+  {
+    "icon": 'exit_to_app',
   },
 ];
 
@@ -26,7 +29,7 @@ function createButton(buttons) {
   return buttons
       .map((button) => {
         return `<button 
-    class="${button.classes.join(' ')}">
+    class="button button--header material-icons">
     ${button.icon}
     </button>`;
       })
