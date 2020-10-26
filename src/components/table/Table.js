@@ -2,8 +2,9 @@ import {$$} from "../../utils/Dom";
 import {nakshatrasList} from "../../constants";
 import {ChartComponent} from "../../core/ChartComponent";
 import {createTable} from "./createTable";
+import * as utils from "../../utils/utils";
+import {defaultChartState} from "../../defaultValues";
 import * as actions from "./../../store/actions";
-import {checkStorage} from "../../utils/utils";
 
 /**
  * Класс таблицы с значениями
@@ -21,7 +22,7 @@ export class Table extends ChartComponent {
         $root,
         {
           name: "Table",
-          listeners: ['change'],
+          listeners: ["change"],
           ...options,
         }
     );
@@ -29,8 +30,8 @@ export class Table extends ChartComponent {
     this.$root = createTable($root);
     this.nakshatrasList = nakshatrasList;
     this.currentInput = null;
-    this.leftChart = null;
-    this.rightChart = null;
+    this.leftChart = defaultChartState;
+    this.rightChart = defaultChartState;
   }
 
   /**
@@ -42,36 +43,28 @@ export class Table extends ChartComponent {
     super.init();
 
     this.$sub(
-        'tableHeader: click',
+        "tableHeader: click",
         (node) => {
           if (node.elementDataAction) {
             try {
-              const position = node.elementDataPosition;
-              const selector =
-                  `.block__input[data-position="${position}"]`;
-              const input = $$(document
-                  .querySelector(selector));
-              const chart = this[position + 'Chart'];
-              const personName = 'zodiac-' + input.elementValue;
-
-              if (node.elementDataAction === 'save') {
-                checkStorage(
-                    personName,
-                    chart
-                );
-              } else {
-                const store = checkStorage(personName);
-                this.pasteData(
-                    position,
-                    store
-                );
-
-                const chart = position + 'Chart';
-                this[chart] = store;
-              }
+              this.manageStore(node);
             } catch (err) {
               console.warn(`There is no such chart in storage!`);
             }
+          }
+        }
+    );
+
+    this.$sub(
+        "tableHeader: change",
+        (node) => {
+          try {
+            this.loadChart(
+                utils.getChartName(node.elementValue),
+                node.elementDataPosition
+            );
+          } catch (err) {
+            console.warn(`There is no such chart in storage!`);
           }
         }
     );
@@ -118,7 +111,7 @@ export class Table extends ChartComponent {
    * @return {void}
    */
   set setInputState(data) {
-    const chart = data.position + 'Chart';
+    const chart = data.position + "Chart";
     const newData = {};
     newData[data.planet] = data.index;
     this[chart] = {
@@ -134,20 +127,20 @@ export class Table extends ChartComponent {
    */
   validateInput() {
     let inputText = event.target.value === "" ?
-      'empty' :
+      "empty" :
       event.target.value;
     inputText = this.nakshatrasList.includes(inputText) ?
-      'includes' :
+      "includes" :
       inputText;
     switch (inputText) {
       case "empty":
-        this.currentInput.removeClasses('row__input--error');
+        this.currentInput.removeClasses("row__input--error");
         return false;
       case "includes":
-        this.currentInput.removeClasses('row__input--error');
+        this.currentInput.removeClasses("row__input--error");
         return true;
       default:
-        this.currentInput.addClasses('row__input--error');
+        this.currentInput.addClasses("row__input--error");
         return false;
     }
   }
@@ -170,5 +163,54 @@ export class Table extends ChartComponent {
         inp.value = this.nakshatrasList[planetIndex];
       }
     }
+  }
+
+  /**
+   * @property {Function} manageStore -
+   * Обрабатывает события кнопок сохранения/загрузки карт
+   * @param {Object} node - Нода кнопки
+   * @return {void}
+   */
+  manageStore(node) {
+    const position = node.elementDataPosition;
+    const selector =
+                  `.block__input[data-position="${position}"]`;
+    const input = $$(document
+        .querySelector(selector));
+    const chart = this[position + "Chart"];
+    const personName = utils.getChartName(input.elementValue);
+    const action = node.elementDataAction;
+
+    if (action === "save") {
+      utils.checkStorage(
+          personName,
+          chart
+      );
+    }
+
+    if (action === "open") {
+      this.loadChart(
+          personName,
+          position
+      );
+    }
+  }
+
+  /**
+   * @property {Function} loadChart -
+   * Загружает карту из LocalStorage
+   * @param {String} personName - Имя владельца карты
+   * @param {Object} position - Позиция карты
+   * @return {void}
+   */
+  loadChart(personName, position) {
+    const store = utils.checkStorage(personName);
+    this.pasteData(
+        position,
+        store
+    );
+
+    const chart = position + "Chart";
+    this[chart] = store;
   }
 }

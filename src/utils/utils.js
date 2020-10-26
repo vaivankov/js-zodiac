@@ -23,6 +23,16 @@ export function getMethodName(eventName) {
 
 /**
  * @module utils/utils
+ * @property {Function} getChartName - Возвращает новое имя карты
+ * @param {String} name - Название события
+ * @return {String} Новое имя метода
+ */
+export function getChartName(name) {
+  return 'zodiac-' + name;
+}
+
+/**
+ * @module utils/utils
  * @property {Function} checkStorage - Проверяет данные в LocalStorage
  * @param {String} key - Ключ, по которому нужно произвести проверку
  * @param {Object} data - Объект с данными, которые нужно сохранить
