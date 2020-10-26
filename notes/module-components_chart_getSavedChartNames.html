@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: store/createStore.js</title>
+    <title>JSDoc: Module: components/chart/getSavedChartNames</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,73 +17,52 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: store/createStore.js</h1>
+    <h1 class="page-title">Module: components/chart/getSavedChartNames</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
- * @property {Function} createStore -
- * Создаёт Store
- * @param {Function} rootReducer - Функция-обработчик State
- * @return {Object} - Объект с методами для работы со State
- */
-export function createStore(rootReducer) {
-  const state = {
-    leftState: {},
-    rightState: {},
-  };
-  let listeners = [];
+        
+    
+</header>
 
-  return {
-    /**
-     * @property {Function} subscribe -
-     * Подписывает функцию на Store
-     * @param {Function} fn -
-     * Функция, вызываемая при попадании новых данных в Store
-     * @return {Object} Объект к методом отписки от событий
-     */
-    subscribe(fn) {
-      listeners.push(fn);
-      return {
-        unsubscribe() {
-          listeners = listeners.filter((l) => l !== fn);
-        },
-      };
-    },
+<article>
+    <div class="container-overview">
+    
+        
 
-    /**
-     * @property {Function} dispatch -
-     * Отправляет новые данные в Store
-     * @param {Object} action - новые данные для State
-     * @return {void}
-     */
-    dispatch(action) {
-      const i = action.data.position + "State";
-      state[i] = rootReducer(
-          state[i],
-          action
-      );
-      listeners.forEach((listener) => listener(state));
-    },
+        
+    
+    </div>
 
-    /**
-     * @property {Function} getState -
-     * Достаёт текущие данные из Store
-     * @return {Object} state - Текущее состояние приложения
-     */
-    getState() {
-      return state;
-    },
-  };
-}
-</code></pre>
-        </article>
-    </section>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
