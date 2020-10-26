@@ -37,6 +37,7 @@ function createButton(blocks) {
             <input 
               class="block__input" 
               data-position="${block.position}"
+              list="chartList"
               type="text">
             <button 
               class="${block.button_classes.join(' ')}"

@@ -1,5 +1,7 @@
 import {nakshatrasList} from "../../constants";
 import {$$} from "../../utils/Dom";
+import {getSavedChartNames} from "../../utils/utils";
+
 /**
  * @module components/chart/createChartWrapper
  * @property {Function} createChartWrapper - Создаёт обёртку с блоками
@@ -19,16 +21,28 @@ export function createChartWrapper(args) {
       'div',
       ["block", "block--chart"]
   );
-  const list = $$.create(
+  const nakshatraListWrapper = $$.create(
       'div',
       'visually-hidden'
   );
-  const options = nakshatrasList.map((i)=>`<option>${i}</option>`).join('');
-  list.setHTML(`<datalist id="nakshatrasList">${options}</datalist>`);
+  const chartListWrapper = $$.create(
+      'div',
+      'visually-hidden'
+  );
+  const nakshatraOptions = nakshatrasList
+      .map((i) => `<option>${i}</option>`)
+      .join('');
+  const chartOptions = getSavedChartNames();
+
+  nakshatraListWrapper
+      .setHTML(`<datalist id="nakshatraList">${nakshatraOptions}</datalist>`);
+  chartListWrapper
+      .setHTML(`<datalist id="chartList">${chartOptions}</datalist>`);
 
   table.append(args[0].$root);
   table.append(args[1].$root);
-  table.append(list);
+  table.append(nakshatraListWrapper);
+  table.append(chartListWrapper);
   chart.append(args[2].$root);
   chart.append(args[3].$root);
   container.append(table);

@@ -37,3 +37,22 @@ export function checkStorage(key, data = null) {
       JSON.stringify(data)
   );
 }
+
+/**
+ * @module components/chart/getSavedChartNames
+ * @property {Function} getSavedChartNames -
+ * Создаёт список опций сохранённых карт
+ * @return {String} keysList - Вёрстка опций
+ */
+export function getSavedChartNames() {
+  const keys = Object.keys(localStorage);
+  const keysList = keys
+      .map((chartName) => {
+        if (chartName.match(/^zodiac-/)) {
+          const newName = chartName.split('zodiac-')[1];
+          return `<option>${newName}</option>`;
+        }
+      })
+      .join('');
+  return keysList;
+}
