@@ -4,11 +4,13 @@
  */
 const blocks = [
   {
+    "position": "left",
     "button_classes": ["button", "button--header", "material-icons"],
     "icon_open": 'folder_open',
     "icon_save": 'save',
   },
   {
+    "position": "right",
     "button_classes": ["button", "button--header", "material-icons"],
     "icon_open": 'folder_open',
     "icon_save": 'save',
@@ -26,13 +28,20 @@ function createButton(blocks) {
         return `<div class="block__controls">
             <button 
               class="${block.button_classes.join(' ')}"
+              data-position="${block.position}"
+              data-action="open"
               type="button"
               >
               ${block.icon_open}
             </button>
-            <input class="block__input" type="text">
+            <input 
+              class="block__input" 
+              data-position="${block.position}"
+              type="text">
             <button 
               class="${block.button_classes.join(' ')}"
+              data-position="${block.position}"
+              data-action="save"
               type="button"
               >
               ${block.icon_save}
