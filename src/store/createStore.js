@@ -31,11 +31,11 @@ export function createStore(rootReducer) {
     /**
      * @property {Function} dispatch -
      * Отправляет новые данные в Store
-     * @param {Function} action - новые данные для State
+     * @param {Object} action - новые данные для State
      * @return {void}
      */
     dispatch(action) {
-      const i = action.data.chartPosition + "State";
+      const i = action.data.position + "State";
       state[i] = rootReducer(
           state[i],
           action

@@ -17,6 +17,7 @@ export class TableHeader extends ChartComponent {
         $root,
         {
           name: "Table Header",
+          listeners: ['click'],
           ...options,
         }
     );
@@ -30,5 +31,18 @@ export class TableHeader extends ChartComponent {
    */
   init() {
     super.init();
+  }
+
+  /**
+   * @property {Function} onClick -
+   * Закидывает в Emitter событие при нажатии на компонент
+   * @param {Event} evt - Событие
+   * @return {void}
+   */
+  onClick(evt) {
+    this.$emit(
+        'tableHeader: click',
+        evt.target
+    );
   }
 }

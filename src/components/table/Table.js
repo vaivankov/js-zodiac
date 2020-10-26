@@ -3,6 +3,7 @@ import {nakshatrasList} from "../../constants";
 import {ChartComponent} from "../../core/ChartComponent";
 import {createTable} from "./createTable";
 import * as actions from "./../../store/actions";
+import {checkStorage} from "../../utils/utils";
 
 /**
  * Класс таблицы с значениями
@@ -33,11 +34,32 @@ export class Table extends ChartComponent {
   }
 
   /**
-   * @property {Function} init - Инициализирует слушатели компонента
+   * @property {Function} init -
+   * Инициализирует Emitter слушатели компонента
    * @return {void}
    */
   init() {
     super.init();
+
+    this.$sub(
+        'tableHeader: click',
+        (node) => {
+          if (node.dataset.action) {
+            const position = node.dataset.position;
+            const selector =
+                `.block__input[data-position="${position}"]`;
+            const input = document
+                .querySelector(selector);
+            const chart = this[position + 'Chart'];
+            node.dataset.action === 'save' ?
+              checkStorage(
+                  input.value,
+                  chart
+              ) :
+              checkStorage(input.value);
+          }
+        }
+    );
   }
 
   /**
@@ -64,13 +86,11 @@ export class Table extends ChartComponent {
    * @return {Object}
    */
   get selectedInputData() {
-    const chartPosition = this.currentInput.elementDataChart;
-    const personName = 'name' + chartPosition;
+    const position = this.currentInput.elementDataChart;
     const planet = this.currentInput.elementDataPlanet;
     const index = this.nakshatrasList.indexOf(this.currentInput.elementValue);
     return {
-      personName,
-      chartPosition,
+      position,
       planet,
       index,
     };
@@ -83,7 +103,7 @@ export class Table extends ChartComponent {
    * @return {void}
    */
   set setInputState(data) {
-    const chart = data.chartPosition + 'Chart';
+    const chart = data.position + 'Chart';
     const newData = {};
     newData[data.planet] = data.index;
     this[chart] = {
