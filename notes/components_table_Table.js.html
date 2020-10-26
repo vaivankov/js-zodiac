@@ -84,6 +84,20 @@ export class Table extends ChartComponent {
           }
         }
     );
+
+    this.$sub(
+        "tableHeader: change",
+        (node) => {
+          try {
+            this.loadChart(
+                utils.getChartName(node.elementValue),
+                node.elementDataPosition
+            );
+          } catch (err) {
+            console.warn(`There is no such chart in storage!`);
+          }
+        }
+    );
   }
 
   /**
