@@ -1,6 +1,6 @@
 /**
  *
- * @param {String|HTMLElement} selector - Имя селектора или нода
+ * @param {String|Element} selector - Имя селектора или нода
  * @return {Dom} Новый Dom instance
  */
 export function $$(selector) {
@@ -149,7 +149,7 @@ class Dom {
   /**
    * @property {Function} elementValue -
    * getter значения элемента
-   * @return {String|Number|HTMLElement}
+   * @return {string|number|Element}
    */
   get elementValue() {
     return this.$element.value;
@@ -171,6 +171,24 @@ class Dom {
    */
   get elementDataPlanet() {
     return this.$element.dataset.planet;
+  }
+
+  /**
+   * @property {Function} elementDataPosition -
+   * getter data аттрибута позиции карты
+   * @return {String}
+   */
+  get elementDataPosition() {
+    return this.$element.dataset.position;
+  }
+
+  /**
+   * @property {Function} elementDataAction -
+   * getter data аттрибута действия кнопки
+   * @return {String}
+   */
+  get elementDataAction() {
+    return this.$element.dataset.action;
   }
 }
 
