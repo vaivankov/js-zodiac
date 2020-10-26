@@ -1,4 +1,5 @@
 import {ChartComponent} from "../../core/ChartComponent";
+import {$$} from "../../utils/Dom";
 import {createTableHeader} from "./createTableHeader";
 
 /**
@@ -42,7 +43,7 @@ export class TableHeader extends ChartComponent {
   onClick(evt) {
     this.$emit(
         'tableHeader: click',
-        evt.target
+        $$(evt.target)
     );
   }
 }

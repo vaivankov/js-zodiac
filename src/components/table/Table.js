@@ -44,19 +44,34 @@ export class Table extends ChartComponent {
     this.$sub(
         'tableHeader: click',
         (node) => {
-          if (node.dataset.action) {
-            const position = node.dataset.position;
-            const selector =
-                `.block__input[data-position="${position}"]`;
-            const input = document
-                .querySelector(selector);
-            const chart = this[position + 'Chart'];
-            node.dataset.action === 'save' ?
-              checkStorage(
-                  input.value,
-                  chart
-              ) :
-              checkStorage(input.value);
+          if (node.elementDataAction) {
+            try {
+              const position = node.elementDataPosition;
+              const selector =
+                  `.block__input[data-position="${position}"]`;
+              const input = $$(document
+                  .querySelector(selector));
+              const chart = this[position + 'Chart'];
+              const personName = 'zodiac-' + input.elementValue;
+
+              if (node.elementDataAction === 'save') {
+                checkStorage(
+                    personName,
+                    chart
+                );
+              } else {
+                const store = checkStorage(personName);
+                this.pasteData(
+                    position,
+                    store
+                );
+
+                const chart = position + 'Chart';
+                this[chart] = store;
+              }
+            } catch (err) {
+              console.warn(`There is no such chart in storage!`);
+            }
           }
         }
     );
@@ -134,6 +149,26 @@ export class Table extends ChartComponent {
       default:
         this.currentInput.addClasses('row__input--error');
         return false;
+    }
+  }
+
+  /**
+   * @property {Function} pasteData -
+   * Вставляет полученные данные в каждый input
+   * @param {String} position - Положение карты
+   * @param {Object} data - Объект с данными
+   * @return {void}
+   */
+  pasteData(position, data) {
+    const selector = `.row__input[data-chart="${position}"]:not([disabled])`;
+    const inputs = document
+        .querySelectorAll(selector);
+    for (const inp of inputs) {
+      const planet = inp.dataset.planet;
+      const planetIndex = data[planet];
+      if (planetIndex !== undefined) {
+        inp.value = this.nakshatrasList[planetIndex];
+      }
     }
   }
 }
