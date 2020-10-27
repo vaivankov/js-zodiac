@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: store/createStore.js</title>
+    <title>JSDoc: Source: store/createDemoCharts.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: store/createStore.js</h1>
+    <h1 class="page-title">Source: store/createDemoCharts.js</h1>
 
     
 
@@ -26,60 +26,59 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * @property {Function} createStore -
- * Создаёт Store
- * @param {Function} rootReducer - Функция-обработчик State
- * @return {Object} - Объект с методами для работы со State
+            <pre class="prettyprint source linenums"><code>import {checkStorage} from "../utils/utils";
+
+/**
+ * @type {Array} demoCharts - Объект с данными карт
  */
-export function createStore(rootReducer) {
-  const state = {
-    leftState: {},
-    rightState: {},
-  };
-  let listeners = [];
-
-  return {
-    /**
-     * @property {Function} subscribe -
-     * Подписывает функцию на Store
-     * @param {Function} fn -
-     * Функция, вызываемая при попадании новых данных в Store
-     * @return {Object} Объект к методом отписки от событий
-     */
-    subscribe(fn) {
-      listeners.push(fn);
-      return {
-        unsubscribe() {
-          listeners = listeners.filter((l) => l !== fn);
-        },
-      };
+const demoCharts =
+  [
+    {
+      name: 'Demo chart 1',
+      data: {
+        atma: 54,
+        buddha: 54,
+        chandra: 54,
+        dara: 54,
+        guru: 54,
+        ketu: 54,
+        mangala: 54,
+        rahu: 54,
+        surya: 54,
+        zani: 54,
+        zukra: 54,
+      },
     },
-
-    /**
-     * @property {Function} dispatch -
-     * Отправляет новые данные в Store
-     * @param {Object} action - новые данные для State
-     * @return {void}
-     */
-    dispatch(action) {
-      const i = action.data.position + "State";
-      state[i] = rootReducer(
-          state[i],
-          action
-      );
-      listeners.forEach((listener) => listener(state));
+    {
+      name: 'Demo chart 2',
+      data: {
+        atma: 97,
+        buddha: 97,
+        chandra: 97,
+        dara: 97,
+        guru: 97,
+        ketu: 97,
+        mangala: 97,
+        rahu: 97,
+        surya: 97,
+        zani: 97,
+        zukra: 97,
+      },
     },
+  ];
 
-    /**
-     * @property {Function} getState -
-     * Достаёт текущие данные из Store
-     * @return {Object} state - Текущее состояние приложения
-     */
-    getState() {
-      return state;
-    },
-  };
+/**
+ * @property {Function} createDemoCharts -
+ * Добавляет в LocalStorage демо карты
+ * @return {void}
+ */
+export function createDemoCharts() {
+  demoCharts.forEach((obj) => {
+    checkStorage(
+        obj.name,
+        obj.data
+    );
+  });
 }
 </code></pre>
         </article>
