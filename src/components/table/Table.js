@@ -65,7 +65,9 @@ export class Table extends ChartComponent {
                 utils.getChartName(node.elementValue),
                 node.elementDataPosition
             );
+            node.removeClasses('block__input--error');
           } catch (err) {
+            node.addClasses('block__input--error');
             console.warn(`There is no such chart in storage!`);
           }
         }
