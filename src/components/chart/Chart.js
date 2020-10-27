@@ -1,5 +1,6 @@
-import {Emitter} from "../../core/Emitter";
 import {$$} from "../../utils/Dom";
+import {Emitter} from "../../core/Emitter";
+import {createDemoCharts} from "../../store/createDemoCharts";
 import {createChartWrapper} from "./createChartWrapper";
 
 /**
@@ -51,6 +52,7 @@ export class Chart {
    * @return {void}
    */
   render() {
+    createDemoCharts();
     this.$root.append(this.getRootElement());
     this.init();
   }
