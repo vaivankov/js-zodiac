@@ -30,6 +30,7 @@ export class Table extends ChartComponent {
     this.$root = createTable($root);
     this.nakshatrasList = nakshatrasList;
     this.currentInput = null;
+    this.oppositeInput = null;
     this.leftChart = defaultChartState;
     this.rightChart = defaultChartState;
   }
@@ -80,6 +81,7 @@ export class Table extends ChartComponent {
    */
   onChange(evt) {
     this.currentInput = $$(evt.target);
+    this.oppositeInput = this.currentInput.getNextInput();
 
     if (!this.validateInput()) {
       return;
