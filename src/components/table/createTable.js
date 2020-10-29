@@ -24,9 +24,14 @@ const rowParams = [
     isActive: "disabled",
   },
   {
+    name: "lagnesha",
+    symbol: "Ⓘ",
+    isActive: "disabled",
+  },
+  {
     name: "lagna",
     symbol: "Ⓛ",
-    isActive: "disabled",
+    isActive: "",
   },
   {
     name: "surya",

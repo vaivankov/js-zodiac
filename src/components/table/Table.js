@@ -1,9 +1,9 @@
 import {$$} from "../../utils/Dom";
-import {nakshatrasList} from "../../constants";
 import {ChartComponent} from "../../core/ChartComponent";
 import {createTable} from "./createTable";
+import {DataBase} from "./DataBase";
 import * as utils from "../../utils/utils";
-import {defaultChartState} from "../../defaultValues";
+import * as defaultValues from "../../defaultValues";
 import * as actions from "./../../store/actions";
 
 /**
@@ -28,11 +28,10 @@ export class Table extends ChartComponent {
     );
 
     this.$root = createTable($root);
-    this.nakshatrasList = nakshatrasList;
     this.currentInput = null;
     this.oppositeInput = null;
-    this.leftChart = defaultChartState;
-    this.rightChart = defaultChartState;
+    this.chartState = defaultValues.chartState;
+    this.DataBase = new DataBase();
   }
 
   /**
@@ -90,6 +89,19 @@ export class Table extends ChartComponent {
     this.setInputState = this.selectedInputData;
 
     this.$dispatch(actions.inputData(this.selectedInputData));
+
+    if (this.oppositeInput.elementValue !== "") {
+      console.log(this.getNakshatrasRelation);
+    }
+  }
+
+  /**
+   * @property {Function} getNakshatrasRelation -
+   * getter отношений двух планет
+   * @return {*}
+   */
+  get getNakshatrasRelation() {
+    return '';
   }
 
   /**
