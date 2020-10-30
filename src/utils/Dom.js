@@ -188,41 +188,5 @@ class Dom {
     const dataset = JSON.stringify(this.$element.dataset);
     return JSON.parse(dataset);
   }
-
-  /**
-   * @property {Function} elementDataChart -
-   * getter data аттрибута позиции карты
-   * @return {String}
-   */
-  get elementDataChart() {
-    return this.$element.dataset.position;
-  }
-
-  /**
-   * @property {Function} elementDataPlanet -
-   * getter data аттрибута имени планеты
-   * @return {String}
-   */
-  get elementDataPlanet() {
-    return this.$element.dataset.planet;
-  }
-
-  /**
-   * @property {Function} elementDataPosition -
-   * getter data аттрибута позиции карты
-   * @return {String}
-   */
-  get elementDataPosition() {
-    return this.$element.dataset.position;
-  }
-
-  /**
-   * @property {Function} elementDataAction -
-   * getter data аттрибута действия кнопки
-   * @return {String}
-   */
-  get elementDataAction() {
-    return this.$element.dataset.action;
-  }
 }
 
