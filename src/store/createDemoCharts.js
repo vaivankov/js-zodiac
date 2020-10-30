@@ -1,3 +1,4 @@
+import {chartState} from "../defaultValues";
 import {checkStorage} from "../utils/utils";
 
 /**
@@ -6,36 +7,12 @@ import {checkStorage} from "../utils/utils";
 const demoCharts =
   [
     {
-      name: 'Demo chart 1',
-      data: {
-        atma: 54,
-        buddha: 54,
-        chandra: 54,
-        dara: 54,
-        guru: 54,
-        ketu: 54,
-        mangala: 54,
-        rahu: 54,
-        surya: 54,
-        zani: 54,
-        zukra: 54,
-      },
+      name: 'zodiac-Demo chart 1',
+      data: chartState,
     },
     {
-      name: 'Demo chart 2',
-      data: {
-        atma: 97,
-        buddha: 97,
-        chandra: 97,
-        dara: 97,
-        guru: 97,
-        ketu: 97,
-        mangala: 97,
-        rahu: 97,
-        surya: 97,
-        zani: 97,
-        zukra: 97,
-      },
+      name: 'zodiac-Demo chart 2',
+      data: chartState,
     },
   ];
 

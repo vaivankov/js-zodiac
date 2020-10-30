@@ -51,7 +51,6 @@ export class DataBase {
     const currentPlanetValues = this.chartState[data.position][data.planet];
     const defaultPlanetValues =
       this.parseObject(defaultValues.chartState[data.position][data.planet]);
-
     const entries = Object.entries(defaultPlanetValues);
     for (const [key, value] of entries) {
       currentPlanetValues[key] = value;

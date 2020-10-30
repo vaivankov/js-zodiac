@@ -100,22 +100,6 @@ export class Table extends ChartComponent {
   }
 
   /**
-   * @property {Function} setInputState -
-   * @param {Object} data - Данные выбранного input
-   * Setter данных текущего input
-   * @return {void}
-   */
-  set setInputState(data) {
-    const chart = data.position + "Chart";
-    const newData = {};
-    newData[data.planet] = data.index;
-    this[chart] = {
-      ...this[chart],
-      ...newData,
-    };
-  }
-
-  /**
    * @property {Function} validateInput -
    * Проверка валидности введённого значения в input
    * @param {Object} node -
