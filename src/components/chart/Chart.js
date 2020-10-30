@@ -2,6 +2,7 @@ import {$$} from "../../utils/Dom";
 import {Emitter} from "../../core/Emitter";
 import {createDemoCharts} from "../../store/createDemoCharts";
 import {createChartWrapper} from "./createChartWrapper";
+import {DataBase} from "../table/DataBase";
 
 /**
  * Класс объединяющий все компоненты в единое целое
@@ -17,6 +18,7 @@ export class Chart {
     this.components = options.components || [];
     this.$root = $$($root);
     this.store = options.store;
+    this.DataBase = new DataBase();
     this.emitter = new Emitter();
   }
 
@@ -29,6 +31,7 @@ export class Chart {
     const componentOptions = {
       emitter: this.emitter,
       store: this.store,
+      DataBase: this.DataBase,
     };
 
     this.components = this.components

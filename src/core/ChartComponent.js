@@ -19,6 +19,7 @@ export class ChartComponent extends DOMListener {
     this.name = options.name || '';
     this.emitter = options.emitter;
     this.store = options.store;
+    this.DataBase = options.DataBase;
     this.subscribes = options.subscribes || [];
     this.unsubscribers = [];
     this.storeSub = null;

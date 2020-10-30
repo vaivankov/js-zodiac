@@ -1,10 +1,8 @@
 import {$$} from "../../utils/Dom";
 import {ChartComponent} from "../../core/ChartComponent";
 import {createTable} from "./createTable";
-import {DataBase} from "./DataBase";
 import * as utils from "../../utils/utils";
-import * as defaultValues from "../../defaultValues";
-import * as actions from "./../../store/actions";
+// import * as actions from "./../../store/actions";
 
 /**
  * Класс таблицы с значениями
@@ -22,16 +20,12 @@ export class Table extends ChartComponent {
         $root,
         {
           name: "Table",
-          listeners: ["change"],
+          listeners: ["change", "mousedown"],
           ...options,
         }
     );
 
     this.$root = createTable($root);
-    this.currentInput = null;
-    this.oppositeInput = null;
-    this.chartState = defaultValues.chartState;
-    this.DataBase = new DataBase();
   }
 
   /**
@@ -79,51 +73,36 @@ export class Table extends ChartComponent {
    * @return {void}
    */
   onChange(evt) {
-    this.currentInput = $$(evt.target);
-    this.oppositeInput = this.currentInput.getNextInput();
+    const node = $$(evt.target);
 
-    if (!this.validateInput()) {
+    if (!this.validateInput(node)) {
       return;
     }
 
-    this.setInputState = this.selectedInputData;
+    this.DataBase.currentInput = node;
+  }
 
-    this.$dispatch(actions.inputData(this.selectedInputData));
+  /**
+   * @property {Function} onMouseDown -
+   * Callback function при нажатии на input
+   * @param {Object} evt - Событие
+   * @return {void}
+   */
+  onMousedown(evt) {
+    const node = $$(evt.target);
 
-    if (this.oppositeInput.elementValue !== "") {
-      console.log(this.getNakshatrasRelation);
+    node.removeClasses('row__input--error');
+
+    if (node.containsClass('row__input') && node.value !== "") {
+      node.value = "";
+      this.DataBase.cleanInputData(node);
     }
-  }
-
-  /**
-   * @property {Function} getNakshatrasRelation -
-   * getter отношений двух планет
-   * @return {*}
-   */
-  get getNakshatrasRelation() {
-    return '';
-  }
-
-  /**
-   * @property {Function} selectedInputData -
-   * getter данных текущего input
-   * @return {Object}
-   */
-  get selectedInputData() {
-    const position = this.currentInput.elementDataChart;
-    const planet = this.currentInput.elementDataPlanet;
-    const index = this.nakshatrasList.indexOf(this.currentInput.elementValue);
-    return {
-      position,
-      planet,
-      index,
-    };
   }
 
   /**
    * @property {Function} setInputState -
    * @param {Object} data - Данные выбранного input
-   * setter данных текущего input
+   * Setter данных текущего input
    * @return {void}
    */
   set setInputState(data) {
@@ -139,24 +118,26 @@ export class Table extends ChartComponent {
   /**
    * @property {Function} validateInput -
    * Проверка валидности введённого значения в input
+   * @param {Object} node -
+   * Dom-instance input в котором изменилось значение
    * @return {Boolean}
    */
-  validateInput() {
-    let inputText = event.target.value === "" ?
+  validateInput(node) {
+    let inputText = node.value === "" ?
       "empty" :
-      event.target.value;
-    inputText = this.nakshatrasList.includes(inputText) ?
+      node.value;
+    inputText = this.DataBase.includes(inputText) ?
       "includes" :
       inputText;
     switch (inputText) {
       case "empty":
-        this.currentInput.removeClasses("row__input--error");
+        node.removeClasses("row__input--error");
         return false;
       case "includes":
-        this.currentInput.removeClasses("row__input--error");
+        node.removeClasses("row__input--error");
         return true;
       default:
-        this.currentInput.addClasses("row__input--error");
+        node.addClasses("row__input--error");
         return false;
     }
   }

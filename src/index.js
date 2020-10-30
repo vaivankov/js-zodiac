@@ -1,11 +1,11 @@
 import "./less/style.less";
+import {createStore} from "./store/createStore";
+import {rootReducer} from "./store/rootReducer";
 import {Chart} from "./components/chart/Chart";
 import {Table} from "./components/table/Table";
 import {TableHeader} from "./components/table_header/TableHeader";
 import {ZodiacHeader} from "./components/zodiac_header/ZodiacHeader";
 import {Zodiac} from "./components/zodiac/Zodiac";
-import {createStore} from "./store/createStore";
-import {rootReducer} from "./store/rootReducer";
 
 const store = createStore(rootReducer);
 

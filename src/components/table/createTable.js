@@ -97,12 +97,12 @@ function createRows(rowParams) {
             </div>
             <div class="row__item">
               <input class="row__input"
-                data-chart="left"
+                data-position="left"
                 data-planet="${row.name}"
                 type="text" list="nakshatraList"
                 ${row.isActive}>
               <input class="row__input"
-                data-chart="right"
+                data-position="right"
                 data-planet="${row.name}"
                 type="text" list="nakshatraList"
                 ${row.isActive}>

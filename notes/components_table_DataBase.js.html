@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: core/ChartComponent</title>
+    <title>JSDoc: Source: components/table/DataBase.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,139 +17,109 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: core/ChartComponent</h1>
+    <h1 class="page-title">Source: components/table/DataBase.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>Общий класс для компонентов страницы с зодиаком</p></div>
-        
-
-        
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_ChartComponent.js.html">core/ChartComponent.js</a>, <a href="core_ChartComponent.js.html#line3">line 3</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="module-core_ChartComponent.ChartComponent.html">ChartComponent</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import * as constants from "../../constants";
+import * as defaultValues from "../../defaultValues";
+
+/**
+ * Класс c данными программы
+ * @module components/table/DataBase
+ */
+export class DataBase {
+  constructor() {
+    this.chartState = this.parseObject(defaultValues.chartState);
+    this.nakshatrasList = this.parseObject(constants.nakshatrasList);
+    this.nakshatrasTable = this.parseObject(constants.nakshatrasTable);
+  }
+
+  /**
+   * @property {Function} currentInput -
+   * Setter данных текущего input
+   * @param {Object} node - Dom instance выбранного input
+   * @return {void}
+   */
+  set currentInput(node) {
+    const index = this.getNakshatraIndex(node.value);
+    const data = node.dataset;
+    const planet = this.chartState[data.position][data.planet];
+    if (index !== planet.index) {
+      planet.node = node;
+      planet.index = index;
+      planet.pada = index + 1;
+      planet.nakshatra = Math.ceil((index + 1) / 4);
+      planet.sign = Math.ceil((index + 1) / 9);
+
+      const lagna = this.chartState[data.position].lagna;
+
+      if (lagna.sign > 0 &amp;&amp; planet !== lagna) {
+        planet.house =
+          planet.sign > lagna.sign ?
+            (planet.sign - lagna.sign) + 1 :
+            (lagna.sign - planet.sign) + 1;
+      }
+    }
+  }
+
+  /**
+   * @property {Function} cleanInputData -
+   * Обнуляет значения выбранного input
+   * @param {Object} node - Dom instance выбранного input
+   * @return {void}
+   */
+  cleanInputData(node) {
+    const data = node.dataset;
+    const currentPlanetValues = this.chartState[data.position][data.planet];
+    const defaultPlanetValues =
+      this.parseObject(defaultValues.chartState[data.position][data.planet]);
+
+    const entries = Object.entries(defaultPlanetValues);
+    for (const [key, value] of entries) {
+      currentPlanetValues[key] = value;
+    }
+  }
+
+  /**
+   * @property {Function} includes -
+   * Проверяет наличие строки с списке накшатр
+   * @param {String} str - Строка для проверки
+   * @return {Boolean}
+   */
+  includes(str) {
+    return this.nakshatrasList.includes(str);
+  }
+
+  /**
+   * @property {Function} getNakshatraIndex -
+   * Возвращает индекс накшатры с списке накшатр
+   * @param {String} value - Строка для проверки
+   * @return {Number}
+   */
+  getNakshatraIndex(value) {
+    return this.nakshatrasList.indexOf(value);
+  }
+
+  /**
+   * @property {Function} parseObject -
+   * Преобразует объект в JSON и обратно
+   * @param {Object} obj - объект для преобразования
+   * @return {Object}
+   */
+  parseObject(obj) {
+    const json = JSON.stringify(obj);
+    return JSON.parse(json);
+  }
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

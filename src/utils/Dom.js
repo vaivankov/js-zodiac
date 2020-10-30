@@ -1,6 +1,6 @@
 /**
  *
- * @param {String|Element} selector - Имя селектора или нода
+ * @param {*} selector - Имя селектора или нода
  * @return {Dom} Новый Dom instance
  */
 export function $$(selector) {
@@ -36,7 +36,7 @@ $$.create = (tagName, className) => {
 class Dom {
   /**
    *
-   * @param {String|HTMLElement} selector - Имя селектора или нода
+   * @param {String|HTMLElement} selector - Имя селектора или node
    */
   constructor(selector) {
     this.$element = typeof selector === 'string' ?
@@ -87,16 +87,16 @@ class Dom {
 
   /**
    * @property {Function} addClasses - Добавляет css-классы к $element
-   * @param {Array|String} className - Название класса
+   * @param {Array|String} name - Название класса
    * @return {Object} this
    */
-  addClasses(className) {
-    if (Array.isArray(className)) {
-      className.forEach((cl)=>{
+  addClasses(name) {
+    if (Array.isArray(name)) {
+      name.forEach((cl)=>{
         this.$element.classList.add(cl);
       });
     } else {
-      this.$element.classList.add(className);
+      this.$element.classList.add(name);
     }
 
     return this;
@@ -104,19 +104,28 @@ class Dom {
 
   /**
    * @property {Function} removeClasses - Удаляет css-классы у $element
-   * @param {Array|String} className - Название класса
+   * @param {Array|String} name - Название класса
    * @return {Object} this
    */
-  removeClasses(className) {
-    if (Array.isArray(className)) {
-      className.forEach((cl) => {
+  removeClasses(name) {
+    if (Array.isArray(name)) {
+      name.forEach((cl) => {
         this.$element.classList.remove(cl);
       });
     } else {
-      this.$element.classList.remove(className);
+      this.$element.classList.remove(name);
     }
 
     return this;
+  }
+
+  /**
+   * @property {Function} removeClasses - Удаляет css-классы у $element
+   * @param {String} name - Название класса
+   * @return {Boolean}
+   */
+  containsClass(name) {
+    return this.$element.classList.contains(name);
   }
 
   /**
@@ -157,12 +166,27 @@ class Dom {
   }
 
   /**
-   * @property {Function} elementValue -
-   * getter значения элемента
+   * @property {Function} value -
+   * Getter значения элемента
    * @return {string|number|Element}
    */
-  get elementValue() {
+  get value() {
     return this.$element.value;
+  }
+
+  /**
+   * @property {Function} value -
+   * Setter значения элемента
+   * @param {*} data - значение элемента
+   * @return {void}
+   */
+  set value(data) {
+    this.$element.value = data;
+  }
+
+  get dataset() {
+    const dataset = JSON.stringify(this.$element.dataset);
+    return JSON.parse(dataset);
   }
 
   /**
@@ -171,7 +195,7 @@ class Dom {
    * @return {String}
    */
   get elementDataChart() {
-    return this.$element.dataset.chart;
+    return this.$element.dataset.position;
   }
 
   /**

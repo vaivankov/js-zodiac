@@ -28,7 +28,7 @@
         <article>
             <pre class="prettyprint source linenums"><code>/**
  *
- * @param {String|Element} selector - Имя селектора или нода
+ * @param {String|HTMLElement} selector - Имя селектора или нода
  * @return {Dom} Новый Dom instance
  */
 export function $$(selector) {
@@ -64,7 +64,7 @@ $$.create = (tagName, className) => {
 class Dom {
   /**
    *
-   * @param {String|HTMLElement} selector - Имя селектора или нода
+   * @param {String|HTMLElement} selector - Имя селектора или node
    */
   constructor(selector) {
     this.$element = typeof selector === 'string' ?
@@ -115,16 +115,16 @@ class Dom {
 
   /**
    * @property {Function} addClasses - Добавляет css-классы к $element
-   * @param {Array|String} className - Название класса
+   * @param {Array|String} name - Название класса
    * @return {Object} this
    */
-  addClasses(className) {
-    if (Array.isArray(className)) {
-      className.forEach((cl)=>{
+  addClasses(name) {
+    if (Array.isArray(name)) {
+      name.forEach((cl)=>{
         this.$element.classList.add(cl);
       });
     } else {
-      this.$element.classList.add(className);
+      this.$element.classList.add(name);
     }
 
     return this;
@@ -132,19 +132,28 @@ class Dom {
 
   /**
    * @property {Function} removeClasses - Удаляет css-классы у $element
-   * @param {Array|String} className - Название класса
+   * @param {Array|String} name - Название класса
    * @return {Object} this
    */
-  removeClasses(className) {
-    if (Array.isArray(className)) {
-      className.forEach((cl) => {
+  removeClasses(name) {
+    if (Array.isArray(name)) {
+      name.forEach((cl) => {
         this.$element.classList.remove(cl);
       });
     } else {
-      this.$element.classList.remove(className);
+      this.$element.classList.remove(name);
     }
 
     return this;
+  }
+
+  /**
+   * @property {Function} removeClasses - Удаляет css-классы у $element
+   * @param {String} name - Название класса
+   * @return {Boolean}
+   */
+  containsClass(name) {
+    return this.$element.classList.contains(name);
   }
 
   /**
@@ -185,12 +194,27 @@ class Dom {
   }
 
   /**
-   * @property {Function} elementValue -
-   * getter значения элемента
+   * @property {Function} value -
+   * Getter значения элемента
    * @return {string|number|Element}
    */
-  get elementValue() {
+  get value() {
     return this.$element.value;
+  }
+
+  /**
+   * @property {Function} value -
+   * Setter значения элемента
+   * @param {*} data - значение элемента
+   * @return {void}
+   */
+  set value(data) {
+    this.$element.value = data;
+  }
+
+  get dataset() {
+    const dataset = JSON.stringify(this.$element.dataset);
+    return JSON.parse(dataset);
   }
 
   /**
@@ -199,7 +223,7 @@ class Dom {
    * @return {String}
    */
   get elementDataChart() {
-    return this.$element.dataset.chart;
+    return this.$element.dataset.position;
   }
 
   /**
@@ -240,13 +264,13 @@ class Dom {
 </div>
 
 <nav>
-    <h2><a href="index.html">Project documentation</a></h2><h3>Modules</h3><ul><li><a href="module-components_Chart.html">components/Chart</a></li><li><a href="module-components_chart_createChartWrapper.html">components/chart/createChartWrapper</a></li><li><a href="module-components_chart_getSavedChartNames.html">components/chart/getSavedChartNames</a></li><li><a href="module-components_table_createTable.html">components/table/createTable</a></li><li><a href="module-components_table_createZodiac.html">components/table/createZodiac</a></li><li><a href="module-components_table_Table.html">components/table/Table</a></li><li><a href="module-components_table_header_createTableHeader.html">components/table_header/createTableHeader</a></li><li><a href="module-components_zodiac_header_createZodiacHeader.html">components/zodiac_header/createZodiacHeader</a></li><li><a href="module-components_zodiac_header_ZodiacHeader.html">components/zodiac_header/ZodiacHeader</a></li><li><a href="module-constants.html">constants</a></li><li><a href="module-core_ChartComponent.html">core/ChartComponent</a></li><li><a href="module-core_DOMListener.html">core/DOMListener</a></li><li><a href="module-core_Emitter.html">core/Emitter</a></li><li><a href="module-utils_utils.html">utils/utils</a></li></ul><h3>Classes</h3><ul><li><a href="Dom.html">Dom</a></li><li><a href="module-components_Chart.Chart.html">Chart</a></li><li><a href="module-core_ChartComponent.ChartComponent.html">ChartComponent</a></li><li><a href="module-core_DOMListener.DOMListener.html">DOMListener</a></li><li><a href="TableHeader.html">TableHeader</a></li><li><a href="Zodiac.html">Zodiac</a></li></ul><h3>Global</h3><ul><li><a href="global.html#$$">$$</a></li><li><a href="global.html#blocks">blocks</a></li><li><a href="global.html#buttons">buttons</a></li><li><a href="global.html#createButton">createButton</a></li><li><a href="global.html#createDemoCharts">createDemoCharts</a></li><li><a href="global.html#createRows">createRows</a></li><li><a href="global.html#createStore">createStore</a></li><li><a href="global.html#demoCharts">demoCharts</a></li><li><a href="global.html#dispatch">dispatch</a></li><li><a href="global.html#getState">getState</a></li><li><a href="global.html#options">options</a></li><li><a href="global.html#rootReducer">rootReducer</a></li><li><a href="global.html#rowParams">rowParams</a></li><li><a href="global.html#subscribe">subscribe</a></li></ul>
+    <h2><a href="index.html">Project documentation</a></h2><h3>Modules</h3><ul><li><a href="module-components_Chart.html">components/Chart</a></li><li><a href="module-components_chart_createChartWrapper.html">components/chart/createChartWrapper</a></li><li><a href="module-components_chart_getSavedChartNames.html">components/chart/getSavedChartNames</a></li><li><a href="module-components_table_createTable.html">components/table/createTable</a></li><li><a href="module-components_table_createZodiac.html">components/table/createZodiac</a></li><li><a href="module-components_table_DataBase.html">components/table/DataBase</a></li><li><a href="module-components_table_Table.html">components/table/Table</a></li><li><a href="module-components_table_header_createTableHeader.html">components/table_header/createTableHeader</a></li><li><a href="module-components_zodiac_header_createZodiacHeader.html">components/zodiac_header/createZodiacHeader</a></li><li><a href="module-components_zodiac_header_ZodiacHeader.html">components/zodiac_header/ZodiacHeader</a></li><li><a href="module-constants.html">constants</a></li><li><a href="module-core_ChartComponent.html">core/ChartComponent</a></li><li><a href="module-core_DOMListener.html">core/DOMListener</a></li><li><a href="module-core_Emitter.html">core/Emitter</a></li><li><a href="module-utils_utils.html">utils/utils</a></li></ul><h3>Classes</h3><ul><li><a href="Dom.html">Dom</a></li><li><a href="module-components_Chart.Chart.html">Chart</a></li><li><a href="module-core_ChartComponent.ChartComponent.html">ChartComponent</a></li><li><a href="module-core_DOMListener.DOMListener.html">DOMListener</a></li><li><a href="TableHeader.html">TableHeader</a></li><li><a href="Zodiac.html">Zodiac</a></li></ul><h3>Global</h3><ul><li><a href="global.html#$$">$$</a></li><li><a href="global.html#blocks">blocks</a></li><li><a href="global.html#buttons">buttons</a></li><li><a href="global.html#createButton">createButton</a></li><li><a href="global.html#createDemoCharts">createDemoCharts</a></li><li><a href="global.html#createRows">createRows</a></li><li><a href="global.html#createStore">createStore</a></li><li><a href="global.html#demoCharts">demoCharts</a></li><li><a href="global.html#dispatch">dispatch</a></li><li><a href="global.html#getState">getState</a></li><li><a href="global.html#options">options</a></li><li><a href="global.html#rootReducer">rootReducer</a></li><li><a href="global.html#rowParams">rowParams</a></li><li><a href="global.html#subscribe">subscribe</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Thu Oct 29 2020 05:21:03 GMT+0300 (GMT+03:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Fri Oct 30 2020 12:38:24 GMT+0300 (GMT+03:00)
 </footer>
 
 <script> prettyPrint(); </script>
