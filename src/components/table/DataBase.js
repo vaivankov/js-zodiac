@@ -1,5 +1,6 @@
-import * as constants from "../../constants";
-import * as defaultValues from "../../defaultValues";
+import {nakshatrasList, nakshatrasTable} from "../../constants";
+import {chartState} from "../../defaultValues";
+import {parseObject} from "../../utils/utils";
 
 /**
  * Класс c данными программы
@@ -7,35 +8,38 @@ import * as defaultValues from "../../defaultValues";
  */
 export class DataBase {
   constructor() {
-    this.chartState = this.parseObject(defaultValues.chartState);
-    this.nakshatrasList = this.parseObject(constants.nakshatrasList);
-    this.nakshatrasTable = this.parseObject(constants.nakshatrasTable);
+    this.zodiacState = parseObject(chartState);
+    this.nakshatrasList = parseObject(nakshatrasList);
+    this.nakshatrasTable = parseObject(nakshatrasTable);
   }
 
   /**
-   * @property {Function} currentInput -
-   * Setter данных текущего input
+   * @property {Function} onInput -
+   * Callback function при смене данных input
    * @param {Object} node - Dom instance выбранного input
    * @return {void}
    */
-  set currentInput(node) {
+  onInput(node) {
     const index = this.getNakshatraIndex(node.value);
     const data = node.dataset;
-    const planet = this.chartState[data.position][data.planet];
+    const planet = this.zodiacState[data.position][data.planet];
+    const lagna = this.zodiacState[data.position].lagna;
     if (index !== planet.index) {
-      planet.node = node;
       planet.index = index;
       planet.pada = index + 1;
       planet.nakshatra = Math.ceil((index + 1) / 4);
       planet.sign = Math.ceil((index + 1) / 9);
 
-      const lagna = this.chartState[data.position].lagna;
-
       if (lagna.sign > 0 && planet !== lagna) {
         planet.house =
-          planet.sign > lagna.sign ?
-            (planet.sign - lagna.sign) + 1 :
-            (lagna.sign - planet.sign) + 1;
+          Math.max(
+              planet.sign,
+              lagna.sign
+          ) -
+          Math.min(
+              planet.sign,
+              lagna.sign
+          ) + 1;
       }
     }
   }
@@ -48,9 +52,9 @@ export class DataBase {
    */
   cleanInputData(node) {
     const data = node.dataset;
-    const currentPlanetValues = this.chartState[data.position][data.planet];
+    const currentPlanetValues = this.zodiacState[data.position][data.planet];
     const defaultPlanetValues =
-      this.parseObject(defaultValues.chartState[data.position][data.planet]);
+      parseObject(chartState[data.position][data.planet]);
     const entries = Object.entries(defaultPlanetValues);
     for (const [key, value] of entries) {
       currentPlanetValues[key] = value;
@@ -75,16 +79,5 @@ export class DataBase {
    */
   getNakshatraIndex(value) {
     return this.nakshatrasList.indexOf(value);
-  }
-
-  /**
-   * @property {Function} parseObject -
-   * Преобразует объект в JSON и обратно
-   * @param {Object} obj - объект для преобразования
-   * @return {Object}
-   */
-  parseObject(obj) {
-    const json = JSON.stringify(obj);
-    return JSON.parse(json);
   }
 }

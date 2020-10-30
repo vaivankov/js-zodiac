@@ -1,3 +1,6 @@
+import {parseObject} from "../utils/utils";
+import {chartState} from "../defaultValues";
+
 /**
  * @property {Function} createStore -
  * Создаёт Store
@@ -5,10 +8,7 @@
  * @return {Object} - Объект с методами для работы со State
  */
 export function createStore(rootReducer) {
-  const state = {
-    leftState: {},
-    rightState: {},
-  };
+  const state = parseObject(chartState);
   let listeners = [];
 
   return {
@@ -31,13 +31,12 @@ export function createStore(rootReducer) {
     /**
      * @property {Function} dispatch -
      * Отправляет новые данные в Store
-     * @param {Object} action - новые данные для State
+     * @param {Object} action - Объект с данными для State
      * @return {void}
      */
     dispatch(action) {
-      const i = action.data.position + "State";
-      state[i] = rootReducer(
-          state[i],
+      rootReducer(
+          state,
           action
       );
       listeners.forEach((listener) => listener(state));

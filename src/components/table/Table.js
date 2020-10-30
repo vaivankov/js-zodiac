@@ -2,7 +2,7 @@ import {$$} from "../../utils/Dom";
 import {ChartComponent} from "../../core/ChartComponent";
 import {createTable} from "./createTable";
 import * as utils from "../../utils/utils";
-// import * as actions from "./../../store/actions";
+import * as actions from "../../store/actions";
 
 /**
  * Класс таблицы с значениями
@@ -79,7 +79,7 @@ export class Table extends ChartComponent {
       return;
     }
 
-    this.DataBase.currentInput = node;
+    this.DataBase.onInput(node);
   }
 
   /**

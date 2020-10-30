@@ -5,7 +5,6 @@
 export const chartState = {
   left: {
     atma: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -13,7 +12,6 @@ export const chartState = {
       pada: -1,
     },
     dara: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -21,7 +19,6 @@ export const chartState = {
       pada: -1,
     },
     atmadara: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -29,7 +26,6 @@ export const chartState = {
       pada: -1,
     },
     daraatma: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -37,7 +33,6 @@ export const chartState = {
       pada: -1,
     },
     lagnesha: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -45,7 +40,6 @@ export const chartState = {
       pada: -1,
     },
     lagna: {
-      node: null,
       index: -1,
       house: 1,
       sign: -1,
@@ -53,7 +47,6 @@ export const chartState = {
       pada: -1,
     },
     surya: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -61,7 +54,6 @@ export const chartState = {
       pada: -1,
     },
     chandra: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -69,7 +61,6 @@ export const chartState = {
       pada: -1,
     },
     mangala: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -77,7 +68,6 @@ export const chartState = {
       pada: -1,
     },
     buddha: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -85,7 +75,6 @@ export const chartState = {
       pada: -1,
     },
     guru: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -93,7 +82,6 @@ export const chartState = {
       pada: -1,
     },
     zukra: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -101,7 +89,6 @@ export const chartState = {
       pada: -1,
     },
     zani: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -109,7 +96,6 @@ export const chartState = {
       pada: -1,
     },
     rahu: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -117,7 +103,6 @@ export const chartState = {
       pada: -1,
     },
     ketu: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -127,7 +112,6 @@ export const chartState = {
   },
   right: {
     atma: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -135,7 +119,6 @@ export const chartState = {
       pada: -1,
     },
     dara: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -143,7 +126,6 @@ export const chartState = {
       pada: -1,
     },
     atmadara: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -151,7 +133,6 @@ export const chartState = {
       pada: -1,
     },
     daraatma: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -159,7 +140,6 @@ export const chartState = {
       pada: -1,
     },
     lagnesha: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -167,7 +147,6 @@ export const chartState = {
       pada: -1,
     },
     lagna: {
-      node: null,
       index: -1,
       house: 1,
       sign: -1,
@@ -175,7 +154,6 @@ export const chartState = {
       pada: -1,
     },
     surya: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -183,7 +161,6 @@ export const chartState = {
       pada: -1,
     },
     chandra: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -191,7 +168,6 @@ export const chartState = {
       pada: -1,
     },
     mangala: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -199,7 +175,6 @@ export const chartState = {
       pada: -1,
     },
     buddha: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -207,7 +182,6 @@ export const chartState = {
       pada: -1,
     },
     guru: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -215,7 +189,6 @@ export const chartState = {
       pada: -1,
     },
     zukra: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -223,7 +196,6 @@ export const chartState = {
       pada: -1,
     },
     zani: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -231,7 +203,6 @@ export const chartState = {
       pada: -1,
     },
     rahu: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,
@@ -239,7 +210,6 @@ export const chartState = {
       pada: -1,
     },
     ketu: {
-      node: null,
       index: -1,
       house: -1,
       sign: -1,

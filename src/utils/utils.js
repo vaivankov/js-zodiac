@@ -49,7 +49,7 @@ export function checkStorage(key, data = null) {
 }
 
 /**
- * @module components/chart/getSavedChartNames
+ * @module utils/utils
  * @property {Function} getSavedChartNames -
  * Создаёт список опций сохранённых карт
  * @return {String} keysList - Вёрстка опций
@@ -65,4 +65,16 @@ export function getSavedChartNames() {
       })
       .join('');
   return keysList;
+}
+
+/**
+ * @module utils/utils
+ * @property {Function} parseObject -
+ * Преобразует объект в JSON и обратно
+ * @param {Object} obj - объект для преобразования
+ * @return {Object}
+ */
+export function parseObject(obj) {
+  const json = JSON.stringify(obj);
+  return JSON.parse(json);
 }

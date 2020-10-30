@@ -8,14 +8,15 @@ import * as types from './types';
  * @return {void}
  */
 export function rootReducer(state, action) {
-  const data = action.data;
+  const changes = JSON.parse(action.data);
   let newState;
   switch (action.type) {
-    case types.INPUT_DATA:
+    case types.CHANGE_INPUT:
       newState = {
         ...state,
-        [data.planet]: data.index,
+        ...changes,
       };
+      console.log(newState);
       return newState;
     default: return state;
   }

@@ -1,1 +1,1 @@
-export const INPUT_DATA = 'INPUT_DATA';
+export const CHANGE_INPUT = 'CHANGE_INPUT';
