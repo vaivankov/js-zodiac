@@ -2,7 +2,6 @@ import {$$} from "../../utils/Dom";
 import {ChartComponent} from "../../core/ChartComponent";
 import {createTable} from "./createTable";
 import * as utils from "../../utils/utils";
-import * as actions from "../../store/actions";
 
 /**
  * Класс таблицы с значениями
@@ -39,28 +38,12 @@ export class Table extends ChartComponent {
     this.$sub(
         "tableHeader: click",
         (node) => {
-          if (node.elementDataAction) {
+          if (node.dataset.action) {
             try {
               this.manageStore(node);
             } catch (err) {
               console.warn(`There is no such chart in storage!`);
             }
-          }
-        }
-    );
-
-    this.$sub(
-        "tableHeader: change",
-        (node) => {
-          try {
-            this.loadChart(
-                utils.getChartName(node.elementValue),
-                node.elementDataPosition
-            );
-            node.removeClasses('block__input--error');
-          } catch (err) {
-            node.addClasses('block__input--error');
-            console.warn(`There is no such chart in storage!`);
           }
         }
     );
@@ -130,18 +113,18 @@ export class Table extends ChartComponent {
    * @property {Function} pasteData -
    * Вставляет полученные данные в каждый input
    * @param {String} position - Положение карты
-   * @param {Object} data - Объект с данными
+   * @param {Object} store - Объект с данными
    * @return {void}
    */
-  pasteData(position, data) {
-    const selector = `.row__input[data-chart="${position}"]:not([disabled])`;
+  pasteData(position, store) {
+    const selector = `.row__input[data-position="${position}"]:not([disabled])`;
     const inputs = document
         .querySelectorAll(selector);
     for (const inp of inputs) {
       const planet = inp.dataset.planet;
-      const planetIndex = data[planet];
-      if (planetIndex !== undefined) {
-        inp.value = this.nakshatrasList[planetIndex];
+      const planetIndex = store[planet].index;
+      if (planetIndex > -1) {
+        inp.value = this.DataBase.getNakshatraByIndex(planetIndex);
       }
     }
   }
@@ -149,20 +132,19 @@ export class Table extends ChartComponent {
   /**
    * @property {Function} manageStore -
    * Обрабатывает события кнопок сохранения/загрузки карт
-   * @param {Object} node - Нода кнопки
+   * @param {Object} node - Dom instance кнопки
    * @return {void}
    */
   manageStore(node) {
-    const position = node.elementDataPosition;
+    const data = node.dataset;
     const selector =
-                  `.block__input[data-position="${position}"]`;
+                  `.block__input[data-position="${data.position}"]`;
     const input = $$(document
         .querySelector(selector));
-    const chart = this[position + "Chart"];
-    const personName = utils.getChartName(input.elementValue);
-    const action = node.elementDataAction;
+    const chart = this.DataBase.getChartState(data.position);
+    const personName = utils.getChartName(input.value);
 
-    if (action === "save") {
+    if (data.action === "save") {
       utils.checkStorage(
           personName,
           chart
@@ -170,10 +152,11 @@ export class Table extends ChartComponent {
       input.removeClasses('block__input--error');
     }
 
-    if (action === "open") {
+    if (data.action === "open") {
       this.loadChart(
           personName,
-          position
+          data.position,
+          input
       );
     }
   }
@@ -183,16 +166,16 @@ export class Table extends ChartComponent {
    * Загружает карту из LocalStorage
    * @param {String} personName - Имя владельца карты
    * @param {Object} position - Позиция карты
+   * @param {Object} input - Поле ввода имени
    * @return {void}
    */
-  loadChart(personName, position) {
+  loadChart(personName, position, input) {
     const store = utils.checkStorage(personName);
-    this.pasteData(
-        position,
-        store
-    );
-
-    const chart = position + "Chart";
-    this[chart] = store;
+    store ?
+      this.pasteData(
+          position,
+          store
+      ) :
+      input.addClasses('block__input--error');
   }
 }

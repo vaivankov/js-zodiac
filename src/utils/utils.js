@@ -23,12 +23,13 @@ export function getMethodName(eventName) {
 
 /**
  * @module utils/utils
- * @property {Function} getChartName - Возвращает новое имя карты
- * @param {String} name - Название события
- * @return {String} Новое имя метода
+ * @property {Function} getChartName -
+ * Возвращает название карты c приставкой
+ * @param {String} name - Название карты
+ * @return {String} "chart-" + name
  */
 export function getChartName(name) {
-  return 'zodiac-' + name;
+  return 'chart-' + name;
 }
 
 /**
@@ -58,8 +59,8 @@ export function getSavedChartNames() {
   const keys = Object.keys(localStorage);
   const keysList = keys
       .map((chartName) => {
-        if (chartName.match(/^zodiac-/)) {
-          const newName = chartName.split('zodiac-')[1];
+        if (chartName.match(/^chart-/)) {
+          const newName = chartName.split('chart-')[1];
           return `<option>${newName}</option>`;
         }
       })

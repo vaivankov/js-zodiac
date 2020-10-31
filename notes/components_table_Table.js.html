@@ -30,7 +30,6 @@
 import {ChartComponent} from "../../core/ChartComponent";
 import {createTable} from "./createTable";
 import * as utils from "../../utils/utils";
-// import * as actions from "./../../store/actions";
 
 /**
  * Класс таблицы с значениями
@@ -67,28 +66,12 @@ export class Table extends ChartComponent {
     this.$sub(
         "tableHeader: click",
         (node) => {
-          if (node.elementDataAction) {
+          if (node.dataset.action) {
             try {
               this.manageStore(node);
             } catch (err) {
               console.warn(`There is no such chart in storage!`);
             }
-          }
-        }
-    );
-
-    this.$sub(
-        "tableHeader: change",
-        (node) => {
-          try {
-            this.loadChart(
-                utils.getChartName(node.elementValue),
-                node.elementDataPosition
-            );
-            node.removeClasses('block__input--error');
-          } catch (err) {
-            node.addClasses('block__input--error');
-            console.warn(`There is no such chart in storage!`);
           }
         }
     );
@@ -107,7 +90,7 @@ export class Table extends ChartComponent {
       return;
     }
 
-    this.DataBase.currentInput = node;
+    this.DataBase.onInput(node);
   }
 
   /**
@@ -125,22 +108,6 @@ export class Table extends ChartComponent {
       node.value = "";
       this.DataBase.cleanInputData(node);
     }
-  }
-
-  /**
-   * @property {Function} setInputState -
-   * @param {Object} data - Данные выбранного input
-   * Setter данных текущего input
-   * @return {void}
-   */
-  set setInputState(data) {
-    const chart = data.position + "Chart";
-    const newData = {};
-    newData[data.planet] = data.index;
-    this[chart] = {
-      ...this[chart],
-      ...newData,
-    };
   }
 
   /**
@@ -174,18 +141,18 @@ export class Table extends ChartComponent {
    * @property {Function} pasteData -
    * Вставляет полученные данные в каждый input
    * @param {String} position - Положение карты
-   * @param {Object} data - Объект с данными
+   * @param {Object} store - Объект с данными
    * @return {void}
    */
-  pasteData(position, data) {
-    const selector = `.row__input[data-chart="${position}"]:not([disabled])`;
+  pasteData(position, store) {
+    const selector = `.row__input[data-position="${position}"]:not([disabled])`;
     const inputs = document
         .querySelectorAll(selector);
     for (const inp of inputs) {
       const planet = inp.dataset.planet;
-      const planetIndex = data[planet];
-      if (planetIndex !== undefined) {
-        inp.value = this.nakshatrasList[planetIndex];
+      const planetIndex = store[planet].index;
+      if (planetIndex > -1) {
+        inp.value = this.DataBase.getNakshatraByIndex(planetIndex);
       }
     }
   }
@@ -193,20 +160,19 @@ export class Table extends ChartComponent {
   /**
    * @property {Function} manageStore -
    * Обрабатывает события кнопок сохранения/загрузки карт
-   * @param {Object} node - Нода кнопки
+   * @param {Object} node - Dom instance кнопки
    * @return {void}
    */
   manageStore(node) {
-    const position = node.elementDataPosition;
+    const data = node.dataset;
     const selector =
-                  `.block__input[data-position="${position}"]`;
+                  `.block__input[data-position="${data.position}"]`;
     const input = $$(document
         .querySelector(selector));
-    const chart = this[position + "Chart"];
-    const personName = utils.getChartName(input.elementValue);
-    const action = node.elementDataAction;
+    const chart = this.DataBase.getChartState(data.position);
+    const personName = utils.getChartName(input.value);
 
-    if (action === "save") {
+    if (data.action === "save") {
       utils.checkStorage(
           personName,
           chart
@@ -214,10 +180,11 @@ export class Table extends ChartComponent {
       input.removeClasses('block__input--error');
     }
 
-    if (action === "open") {
+    if (data.action === "open") {
       this.loadChart(
           personName,
-          position
+          data.position,
+          input
       );
     }
   }
@@ -227,17 +194,17 @@ export class Table extends ChartComponent {
    * Загружает карту из LocalStorage
    * @param {String} personName - Имя владельца карты
    * @param {Object} position - Позиция карты
+   * @param {Object} input - Поле ввода имени
    * @return {void}
    */
-  loadChart(personName, position) {
+  loadChart(personName, position, input) {
     const store = utils.checkStorage(personName);
-    this.pasteData(
-        position,
-        store
-    );
-
-    const chart = position + "Chart";
-    this[chart] = store;
+    store ?
+      this.pasteData(
+          position,
+          store
+      ) :
+      input.addClasses('block__input--error');
   }
 }
 </code></pre>
@@ -250,13 +217,13 @@ export class Table extends ChartComponent {
 </div>
 
 <nav>
-    <h2><a href="index.html">Project documentation</a></h2><h3>Modules</h3><ul><li><a href="module-components_Chart.html">components/Chart</a></li><li><a href="module-components_chart_createChartWrapper.html">components/chart/createChartWrapper</a></li><li><a href="module-components_chart_getSavedChartNames.html">components/chart/getSavedChartNames</a></li><li><a href="module-components_table_createTable.html">components/table/createTable</a></li><li><a href="module-components_table_createZodiac.html">components/table/createZodiac</a></li><li><a href="module-components_table_DataBase.html">components/table/DataBase</a></li><li><a href="module-components_table_Table.html">components/table/Table</a></li><li><a href="module-components_table_header_createTableHeader.html">components/table_header/createTableHeader</a></li><li><a href="module-components_zodiac_header_createZodiacHeader.html">components/zodiac_header/createZodiacHeader</a></li><li><a href="module-components_zodiac_header_ZodiacHeader.html">components/zodiac_header/ZodiacHeader</a></li><li><a href="module-constants.html">constants</a></li><li><a href="module-core_ChartComponent.html">core/ChartComponent</a></li><li><a href="module-core_DOMListener.html">core/DOMListener</a></li><li><a href="module-core_Emitter.html">core/Emitter</a></li><li><a href="module-utils_utils.html">utils/utils</a></li></ul><h3>Classes</h3><ul><li><a href="Dom.html">Dom</a></li><li><a href="module-components_Chart.Chart.html">Chart</a></li><li><a href="module-core_ChartComponent.ChartComponent.html">ChartComponent</a></li><li><a href="module-core_DOMListener.DOMListener.html">DOMListener</a></li><li><a href="TableHeader.html">TableHeader</a></li><li><a href="Zodiac.html">Zodiac</a></li></ul><h3>Global</h3><ul><li><a href="global.html#$$">$$</a></li><li><a href="global.html#blocks">blocks</a></li><li><a href="global.html#buttons">buttons</a></li><li><a href="global.html#createButton">createButton</a></li><li><a href="global.html#createDemoCharts">createDemoCharts</a></li><li><a href="global.html#createRows">createRows</a></li><li><a href="global.html#createStore">createStore</a></li><li><a href="global.html#demoCharts">demoCharts</a></li><li><a href="global.html#dispatch">dispatch</a></li><li><a href="global.html#getState">getState</a></li><li><a href="global.html#options">options</a></li><li><a href="global.html#rootReducer">rootReducer</a></li><li><a href="global.html#rowParams">rowParams</a></li><li><a href="global.html#subscribe">subscribe</a></li></ul>
+    <h2><a href="index.html">Project documentation</a></h2><h3>Modules</h3><ul><li><a href="module-components_Chart.html">components/Chart</a></li><li><a href="module-components_chart_createChartWrapper.html">components/chart/createChartWrapper</a></li><li><a href="module-components_table_createTable.html">components/table/createTable</a></li><li><a href="module-components_table_createZodiac.html">components/table/createZodiac</a></li><li><a href="module-components_table_DataBase.html">components/table/DataBase</a></li><li><a href="module-components_table_Table.html">components/table/Table</a></li><li><a href="module-components_table_header_createTableHeader.html">components/table_header/createTableHeader</a></li><li><a href="module-components_zodiac_header_createZodiacHeader.html">components/zodiac_header/createZodiacHeader</a></li><li><a href="module-components_zodiac_header_ZodiacHeader.html">components/zodiac_header/ZodiacHeader</a></li><li><a href="module-constants.html">constants</a></li><li><a href="module-core_ChartComponent.html">core/ChartComponent</a></li><li><a href="module-core_DOMListener.html">core/DOMListener</a></li><li><a href="module-core_Emitter.html">core/Emitter</a></li><li><a href="module-utils_utils.html">utils/utils</a></li></ul><h3>Classes</h3><ul><li><a href="Dom.html">Dom</a></li><li><a href="module-components_Chart.Chart.html">Chart</a></li><li><a href="module-core_ChartComponent.ChartComponent.html">ChartComponent</a></li><li><a href="module-core_DOMListener.DOMListener.html">DOMListener</a></li><li><a href="TableHeader.html">TableHeader</a></li><li><a href="Zodiac.html">Zodiac</a></li></ul><h3>Global</h3><ul><li><a href="global.html#$$">$$</a></li><li><a href="global.html#blocks">blocks</a></li><li><a href="global.html#buttons">buttons</a></li><li><a href="global.html#createButton">createButton</a></li><li><a href="global.html#createDemoCharts">createDemoCharts</a></li><li><a href="global.html#createRows">createRows</a></li><li><a href="global.html#createStore">createStore</a></li><li><a href="global.html#demoCharts">demoCharts</a></li><li><a href="global.html#dispatch">dispatch</a></li><li><a href="global.html#getState">getState</a></li><li><a href="global.html#options">options</a></li><li><a href="global.html#rootReducer">rootReducer</a></li><li><a href="global.html#rowParams">rowParams</a></li><li><a href="global.html#subscribe">subscribe</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Fri Oct 30 2020 12:38:24 GMT+0300 (GMT+03:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Oct 31 2020 16:47:03 GMT+0300 (GMT+03:00)
 </footer>
 
 <script> prettyPrint(); </script>

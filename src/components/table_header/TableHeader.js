@@ -18,7 +18,7 @@ export class TableHeader extends ChartComponent {
         $root,
         {
           name: "Table Header",
-          listeners: ['click', 'change'],
+          listeners: ['click', 'change', 'mousedown'],
           ...options,
         }
     );
@@ -48,15 +48,18 @@ export class TableHeader extends ChartComponent {
   }
 
   /**
-   * @property {Function} onChange -
-   * Закидывает в Emitter событие при смене значения поля
-   * @param {Event} evt - Событие
+   * @property {Function} onMouseDown -
+   * Callback function при нажатии на input
+   * @param {Object} evt - Событие
    * @return {void}
    */
-  onChange(evt) {
-    this.$emit(
-        'tableHeader: change',
-        $$(evt.target)
-    );
+  onMousedown(evt) {
+    const node = $$(evt.target);
+
+    node.removeClasses('block__input--error');
+
+    if (node.containsClass('block__input') && node.value !== "") {
+      node.value = "";
+    }
   }
 }

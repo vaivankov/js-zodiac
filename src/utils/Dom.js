@@ -168,7 +168,7 @@ class Dom {
   /**
    * @property {Function} value -
    * Getter значения элемента
-   * @return {string|number|Element}
+   * @return {*}
    */
   get value() {
     return this.$element.value;

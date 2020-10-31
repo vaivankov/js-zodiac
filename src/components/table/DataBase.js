@@ -80,4 +80,33 @@ export class DataBase {
   getNakshatraIndex(value) {
     return this.nakshatrasList.indexOf(value);
   }
+
+  /**
+   * @property {Function} getNakshatraByIndex -
+   * Возвращает индекс накшатры с списке накшатр
+   * @param {Number} num - Порядковый номер накшатры
+   * @return {String}
+   */
+  getNakshatraByIndex(num) {
+    return this.nakshatrasList[num];
+  }
+
+  /**
+   * @property {Function} state -
+   * Возвращает состояние
+   * @return {Object}
+   */
+  get state() {
+    return parseObject(this.zodiacState);
+  }
+
+  /**
+   * @property {Function} state -
+   * Возвращает состояние выбранной карты
+   * @param {String} position - Положение в программе
+   * @return {String} JSON
+   */
+  getChartState(position) {
+    return parseObject(this.zodiacState[position]);
+  }
 }
