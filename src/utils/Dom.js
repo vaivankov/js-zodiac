@@ -188,23 +188,5 @@ class Dom {
     const dataset = JSON.stringify(this.$element.dataset);
     return JSON.parse(dataset);
   }
-
-  /**
-   * @property {Function} elementDataPosition -
-   * getter data аттрибута позиции карты
-   * @return {String}
-   */
-  get elementDataPosition() {
-    return this.$element.dataset.position;
-  }
-
-  /**
-   * @property {Function} elementDataAction -
-   * getter data аттрибута действия кнопки
-   * @return {String}
-   */
-  get elementDataAction() {
-    return this.$element.dataset.action;
-  }
 }
 
