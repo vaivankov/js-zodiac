@@ -45,12 +45,12 @@ export class DataBase {
   }
 
   /**
-   * @property {function} onInput -
-   * Callback function при смене данных input
+   * @property {function} pasteData -
+   * Расчёт данных выбранного input
    * @param {object} node - Dom instance выбранного input
    * @return {void}
    */
-  onInput(node) {
+  pasteData(node) {
     const index = this.getNakshatraIndex(node.value);
     const data = node.dataset;
     const planet = this.zodiacState[data.position][data.planet];
@@ -73,6 +73,9 @@ export class DataBase {
           ) + 1;
       }
     }
+
+    this.tableNodeTree[data.position][data.planet]
+        .house.textContent = planet.house;
   }
 
   /**

@@ -63,7 +63,8 @@ export class Table extends ChartComponent {
           try {
             this.loadChart(
                 utils.getChartName(node.elementValue),
-                node.elementDataPosition
+                node.elementDataPosition,
+                node
             );
             node.removeClasses('block__input--error');
           } catch (err) {
@@ -87,7 +88,7 @@ export class Table extends ChartComponent {
       return;
     }
 
-    this.database.onInput(node);
+    this.database.pasteData(node);
   }
 
   /**
