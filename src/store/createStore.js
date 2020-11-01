@@ -2,10 +2,10 @@ import {parseObject} from "../utils/utils";
 import {chartState} from "../defaultValues";
 
 /**
- * @property {Function} createStore -
+ * @property {function} createStore -
  * Создаёт Store
  * @param {Function} rootReducer - Функция-обработчик State
- * @return {Object} - Объект с методами для работы со State
+ * @return {object} - Объект с методами для работы со State
  */
 export function createStore(rootReducer) {
   const state = parseObject(chartState);
@@ -13,11 +13,11 @@ export function createStore(rootReducer) {
 
   return {
     /**
-     * @property {Function} subscribe -
+     * @property {function} subscribe -
      * Подписывает функцию на Store
      * @param {Function} fn -
      * Функция, вызываемая при попадании новых данных в Store
-     * @return {Object} Объект к методом отписки от событий
+     * @return {object} Объект к методом отписки от событий
      */
     subscribe(fn) {
       listeners.push(fn);
@@ -29,9 +29,9 @@ export function createStore(rootReducer) {
     },
 
     /**
-     * @property {Function} dispatch -
+     * @property {function} dispatch -
      * Отправляет новые данные в Store
-     * @param {Object} action - Объект с данными для State
+     * @param {object} action - Объект с данными для State
      * @return {void}
      */
     dispatch(action) {
@@ -43,9 +43,9 @@ export function createStore(rootReducer) {
     },
 
     /**
-     * @property {Function} getState -
+     * @property {function} getState -
      * Достаёт текущие данные из Store
-     * @return {Object} state - Текущее состояние приложения
+     * @return {object} state - Текущее состояние приложения
      */
     getState() {
       return state;

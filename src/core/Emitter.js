@@ -8,9 +8,9 @@ export class Emitter {
   }
 
   /**
-   * @property {Function} emit - Вызывает функцию на слушаемое событие
-   * @param {String} event - Название события
-   * @param {Array} args - Массив с параметрами
+   * @property {function} emit - Вызывает функцию на слушаемое событие
+   * @param {string} event - Название события
+   * @param {array} args - Массив с параметрами
    * @return {Boolean}
    */
   emit(event, ...args) {
@@ -26,9 +26,9 @@ export class Emitter {
   }
 
   /**
-   * @property {Function} subscribe -
+   * @property {function} subscribe -
    * Подписывает новую функцию на слушаемое событие
-   * @param {String} event - Название события
+   * @param {string} event - Название события
    * @param {Function} func - callback function
    * @return {Function} anonymous - Функция отписчик
    */

@@ -1,6 +1,7 @@
 /**
+ * Стандартное состояние таблицы
  * @module constants
- * @type {Object} chartState - стандартное состояние таблицы
+ * @type {object}
 */
 export const chartState = {
   left: {
@@ -222,16 +223,16 @@ export const chartState = {
       relations: -1,
       distance: {
         sign: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         nakshatra: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         pada: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
       },
     },
@@ -239,16 +240,16 @@ export const chartState = {
       relations: -1,
       distance: {
         sign: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         nakshatra: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         pada: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
       },
     },
@@ -256,16 +257,16 @@ export const chartState = {
       relations: -1,
       distance: {
         sign: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         nakshatra: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         pada: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
       },
     },
@@ -273,16 +274,16 @@ export const chartState = {
       relations: -1,
       distance: {
         sign: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         nakshatra: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         pada: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
       },
     },
@@ -290,16 +291,16 @@ export const chartState = {
       relations: -1,
       distance: {
         sign: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         nakshatra: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         pada: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
       },
     },
@@ -307,16 +308,16 @@ export const chartState = {
       relations: -1,
       distance: {
         sign: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         nakshatra: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         pada: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
       },
     },
@@ -324,16 +325,16 @@ export const chartState = {
       relations: -1,
       distance: {
         sign: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         nakshatra: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         pada: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
       },
     },
@@ -341,16 +342,16 @@ export const chartState = {
       relations: -1,
       distance: {
         sign: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         nakshatra: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         pada: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
       },
     },
@@ -358,16 +359,16 @@ export const chartState = {
       relations: -1,
       distance: {
         sign: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         nakshatra: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         pada: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
       },
     },
@@ -375,16 +376,16 @@ export const chartState = {
       relations: -1,
       distance: {
         sign: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         nakshatra: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         pada: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
       },
     },
@@ -392,16 +393,16 @@ export const chartState = {
       relations: -1,
       distance: {
         sign: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         nakshatra: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         pada: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
       },
     },
@@ -409,16 +410,16 @@ export const chartState = {
       relations: -1,
       distance: {
         sign: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         nakshatra: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         pada: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
       },
     },
@@ -426,16 +427,16 @@ export const chartState = {
       relations: -1,
       distance: {
         sign: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         nakshatra: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         pada: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
       },
     },
@@ -443,16 +444,16 @@ export const chartState = {
       relations: -1,
       distance: {
         sign: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         nakshatra: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         pada: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
       },
     },
@@ -460,16 +461,405 @@ export const chartState = {
       relations: -1,
       distance: {
         sign: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         nakshatra: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
         },
         pada: {
-          clockWise: -1,
-          counterClockWise: -1,
+          left: -1,
+          right: -1,
+        },
+      },
+    },
+  },
+};
+
+/**
+ * Скелет дерева элементов
+ * @module constants
+ * @type {object}
+*/
+export const tableNodeTree = {
+  left: {
+    atma: {
+      input: null,
+      house: null,
+    },
+    dara: {
+      input: null,
+      house: null,
+    },
+    atmadara: {
+      input: null,
+      house: null,
+    },
+    daraatma: {
+      input: null,
+      house: null,
+    },
+    lagnesha: {
+      input: null,
+      house: null,
+    },
+    lagna: {
+      input: null,
+      house: null,
+    },
+    surya: {
+      input: null,
+      house: null,
+    },
+    chandra: {
+      input: null,
+      house: null,
+    },
+    mangala: {
+      input: null,
+      house: null,
+    },
+    buddha: {
+      input: null,
+      house: null,
+    },
+    guru: {
+      input: null,
+      house: null,
+    },
+    zukra: {
+      input: null,
+      house: null,
+    },
+    zani: {
+      input: null,
+      house: null,
+    },
+    rahu: {
+      input: null,
+      house: null,
+    },
+    ketu: {
+      input: null,
+      house: null,
+    },
+  },
+  right: {
+    atma: {
+      input: null,
+      house: null,
+    },
+    dara: {
+      input: null,
+      house: null,
+    },
+    atmadara: {
+      input: null,
+      house: null,
+    },
+    daraatma: {
+      input: null,
+      house: null,
+    },
+    lagnesha: {
+      input: null,
+      house: null,
+    },
+    lagna: {
+      input: null,
+      house: null,
+    },
+    surya: {
+      input: null,
+      house: null,
+    },
+    chandra: {
+      input: null,
+      house: null,
+    },
+    mangala: {
+      input: null,
+      house: null,
+    },
+    buddha: {
+      input: null,
+      house: null,
+    },
+    guru: {
+      input: null,
+      house: null,
+    },
+    zukra: {
+      input: null,
+      house: null,
+    },
+    zani: {
+      input: null,
+      house: null,
+    },
+    rahu: {
+      input: null,
+      house: null,
+    },
+    ketu: {
+      input: null,
+      house: null,
+    },
+  },
+  both: {
+    atma: {
+      relations: null,
+      distance: {
+        sign: {
+          left: null,
+          right: null,
+        },
+        nakshatra: {
+          left: null,
+          right: null,
+        },
+        pada: {
+          left: null,
+          right: null,
+        },
+      },
+    },
+    dara: {
+      relations: null,
+      distance: {
+        sign: {
+          left: null,
+          right: null,
+        },
+        nakshatra: {
+          left: null,
+          right: null,
+        },
+        pada: {
+          left: null,
+          right: null,
+        },
+      },
+    },
+    atmadara: {
+      relations: null,
+      distance: {
+        sign: {
+          left: null,
+          right: null,
+        },
+        nakshatra: {
+          left: null,
+          right: null,
+        },
+        pada: {
+          left: null,
+          right: null,
+        },
+      },
+    },
+    daraatma: {
+      relations: null,
+      distance: {
+        sign: {
+          left: null,
+          right: null,
+        },
+        nakshatra: {
+          left: null,
+          right: null,
+        },
+        pada: {
+          left: null,
+          right: null,
+        },
+      },
+    },
+    lagnesha: {
+      relations: null,
+      distance: {
+        sign: {
+          left: null,
+          right: null,
+        },
+        nakshatra: {
+          left: null,
+          right: null,
+        },
+        pada: {
+          left: null,
+          right: null,
+        },
+      },
+    },
+    lagna: {
+      relations: null,
+      distance: {
+        sign: {
+          left: null,
+          right: null,
+        },
+        nakshatra: {
+          left: null,
+          right: null,
+        },
+        pada: {
+          left: null,
+          right: null,
+        },
+      },
+    },
+    surya: {
+      relations: null,
+      distance: {
+        sign: {
+          left: null,
+          right: null,
+        },
+        nakshatra: {
+          left: null,
+          right: null,
+        },
+        pada: {
+          left: null,
+          right: null,
+        },
+      },
+    },
+    chandra: {
+      relations: null,
+      distance: {
+        sign: {
+          left: null,
+          right: null,
+        },
+        nakshatra: {
+          left: null,
+          right: null,
+        },
+        pada: {
+          left: null,
+          right: null,
+        },
+      },
+    },
+    mangala: {
+      relations: null,
+      distance: {
+        sign: {
+          left: null,
+          right: null,
+        },
+        nakshatra: {
+          left: null,
+          right: null,
+        },
+        pada: {
+          left: null,
+          right: null,
+        },
+      },
+    },
+    buddha: {
+      relations: null,
+      distance: {
+        sign: {
+          left: null,
+          right: null,
+        },
+        nakshatra: {
+          left: null,
+          right: null,
+        },
+        pada: {
+          left: null,
+          right: null,
+        },
+      },
+    },
+    guru: {
+      relations: null,
+      distance: {
+        sign: {
+          left: null,
+          right: null,
+        },
+        nakshatra: {
+          left: null,
+          right: null,
+        },
+        pada: {
+          left: null,
+          right: null,
+        },
+      },
+    },
+    zukra: {
+      relations: null,
+      distance: {
+        sign: {
+          left: null,
+          right: null,
+        },
+        nakshatra: {
+          left: null,
+          right: null,
+        },
+        pada: {
+          left: null,
+          right: null,
+        },
+      },
+    },
+    zani: {
+      relations: null,
+      distance: {
+        sign: {
+          left: null,
+          right: null,
+        },
+        nakshatra: {
+          left: null,
+          right: null,
+        },
+        pada: {
+          left: null,
+          right: null,
+        },
+      },
+    },
+    rahu: {
+      relations: null,
+      distance: {
+        sign: {
+          left: null,
+          right: null,
+        },
+        nakshatra: {
+          left: null,
+          right: null,
+        },
+        pada: {
+          left: null,
+          right: null,
+        },
+      },
+    },
+    ketu: {
+      relations: null,
+      distance: {
+        sign: {
+          left: null,
+          right: null,
+        },
+        nakshatra: {
+          left: null,
+          right: null,
+        },
+        pada: {
+          left: null,
+          right: null,
         },
       },
     },

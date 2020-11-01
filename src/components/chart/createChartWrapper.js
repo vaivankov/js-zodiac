@@ -4,9 +4,9 @@ import {getSavedChartNames} from "../../utils/utils";
 
 /**
  * @module components/chart/createChartWrapper
- * @property {Function} createChartWrapper - Создаёт обёртку с блоками
- * @param {Array} args - Массив Dom instances компонентов страницы
- * @return {Object} Dom instance основного интерфейса программы
+ * @property {function} createChartWrapper - Создаёт обёртку с блоками
+ * @param {array} args - Массив Dom instances компонентов страницы
+ * @return {object} Dom instance основного интерфейса программы
  */
 export function createChartWrapper(args) {
   const container = $$.create(

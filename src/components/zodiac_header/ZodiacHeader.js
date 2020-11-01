@@ -8,8 +8,8 @@ import {createZodiacHeader} from "./createZodiacHeader";
 export class ZodiacHeader extends ChartComponent {
   /**
    *
-   * @param {Object} $root - Корневой тег элемента
-   * @param {Object} options - Параметры компонента
+   * @param {object} $root - Корневой тег элемента
+   * @param {object} options - Параметры компонента
    */
   static className = ["block__header"];
   constructor($root, options) {
@@ -25,7 +25,7 @@ export class ZodiacHeader extends ChartComponent {
   }
 
   /**
-   * @property {Function} init - Инициализирует слушатели компонента
+   * @property {function} init - Инициализирует слушатели компонента
    * @return {void}
    */
   init() {

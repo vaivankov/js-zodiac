@@ -10,8 +10,8 @@ import * as utils from "../../utils/utils";
 export class Table extends ChartComponent {
   /**
    *
-   * @param {Object} $root - Корневой тег элемента
-   * @param {Object} options - Параметры компонента
+   * @param {object} $root - Корневой тег элемента
+   * @param {object} options - Параметры компонента
    */
   static className = ["block__body", "block__body--table"];
   constructor($root, options) {
@@ -28,7 +28,16 @@ export class Table extends ChartComponent {
   }
 
   /**
-   * @property {Function} init -
+   * @property {function} prepare -
+   * Предварительная подготовка компонента
+   * @return {void}
+   */
+  prepare() {
+    this.database.setNodeTree();
+  }
+
+  /**
+   * @property {function} init -
    * Инициализирует Emitter слушатели компонента
    * @return {void}
    */
@@ -50,9 +59,9 @@ export class Table extends ChartComponent {
   }
 
   /**
-   * @property {Function} onChange -
+   * @property {function} onChange -
    * Callback function при изменении значения input
-   * @param {Object} evt - Событие
+   * @param {object} evt - Событие
    * @return {void}
    */
   onChange(evt) {
@@ -62,13 +71,13 @@ export class Table extends ChartComponent {
       return;
     }
 
-    this.DataBase.onInput(node);
+    this.database.onInput(node);
   }
 
   /**
-   * @property {Function} onMouseDown -
+   * @property {function} onMouseDown -
    * Callback function при нажатии на input
-   * @param {Object} evt - Событие
+   * @param {object} evt - Событие
    * @return {void}
    */
   onMousedown(evt) {
@@ -78,14 +87,14 @@ export class Table extends ChartComponent {
 
     if (node.containsClass('row__input') && node.value !== "") {
       node.value = "";
-      this.DataBase.cleanInputData(node);
+      this.database.cleanInputData(node);
     }
   }
 
   /**
-   * @property {Function} validateInput -
+   * @property {function} validateInput -
    * Проверка валидности введённого значения в input
-   * @param {Object} node -
+   * @param {object} node -
    * Dom-instance input в котором изменилось значение
    * @return {Boolean}
    */
@@ -93,7 +102,7 @@ export class Table extends ChartComponent {
     let inputText = node.value === "" ?
       "empty" :
       node.value;
-    inputText = this.DataBase.includes(inputText) ?
+    inputText = this.database.includes(inputText) ?
       "includes" :
       inputText;
     switch (inputText) {
@@ -110,10 +119,10 @@ export class Table extends ChartComponent {
   }
 
   /**
-   * @property {Function} pasteData -
+   * @property {function} pasteData -
    * Вставляет полученные данные в каждый input
-   * @param {String} position - Положение карты
-   * @param {Object} store - Объект с данными
+   * @param {string} position - Положение карты
+   * @param {object} store - Объект с данными
    * @return {void}
    */
   pasteData(position, store) {
@@ -124,15 +133,15 @@ export class Table extends ChartComponent {
       const planet = inp.dataset.planet;
       const planetIndex = store[planet].index;
       if (planetIndex > -1) {
-        inp.value = this.DataBase.getNakshatraByIndex(planetIndex);
+        inp.value = this.database.getNakshatraByIndex(planetIndex);
       }
     }
   }
 
   /**
-   * @property {Function} manageStore -
+   * @property {function} manageStore -
    * Обрабатывает события кнопок сохранения/загрузки карт
-   * @param {Object} node - Dom instance кнопки
+   * @param {object} node - Dom instance кнопки
    * @return {void}
    */
   manageStore(node) {
@@ -141,7 +150,7 @@ export class Table extends ChartComponent {
                   `.block__input[data-position="${data.position}"]`;
     const input = $$(document
         .querySelector(selector));
-    const chart = this.DataBase.getChartState(data.position);
+    const chart = this.database.getChartState(data.position);
     const personName = utils.getChartName(input.value);
 
     if (data.action === "save") {
@@ -162,11 +171,11 @@ export class Table extends ChartComponent {
   }
 
   /**
-   * @property {Function} loadChart -
+   * @property {function} loadChart -
    * Загружает карту из LocalStorage
-   * @param {String} personName - Имя владельца карты
-   * @param {Object} position - Позиция карты
-   * @param {Object} input - Поле ввода имени
+   * @param {string} personName - Имя владельца карты
+   * @param {object} position - Позиция карты
+   * @param {object} input - Поле ввода имени
    * @return {void}
    */
   loadChart(personName, position, input) {

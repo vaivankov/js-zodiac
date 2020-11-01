@@ -8,8 +8,8 @@ import {createZodiac} from "./createZodiac";
 export class Zodiac extends ChartComponent {
   /**
    *
-   * @param {Object} $root - Корневой тег элемента
-   * @param {Object} options - Параметры компонента
+   * @param {object} $root - Корневой тег элемента
+   * @param {object} options - Параметры компонента
    */
   static className = ["block__body"];
   constructor($root, options) {
@@ -25,7 +25,7 @@ export class Zodiac extends ChartComponent {
   }
 
   /**
-   * @property {Function} init - Инициализирует слушатели компонента
+   * @property {function} init - Инициализирует слушатели компонента
    * @return {void}
    */
   init() {

@@ -1,7 +1,7 @@
 /**
  * @module components/table/createZodiac
- * @property {Function} createZodiac - Создаёт блок zodiac
- * @param {Object} $root - Dom instance div контейнера
+ * @property {function} createZodiac - Создаёт блок zodiac
+ * @param {object} $root - Dom instance div контейнера
  * @return {Element} Блок с зодиаком
  */
 export function createZodiac($root) {

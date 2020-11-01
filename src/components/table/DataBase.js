@@ -1,5 +1,5 @@
 import {nakshatrasList, nakshatrasTable} from "../../constants";
-import {chartState} from "../../defaultValues";
+import {chartState, tableNodeTree} from "../../defaultValues";
 import {parseObject} from "../../utils/utils";
 
 /**
@@ -11,12 +11,43 @@ export class DataBase {
     this.zodiacState = parseObject(chartState);
     this.nakshatrasList = parseObject(nakshatrasList);
     this.nakshatrasTable = parseObject(nakshatrasTable);
+    this.tableNodeTree = parseObject(tableNodeTree);
   }
 
   /**
-   * @property {Function} onInput -
+   * @property {function} setNodeTree -
+   * Создаёт дерево node
+   * @return {void}
+   */
+  setNodeTree() {
+    const planetNames = Object.keys(this.tableNodeTree.both);
+
+    for (const planet of planetNames) {
+      const row = document.querySelector(`.row--${planet}`);
+
+      this.tableNodeTree.both[planet].relations =
+          row.querySelector(`.row__similarity`);
+
+      for (const position of ['left', 'right']) {
+        this.tableNodeTree[position][planet].input =
+          row.querySelector(`.row__input[data-position="${position}"]`);
+        this.tableNodeTree[position][planet].house =
+          row.querySelector(`.row__house[data-position="${position}"]`);
+
+        for (const division of ['sign', 'nakshatra', 'pada']) {
+          this.tableNodeTree.both[planet].distance[division][position] =
+            row.querySelector(`
+              .row__division-${division}[data-position="${position}"]
+            `);
+        }
+      }
+    }
+  }
+
+  /**
+   * @property {function} onInput -
    * Callback function при смене данных input
-   * @param {Object} node - Dom instance выбранного input
+   * @param {object} node - Dom instance выбранного input
    * @return {void}
    */
   onInput(node) {
@@ -45,9 +76,9 @@ export class DataBase {
   }
 
   /**
-   * @property {Function} cleanInputData -
+   * @property {function} cleanInputData -
    * Обнуляет значения выбранного input
-   * @param {Object} node - Dom instance выбранного input
+   * @param {object} node - Dom instance выбранного input
    * @return {void}
    */
   cleanInputData(node) {
@@ -62,9 +93,9 @@ export class DataBase {
   }
 
   /**
-   * @property {Function} includes -
+   * @property {function} includes -
    * Проверяет наличие строки с списке накшатр
-   * @param {String} str - Строка для проверки
+   * @param {string} str - Строка для проверки
    * @return {Boolean}
    */
   includes(str) {
@@ -72,9 +103,9 @@ export class DataBase {
   }
 
   /**
-   * @property {Function} getNakshatraIndex -
+   * @property {function} getNakshatraIndex -
    * Возвращает индекс накшатры с списке накшатр
-   * @param {String} value - Строка для проверки
+   * @param {string} value - Строка для проверки
    * @return {Number}
    */
   getNakshatraIndex(value) {
@@ -82,29 +113,29 @@ export class DataBase {
   }
 
   /**
-   * @property {Function} getNakshatraByIndex -
+   * @property {function} getNakshatraByIndex -
    * Возвращает индекс накшатры с списке накшатр
    * @param {Number} num - Порядковый номер накшатры
-   * @return {String}
+   * @return {string}
    */
   getNakshatraByIndex(num) {
     return this.nakshatrasList[num];
   }
 
   /**
-   * @property {Function} state -
+   * @property {function} state -
    * Возвращает состояние
-   * @return {Object}
+   * @return {object}
    */
   get state() {
     return parseObject(this.zodiacState);
   }
 
   /**
-   * @property {Function} state -
+   * @property {function} state -
    * Возвращает состояние выбранной карты
-   * @param {String} position - Положение в программе
-   * @return {String} JSON
+   * @param {string} position - Положение в программе
+   * @return {string} JSON
    */
   getChartState(position) {
     return parseObject(this.zodiacState[position]);

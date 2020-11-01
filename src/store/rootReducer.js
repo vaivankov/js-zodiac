@@ -1,10 +1,10 @@
 import * as types from './types';
 
 /**
- * @property {Function} rootReducer -
+ * @property {function} rootReducer -
  * Обновляет данные в State
- * @param {Object} state - Текущее состояние приложения
- * @param {Object} action - Новые данные
+ * @param {object} state - Текущее состояние приложения
+ * @param {object} action - Новые данные
  * @return {void}
  */
 export function rootReducer(state, action) {
@@ -16,7 +16,6 @@ export function rootReducer(state, action) {
         ...state,
         ...changes,
       };
-      console.log(newState);
       return newState;
     default: return state;
   }

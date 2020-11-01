@@ -2,36 +2,36 @@ import {$$} from "../../utils/Dom";
 import {Emitter} from "../../core/Emitter";
 import {createDemoCharts} from "../../store/createDemoCharts";
 import {createChartWrapper} from "./createChartWrapper";
-import {DataBase} from "../table/DataBase";
+import {DataBase} from "../table/database";
 
 /**
- * Класс объединяющий все компоненты в единое целое
- * @module components/Chart
- */
+   * Класс объединяющий все компоненты в единое целое
+   * @module components/Chart
+   */
 export class Chart {
   /**
-   *
-   * @param {Object} $root Корневой тег
-   * @param {Object} options Параметры класса
-   */
+     *
+     * @param {object} $root Корневой тег
+     * @param {object} options Параметры класса
+     */
   constructor($root, options) {
     this.components = options.components || [];
     this.$root = $$($root);
     this.store = options.store;
-    this.DataBase = new DataBase();
+    this.database = new DataBase();
     this.emitter = new Emitter();
   }
 
   /**
-   * @property {Function} getRootElement -
-   * Собирает основной рабочий интерфейс программы
-   * @return {Object} Dom instance вёрстки интерфейса
-   */
+     * @property {function} getRootElement -
+     * Собирает основной рабочий интерфейс программы
+     * @return {object} Dom instance вёрстки интерфейса
+     */
   getRootElement() {
     const componentOptions = {
       emitter: this.emitter,
       store: this.store,
-      DataBase: this.DataBase,
+      database: this.database,
     };
 
     this.components = this.components
@@ -51,9 +51,9 @@ export class Chart {
   }
 
   /**
-   * @property {Function} render - Вставляет шаблон программы на страницу
-   * @return {void}
-   */
+     * @property {function} render - Вставляет шаблон программы на страницу
+     * @return {void}
+     */
   render() {
     createDemoCharts();
     this.$root.append(this.getRootElement());
@@ -61,10 +61,11 @@ export class Chart {
   }
 
   /**
-   * @property {Function} init - Инициализирует слушатели компонента
-   * @return {void}
-   */
+     * @property {function} init - Инициализирует слушатели компонента
+     * @return {void}
+     */
   init() {
+    this.components.forEach((component) => component.prepare());
     this.components.forEach((component) => component.init());
   }
 }

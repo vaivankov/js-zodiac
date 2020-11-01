@@ -8,9 +8,9 @@ export function $$(selector) {
 }
 
 /**
- * @property {Function} create - Создаёт новый тег и
+ * @property {function} create - Создаёт новый тег и
  * оборачивает его в Dom instance
- * @param {String} tagName - Название тега
+ * @param {string} tagName - Название тега
  * @param {String|Array} className - Имя css-класса
  * @return {Dom} Новый Dom instance
  */
@@ -45,17 +45,17 @@ class Dom {
   }
 
   /**
-   * @property {Function} getHTML - Достаёт вёрстку из $element
-   * @return {String} - Node
+   * @property {function} getHTML - Достаёт вёрстку из $element
+   * @return {string} - Node
    */
   getHTML() {
     return this.$element.outerHTML.trim();
   }
 
   /**
-   * @property {Function} setHTML - Меняет содержимое $element
+   * @property {function} setHTML - Меняет содержимое $element
    * @param {String|Dom} html - Контент
-   * @return {Object} this
+   * @return {object} this
    */
   setHTML(html) {
     if (typeof html === 'string') {
@@ -67,9 +67,9 @@ class Dom {
   }
 
   /**
-   * @property {Function} append - Добавляет новый узел в $element
+   * @property {function} append - Добавляет новый узел в $element
    * @param {Node|Dom} node - Контент
-   * @return {Object} this
+   * @return {object} this
    */
   append(node) {
     if (node instanceof Dom) {
@@ -86,9 +86,9 @@ class Dom {
   }
 
   /**
-   * @property {Function} addClasses - Добавляет css-классы к $element
+   * @property {function} addClasses - Добавляет css-классы к $element
    * @param {Array|String} name - Название класса
-   * @return {Object} this
+   * @return {object} this
    */
   addClasses(name) {
     if (Array.isArray(name)) {
@@ -103,9 +103,9 @@ class Dom {
   }
 
   /**
-   * @property {Function} removeClasses - Удаляет css-классы у $element
+   * @property {function} removeClasses - Удаляет css-классы у $element
    * @param {Array|String} name - Название класса
-   * @return {Object} this
+   * @return {object} this
    */
   removeClasses(name) {
     if (Array.isArray(name)) {
@@ -120,8 +120,8 @@ class Dom {
   }
 
   /**
-   * @property {Function} removeClasses - Удаляет css-классы у $element
-   * @param {String} name - Название класса
+   * @property {function} removeClasses - Удаляет css-классы у $element
+   * @param {string} name - Название класса
    * @return {Boolean}
    */
   containsClass(name) {
@@ -129,7 +129,7 @@ class Dom {
   }
 
   /**
-   * @property {Function} getNextInput - Поиск ближайшего к $element input
+   * @property {function} getNextInput - Поиск ближайшего к $element input
    * @return {Dom} - Dom-instance
    */
   getNextInput() {
@@ -140,9 +140,9 @@ class Dom {
   }
 
   /**
-   * @property {Function} on - Добавляет к $element событие
-   * @param {Object} eventType - Название события
-   * @param {Object} callback - Функция для выполнения при событии
+   * @property {function} on - Добавляет к $element событие
+   * @param {object} eventType - Название события
+   * @param {object} callback - Функция для выполнения при событии
    * @return {void}
    */
   on(eventType, callback) {
@@ -153,9 +153,9 @@ class Dom {
   }
 
   /**
-   * @property {Function} off - Удаляет у $element событие
-   * @param {Object} eventType - Название события
-   * @param {Object} callback - Функция для выполнения при событии
+   * @property {function} off - Удаляет у $element событие
+   * @param {object} eventType - Название события
+   * @param {object} callback - Функция для выполнения при событии
    * @return {void}
    */
   off(eventType, callback) {
@@ -166,7 +166,7 @@ class Dom {
   }
 
   /**
-   * @property {Function} value -
+   * @property {function} value -
    * Getter значения элемента
    * @return {*}
    */
@@ -175,7 +175,7 @@ class Dom {
   }
 
   /**
-   * @property {Function} value -
+   * @property {function} value -
    * Setter значения элемента
    * @param {*} data - значение элемента
    * @return {void}

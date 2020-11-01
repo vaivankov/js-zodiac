@@ -7,8 +7,8 @@ import * as utils from '../utils/utils';
 export class DOMListener {
   /**
    *
-   * @param {Object} $root - Корневой тег элемента
-   * @param {Array} listeners - События, которые слушает данный элемент
+   * @param {object} $root - Корневой тег элемента
+   * @param {array} listeners - События, которые слушает данный элемент
    */
   constructor($root, listeners = []) {
     if (!$root) {
@@ -18,7 +18,7 @@ export class DOMListener {
   }
 
   /**
-   * @property {Function} initDOMListeners -
+   * @property {function} initDOMListeners -
    * Связывает слушаемые компонентами события и функции
    * @return {void}
    */
@@ -39,7 +39,7 @@ export class DOMListener {
   }
 
   /**
-   * @property {Function} removeDOMListeners -
+   * @property {function} removeDOMListeners -
    * Удаляет связанные события компонентов и функции
    * @return {void}
    * */

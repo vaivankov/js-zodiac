@@ -9,8 +9,8 @@ import {createTableHeader} from "./createTableHeader";
 export class TableHeader extends ChartComponent {
   /**
    *
-   * @param {Object} $root - Корневой тег элемента
-   * @param {Object} options - Параметры компонента
+   * @param {object} $root - Корневой тег элемента
+   * @param {object} options - Параметры компонента
    */
   static className = ["block__header"];
   constructor($root, options) {
@@ -18,7 +18,7 @@ export class TableHeader extends ChartComponent {
         $root,
         {
           name: "Table Header",
-          listeners: ['click', 'change', 'mousedown'],
+          listeners: ['click', 'mousedown'],
           ...options,
         }
     );
@@ -27,7 +27,7 @@ export class TableHeader extends ChartComponent {
   }
 
   /**
-   * @property {Function} init - Инициализирует слушатели компонента
+   * @property {function} init - Инициализирует слушатели компонента
    * @return {void}
    */
   init() {
@@ -35,7 +35,7 @@ export class TableHeader extends ChartComponent {
   }
 
   /**
-   * @property {Function} onClick -
+   * @property {function} onClick -
    * Закидывает в Emitter событие при нажатии на компонент
    * @param {Event} evt - Событие
    * @return {void}
@@ -48,9 +48,9 @@ export class TableHeader extends ChartComponent {
   }
 
   /**
-   * @property {Function} onMouseDown -
+   * @property {function} onMouseDown -
    * Callback function при нажатии на input
-   * @param {Object} evt - Событие
+   * @param {object} evt - Событие
    * @return {void}
    */
   onMousedown(evt) {

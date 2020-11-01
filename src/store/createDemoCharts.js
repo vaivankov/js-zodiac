@@ -1,7 +1,8 @@
 import {checkStorage} from "../utils/utils";
 
 /**
- * @type {Array} demoCharts - Объект с данными карт
+ * Демо карты
+ * @type {array}
  */
 const demoCharts =
   [
@@ -168,7 +169,7 @@ const demoCharts =
   ];
 
 /**
- * @property {Function} createDemoCharts -
+ * @property {function} createDemoCharts -
  * Добавляет в LocalStorage демо карты
  * @return {void}
  */

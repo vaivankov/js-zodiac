@@ -11,7 +11,7 @@ const store = createStore(rootReducer);
 
 /**
  * Объект с параметрами для создания основного интерфейса программы
- * @type {Object}
+ * @type {object}
  */
 const options = {
   components: [TableHeader, Table, ZodiacHeader, Zodiac],

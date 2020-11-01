@@ -1,6 +1,6 @@
 /**
  * Массив с параметрами для создания кнопок
- * @type {Array}
+ * @type {array}
  */
 const blocks = [
   {
@@ -18,9 +18,9 @@ const blocks = [
 ];
 
 /**
- * @property {Function} createButton - Создаёт кнопки
+ * @property {function} createButton - Создаёт кнопки
  * @param {Array<Object>} blocks - Массив с параметрами блока
- * @return {String} Строка с кнопками
+ * @return {string} Строка с кнопками
  */
 function createButton(blocks) {
   return blocks
@@ -54,8 +54,8 @@ function createButton(blocks) {
 
 /**
  * @module components/table_header/createTableHeader
- * @property {Function} createTableHeader - Создаёт блок tableHeader
- * @param {Object} $root - Dom instance div контейнера
+ * @property {function} createTableHeader - Создаёт блок tableHeader
+ * @param {object} $root - Dom instance div контейнера
  * @return {Element} Блок с кнопками
  */
 export function createTableHeader($root) {

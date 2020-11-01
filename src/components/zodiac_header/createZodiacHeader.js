@@ -1,6 +1,6 @@
 /**
  * Массив с параметрами для создания кнопок
- * @type {Array}
+ * @type {array}
  */
 const buttons = [
   {
@@ -21,9 +21,9 @@ const buttons = [
 ];
 
 /**
- * @property {Function} createButton - Создаёт кнопки
+ * @property {function} createButton - Создаёт кнопки
  * @param {Array<Object>} buttons - Массив с параметрами кнопок
- * @return {String} Строка с кнопками
+ * @return {string} Строка с кнопками
  */
 function createButton(buttons) {
   return buttons
@@ -38,8 +38,8 @@ function createButton(buttons) {
 
 /**
  * @module components/zodiac_header/createZodiacHeader
- * @property {Function} createZodiacHeader - Создаёт блок zodiacHeader
- * @param {Object} $root - Dom instance div контейнера
+ * @property {function} createZodiacHeader - Создаёт блок zodiacHeader
+ * @param {object} $root - Dom instance div контейнера
  * @return {Element} Блок с кнопками
  */
 export function createZodiacHeader($root) {

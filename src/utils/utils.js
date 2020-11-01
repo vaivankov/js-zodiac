@@ -1,8 +1,8 @@
 /**
  * @module utils/utils
- * @property {Function} capitalize - Достаёт вёрстку из $element
- * @param {String} string - Строка для преобразования
- * @return {String} Строка с заглавной буквой
+ * @property {function} capitalize - Достаёт вёрстку из $element
+ * @param {string} string - Строка для преобразования
+ * @return {string} Строка с заглавной буквой
  */
 export function capitalize(string) {
   if (typeof string !== 'string') {
@@ -13,9 +13,9 @@ export function capitalize(string) {
 
 /**
  * @module utils/utils
- * @property {Function} getMethodName - Возвращает новое имя метода
- * @param {String} eventName - Название события
- * @return {String} Новое имя метода
+ * @property {function} getMethodName - Возвращает новое имя метода
+ * @param {string} eventName - Название события
+ * @return {string} Новое имя метода
  */
 export function getMethodName(eventName) {
   return 'on' + capitalize(eventName);
@@ -23,10 +23,10 @@ export function getMethodName(eventName) {
 
 /**
  * @module utils/utils
- * @property {Function} getChartName -
+ * @property {function} getChartName -
  * Возвращает название карты c приставкой
- * @param {String} name - Название карты
- * @return {String} "chart-" + name
+ * @param {string} name - Название карты
+ * @return {string} "chart-" + name
  */
 export function getChartName(name) {
   return 'chart-' + name;
@@ -34,9 +34,9 @@ export function getChartName(name) {
 
 /**
  * @module utils/utils
- * @property {Function} checkStorage - Проверяет данные в LocalStorage
- * @param {String} key - Ключ, по которому нужно произвести проверку
- * @param {Object} data - Объект с данными, которые нужно сохранить
+ * @property {function} checkStorage - Проверяет данные в LocalStorage
+ * @param {string} key - Ключ, по которому нужно произвести проверку
+ * @param {object} data - Объект с данными, которые нужно сохранить
  * @return {Object|void} Объект с данными конкретного человека
  */
 export function checkStorage(key, data = null) {
@@ -51,9 +51,9 @@ export function checkStorage(key, data = null) {
 
 /**
  * @module utils/utils
- * @property {Function} getSavedChartNames -
+ * @property {function} getSavedChartNames -
  * Создаёт список опций сохранённых карт
- * @return {String} keysList - Вёрстка опций
+ * @return {string} keysList - Вёрстка опций
  */
 export function getSavedChartNames() {
   const keys = Object.keys(localStorage);
@@ -70,10 +70,10 @@ export function getSavedChartNames() {
 
 /**
  * @module utils/utils
- * @property {Function} parseObject -
+ * @property {function} parseObject -
  * Преобразует объект в JSON и обратно
- * @param {Object} obj - объект для преобразования
- * @return {Object}
+ * @param {object} obj - объект для преобразования
+ * @return {object}
  */
 export function parseObject(obj) {
   const json = JSON.stringify(obj);
