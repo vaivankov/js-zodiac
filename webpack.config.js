@@ -12,7 +12,7 @@ const getFileName = (name, ext) => {
 };
 
 const checkFolder = () => {
-  return isDev ? 'docs' : 'dev';
+  return isProd ? 'dev' : 'docs';
 }
 
 const returnLoaders = () => {

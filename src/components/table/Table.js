@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import {$$} from "../../utils/Dom";
 import {ChartComponent} from "../../core/ChartComponent";
 import {createTable} from "./createTable";
@@ -49,11 +48,7 @@ export class Table extends ChartComponent {
         "tableHeader: click",
         (node) => {
           if (node.dataset.action) {
-            try {
-              this.manageStore(node);
-            } catch (err) {
-              console.warn(`There is no such chart in storage!`);
-            }
+            this.manageStore(node);
           }
         }
     );

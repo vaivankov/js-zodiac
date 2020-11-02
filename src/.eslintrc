@@ -7,6 +7,7 @@
 		"jest/globals": true
 	},
 	"rules": {
+		"max-len": "off",
 		"quotes": "off",
 		"require-jsdoc": "off",
 		"no-unused-vars": "warn",
