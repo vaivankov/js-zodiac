@@ -47,35 +47,30 @@ export class DataBase {
   /**
    * @property {function} pasteData -
    * Расчёт данных выбранного input
-   * @param {object} node - Dom instance выбранного input
+   * @param {object} nodes - Dom instance выбранного input
    * @return {void}
    */
-  pasteData(node) {
-    const index = this.getNakshatraIndex(node.value);
-    const data = node.dataset;
-    const planet = this.zodiacState[data.position][data.planet];
-    const lagna = this.zodiacState[data.position].lagna;
-    if (index !== planet.index) {
-      planet.index = index;
-      planet.pada = index + 1;
-      planet.nakshatra = Math.ceil((index + 1) / 4);
-      planet.sign = Math.ceil((index + 1) / 9);
+  pasteData(nodes) {
+    for (const node of nodes) {
+      const index = this.getNakshatraIndex(node.value);
+      const data = node.dataset;
+      const planet = this.zodiacState[data.position][data.planet];
+      const lagna = this.zodiacState[data.position].lagna;
+      if (index !== planet.index) {
+        planet.index = index;
+        planet.pada = index + 1;
+        planet.nakshatra = Math.ceil((index + 1) / 4);
+        planet.sign = Math.ceil((index + 1) / 9);
 
-      if (lagna.sign > 0 && planet !== lagna) {
-        planet.house =
-          Math.max(
-              planet.sign,
-              lagna.sign
-          ) -
-          Math.min(
-              planet.sign,
-              lagna.sign
-          ) + 1;
+        if (lagna.sign > 0 && planet !== lagna) {
+          const house = planet.sign - lagna.sign + 1;
+          planet.house = house >= 1 ? house : house + 12;
+        }
       }
-    }
 
-    this.tableNodeTree[data.position][data.planet]
-        .house.textContent = planet.house;
+      this.tableNodeTree[data.position][data.planet]
+          .house.textContent = planet.house;
+    }
   }
 
   /**

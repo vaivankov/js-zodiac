@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {$$} from "../../utils/Dom";
 import {ChartComponent} from "../../core/ChartComponent";
 import {createTable} from "./createTable";
@@ -197,11 +198,21 @@ export class Table extends ChartComponent {
    */
   loadChart(personName, position, input) {
     const store = utils.checkStorage(personName);
-    store ?
+    if (store) {
       this.pasteData(
           position,
           store
-      ) :
+      );
+
+      const selector =
+        `.row__input[data-position="${position}"]:not([disabled])`;
+      const inputs = Array
+          .from(document.querySelectorAll(selector))
+          .sort((i)=>i.dataset.planet === "lagna" ? -1 : 1);
+
+      this.database.pasteData(inputs);
+    } else {
       input.addClasses('block__input--error');
+    }
   }
 }
