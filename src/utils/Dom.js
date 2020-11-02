@@ -129,17 +129,6 @@ class Dom {
   }
 
   /**
-   * @property {function} getNextInput - Поиск ближайшего к $element input
-   * @return {Dom} - Dom-instance
-   */
-  getNextInput() {
-    const el = this.$element.previousElementSibling ?
-      this.$element.previousElementSibling :
-      this.$element.nextElementSibling;
-    return $$(el);
-  }
-
-  /**
    * @property {function} on - Добавляет к $element событие
    * @param {object} eventType - Название события
    * @param {object} callback - Функция для выполнения при событии

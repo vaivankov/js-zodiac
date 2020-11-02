@@ -1,4 +1,10 @@
-import {nakshatrasList, nakshatrasTable} from "../../constants";
+import {
+  divisionLengthsArray,
+  divisionsArray,
+  nakshatrasList,
+  nakshatrasTable,
+  positionsArray,
+} from "../../constants";
 import {chartState, tableNodeTree} from "../../defaultValues";
 import {parseObject} from "../../utils/utils";
 
@@ -28,13 +34,13 @@ export class DataBase {
       this.tableNodeTree.both[planet].relations =
           row.querySelector(`.row__similarity`);
 
-      for (const position of ['left', 'right']) {
+      for (const position of positionsArray) {
         this.tableNodeTree[position][planet].input =
           row.querySelector(`.row__input[data-position="${position}"]`);
         this.tableNodeTree[position][planet].house =
           row.querySelector(`.row__house[data-position="${position}"]`);
 
-        for (const division of ['sign', 'nakshatra', 'pada']) {
+        for (const division of divisionsArray) {
           this.tableNodeTree.both[planet].distance[division][position] =
             row.querySelector(`
               .row__division-${division}[data-position="${position}"]
@@ -47,35 +53,76 @@ export class DataBase {
   /**
    * @property {function} pasteData -
    * Расчёт данных выбранного input
-   * @param {object} node - Dom instance выбранного input
+   * @param {object} nodes - Dom instance выбранного input
    * @return {void}
    */
-  pasteData(node) {
-    const index = this.getNakshatraIndex(node.value);
-    const data = node.dataset;
-    const planet = this.zodiacState[data.position][data.planet];
-    const lagna = this.zodiacState[data.position].lagna;
-    if (index !== planet.index) {
-      planet.index = index;
-      planet.pada = index + 1;
-      planet.nakshatra = Math.ceil((index + 1) / 4);
-      planet.sign = Math.ceil((index + 1) / 9);
+  pasteData(nodes) {
+    Array.isArray(nodes) ? true : nodes = [nodes];
 
-      if (lagna.sign > 0 && planet !== lagna) {
-        planet.house =
-          Math.max(
-              planet.sign,
-              lagna.sign
-          ) -
-          Math.min(
-              planet.sign,
-              lagna.sign
-          ) + 1;
+    for (const node of nodes) {
+      const index = this.getNakshatraIndex(node.value);
+      const currentData = node.dataset;
+      const oppositePosition = currentData.position === "left" ? "right" : "left";
+      const oppositePlanet = this.zodiacState[oppositePosition][currentData.planet];
+      const currentPlanet = this.zodiacState[currentData.position][currentData.planet];
+      const currentLagna = this.zodiacState[currentData.position].lagna;
+
+      if (index !== currentPlanet.index) {
+        currentPlanet.index = index;
+        currentPlanet.pada = index + 1;
+        currentPlanet.nakshatra = Math.ceil((index + 1) / 4);
+        currentPlanet.sign = Math.ceil((index + 1) / 9);
+
+        if (currentLagna.sign > 0 && currentPlanet !== currentLagna) {
+          const house = currentPlanet.sign - currentLagna.sign + 1;
+          currentPlanet.house = house >= 1 ? house : house + 12;
+        }
+
+        this.tableNodeTree[currentData.position][currentData.planet]
+            .house.textContent = currentPlanet.house;
+
+        if (oppositePlanet.index > -1) {
+          this.tableNodeTree.both[currentData.planet]
+              .relations.textContent =
+            this.nakshatrasTable[index][oppositePlanet.index];
+
+          this.zodiacState.both[currentData.planet].relations =
+            this.nakshatrasTable[index][oppositePlanet.index];
+
+          this.pasteDistance(currentData.planet);
+        }
       }
     }
+  }
 
-    this.tableNodeTree[data.position][data.planet]
-        .house.textContent = planet.house;
+  /**
+   * @property {function} pasteDistance -
+   * Расчёт расстояний между inputs
+   * @param {string} planet - Название планеты
+   * @return {void}
+   */
+  pasteDistance(planet) {
+    for (const [div, den] of divisionLengthsArray) {
+      let left2right =
+        this.zodiacState.left[planet][div] -
+        this.zodiacState.right[planet][div] + 1;
+      left2right > 0 ? true : left2right = left2right + den;
+
+      let right2left =
+        this.zodiacState.right[planet][div] -
+        this.zodiacState.left[planet][div] + 1;
+      right2left > 0 ? true : right2left = right2left + den;
+
+
+      for (const position of positionsArray) {
+        this.tableNodeTree.both[planet]
+            .distance[div][position].textContent =
+          position === "right" ? left2right : right2left;
+
+        this.zodiacState.both[planet].distance[div][position] =
+            position === "right" ? left2right : right2left;
+      }
+    }
   }
 
   /**

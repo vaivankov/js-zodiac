@@ -11,6 +11,10 @@ const getFileName = (name, ext) => {
   return isDev ? `${name}.${ext}` : `${name}.[hash].${ext}`;
 };
 
+const checkFolder = () => {
+  return isProd ? 'dev' : 'docs';
+}
+
 const returnLoaders = () => {
   const loaders = ['babel-loader'];
 
@@ -27,7 +31,7 @@ module.exports = {
   entry: ['@babel/polyfill', './index.js'],
   output: {
     filename: getFileName('main', 'js'),
-    path: path.resolve(__dirname, 'docs')
+    path: path.resolve(__dirname, checkFolder())
   },
   resolve: {
     extensions: ['.js'],
