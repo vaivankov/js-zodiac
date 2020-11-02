@@ -57,23 +57,6 @@ export class Table extends ChartComponent {
           }
         }
     );
-
-    this.$sub(
-        "tableHeader: change",
-        (node) => {
-          try {
-            this.loadChart(
-                utils.getChartName(node.elementValue),
-                node.elementDataPosition,
-                node
-            );
-            node.removeClasses('block__input--error');
-          } catch (err) {
-            node.addClasses('block__input--error');
-            console.warn(`There is no such chart in storage!`);
-          }
-        }
-    );
   }
 
   /**
@@ -139,14 +122,11 @@ export class Table extends ChartComponent {
   /**
    * @property {function} pasteData -
    * Вставляет полученные данные в каждый input
-   * @param {string} position - Положение карты
    * @param {object} store - Объект с данными
+   * @param {array} inputs - Массив inputs
    * @return {void}
    */
-  pasteData(position, store) {
-    const selector = `.row__input[data-position="${position}"]:not([disabled])`;
-    const inputs = document
-        .querySelectorAll(selector);
+  pasteData(store, inputs) {
     for (const inp of inputs) {
       const planet = inp.dataset.planet;
       const planetIndex = store[planet].index;
@@ -199,16 +179,16 @@ export class Table extends ChartComponent {
   loadChart(personName, position, input) {
     const store = utils.checkStorage(personName);
     if (store) {
-      this.pasteData(
-          position,
-          store
-      );
-
       const selector =
         `.row__input[data-position="${position}"]:not([disabled])`;
       const inputs = Array
           .from(document.querySelectorAll(selector))
           .sort((i)=>i.dataset.planet === "lagna" ? -1 : 1);
+
+      this.pasteData(
+          store,
+          inputs
+      );
 
       this.database.pasteData(inputs);
     } else {
