@@ -4,16 +4,14 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const isProd = process.env.NODE_ENV === 'production';
+const isProd = process.env.NODE_ENV.trim() === 'production';
 const isDev = !isProd;
 
 const getFileName = (name, ext) => {
   return isDev ? `${name}.${ext}` : `${name}.[hash].${ext}`;
 };
 
-const checkFolder = () => {
-  return isProd ? 'dev' : 'docs';
-}
+const folder = isProd ? 'docs' : 'dev';
 
 const returnLoaders = () => {
   const loaders = ['babel-loader'];
@@ -31,7 +29,7 @@ module.exports = {
   entry: ['@babel/polyfill', './index.js'],
   output: {
     filename: getFileName('main', 'js'),
-    path: path.resolve(__dirname, checkFolder())
+    path: path.resolve(__dirname, folder)
   },
   resolve: {
     extensions: ['.js'],
