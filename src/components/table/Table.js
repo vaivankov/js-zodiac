@@ -1,6 +1,7 @@
 import {$$} from "../../utils/Dom";
 import {ChartComponent} from "../../core/ChartComponent";
 import {createTable} from "./createTable";
+import {createDemoCharts} from "../../store/createDemoCharts";
 import * as utils from "../../utils/utils";
 
 /**
@@ -34,6 +35,7 @@ export class Table extends ChartComponent {
    */
   prepare() {
     this.database.setNodeTree();
+    createDemoCharts();
   }
 
   /**
