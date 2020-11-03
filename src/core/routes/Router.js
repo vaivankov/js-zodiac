@@ -1,4 +1,5 @@
 import {$$} from '../../utils/Dom';
+import {ActiveRoute} from './ActiveRoute';
 
 /**
  * Класс смены страниц
@@ -12,6 +13,8 @@ export class Router {
 
     this.$placeholder = $$(selector);
     this.routes = routes;
+
+    this.page = null;
 
     this.changePageHandler = this.changePageHandler.bind(this);
 
@@ -37,11 +40,21 @@ export class Router {
    * @return {void}
    */
   changePageHandler() {
-    const Page = this.routes.chart;
-    const page = new Page();
-    this.$placeholder.append(page.getRoot());
+    if (this.page) {
+      this.page.destroy();
+    }
 
-    page.afterRender();
+    this.$placeholder.clearHTML();
+
+    const Page = ActiveRoute.path.includes('chart') ?
+      this.routes.chart :
+      this.routes.dashboard;
+
+    this.page = new Page(ActiveRoute.path);
+
+    this.$placeholder.append(this.page.getRoot());
+
+    this.page.afterRender();
   }
 
   /**

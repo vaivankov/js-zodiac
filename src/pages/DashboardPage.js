@@ -23,7 +23,7 @@ export class DashboardPage extends Page {
                 <h1 class="dashboard__title">Главное меню</h1>
                 <div class="dashboard__info">
                   Откройте карту или создайте новую:
-                  <a class="material-icons dashboard__new-page" href="#">
+                  <a class="material-icons dashboard__new-page" href="#chart">
                     add_circle_outline
                   </a>
                 </div>
