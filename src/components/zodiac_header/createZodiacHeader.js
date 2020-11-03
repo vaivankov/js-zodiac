@@ -5,18 +5,23 @@
 const buttons = [
   {
     "icon": 'aspect_ratio',
+    "action": 'ration',
   },
   {
     "icon": 'straighten',
+    "action": 'length',
   },
   {
     "icon": 'brightness_7',
+    "action": 'zodiac',
   },
   {
     "icon": 'help_outline',
+    "action": 'help',
   },
   {
     "icon": 'exit_to_app',
+    "action": 'exit',
   },
 ];
 
@@ -29,7 +34,9 @@ function createButton(buttons) {
   return buttons
       .map((button) => {
         return `<button 
-    class="button button--header material-icons">
+    class="button button--header material-icons"
+    data-action="${button.action}"
+    >
     ${button.icon}
     </button>`;
       })
