@@ -22,7 +22,6 @@ export class ChartComponent extends DOMListener {
     this.database = options.database;
     this.subscribes = options.subscribes || [];
     this.unsubscribers = [];
-    this.storeSub = null;
   }
 
   /**
@@ -31,7 +30,6 @@ export class ChartComponent extends DOMListener {
    * @return {void}
    */
   prepare() {
-    return;
   }
 
   /**
@@ -88,16 +86,6 @@ export class ChartComponent extends DOMListener {
   }
 
   /**
-   * @property {function} $subscribe -
-   * Отправляет функцию в список подписок Store
-   * @param {Function} fn - Функция
-   * @return {void}
-   */
-  $subscribe(fn) {
-    this.storeSub = this.store.subscribe(fn);
-  }
-
-  /**
    * @property {function} destroy -
    * Удаляет подписки класса
    * @return {void}
@@ -105,6 +93,5 @@ export class ChartComponent extends DOMListener {
   destroy() {
     this.removeDOMListeners();
     this.unsubscribers.forEach((unsub) => unsub());
-    this.storeSub.unsubscribe();
   }
 }

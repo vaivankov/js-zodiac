@@ -1,26 +1,12 @@
 import "./less/style.less";
-import {createStore} from "./store/createStore";
-import {rootReducer} from "./store/rootReducer";
-import {Chart} from "./components/chart/Chart";
-import {Table} from "./components/table/Table";
-import {TableHeader} from "./components/table_header/TableHeader";
-import {ZodiacHeader} from "./components/zodiac_header/ZodiacHeader";
-import {Zodiac} from "./components/zodiac/Zodiac";
+import {Router} from "./core/routes/Router";
+import {ChartPage} from "./pages/ChartPage";
+import {DashboardPage} from "./pages/DashboardPage";
 
-const store = createStore(rootReducer);
-
-/**
- * Объект с параметрами для создания основного интерфейса программы
- * @type {object}
- */
-const options = {
-  components: [TableHeader, Table, ZodiacHeader, Zodiac],
-  store,
-};
-
-const chart = new Chart(
+new Router(
     '#app',
-    options
+    {
+      dashboard: DashboardPage,
+      chart: ChartPage,
+    }
 );
-
-chart.render();

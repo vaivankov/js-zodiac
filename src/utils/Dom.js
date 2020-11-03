@@ -67,6 +67,16 @@ class Dom {
   }
 
   /**
+   * @property {function} clearHTML -
+   * Очищает содержимое $element
+   * @return {object} this
+   */
+  clearHTML() {
+    this.setHTML('');
+    return this;
+  }
+
+  /**
    * @property {function} append - Добавляет новый узел в $element
    * @param {Node|Dom} node - Контент
    * @return {object} this

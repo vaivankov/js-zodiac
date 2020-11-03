@@ -35,7 +35,7 @@
     height: 100%;
 
     background-color: @color-white;
-    border: 2px solid @color-black;
+    border: 2px solid @color-button-border;
     border-radius: 5px;
   }
 
@@ -70,7 +70,7 @@
       width: 2px;
       height: 20px;
 
-      background-color: @color-black;
+      background-color: @color-black-opacity-70;
     }
 
     &:not(:last-of-type) {
@@ -83,8 +83,12 @@
 
     text-align: center;
 
-    border: 2px solid @color-black;
+    border: 2px solid @color-button-border;
     border-radius: 5px;
+
+    &:disabled {
+      background-color: @color-input-disabled;
+    }
 
     &:not(:last-of-type) {
       margin-right: 10px;
@@ -93,8 +97,5 @@
     &--error {
       background-color: @color-row-hover;
     }
-  }
-
-  &__similarity {
   }
 }

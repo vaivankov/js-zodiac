@@ -82,12 +82,14 @@ export class DataBase {
             .house.textContent = currentPlanet.house;
 
         if (oppositePlanet.index > -1) {
-          this.tableNodeTree.both[currentData.planet]
-              .relations.textContent =
-            this.nakshatrasTable[index][oppositePlanet.index];
+          const relations = this.nakshatrasTable[index][oppositePlanet.index];
 
-          this.zodiacState.both[currentData.planet].relations =
-            this.nakshatrasTable[index][oppositePlanet.index];
+          this.tableNodeTree.both[currentData.planet].relations.textContent = relations;
+          this.tableNodeTree.both[currentData.planet].relations.setAttribute(
+              'style',
+              `background-color: hsl(${relations}, 100%, 70%);`
+          );
+          this.zodiacState.both[currentData.planet].relations = relations;
 
           this.pasteDistance(currentData.planet);
         }
