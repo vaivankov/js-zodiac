@@ -1,6 +1,5 @@
 import {$$} from "../../utils/Dom";
 import {Emitter} from "../../core/Emitter";
-import {createDemoCharts} from "../../store/createDemoCharts";
 import {createChartWrapper} from "./createChartWrapper";
 import {DataBase} from "../table/database";
 
@@ -11,12 +10,10 @@ import {DataBase} from "../table/database";
 export class Chart {
   /**
      *
-     * @param {object} $root Корневой тег
      * @param {object} options Параметры класса
      */
-  constructor($root, options) {
+  constructor(options) {
     this.components = options.components || [];
-    this.$root = $$($root);
     this.store = options.store;
     this.database = new DataBase();
     this.emitter = new Emitter();
@@ -51,21 +48,19 @@ export class Chart {
   }
 
   /**
-     * @property {function} render - Вставляет шаблон программы на страницу
-     * @return {void}
-     */
-  render() {
-    createDemoCharts();
-    this.$root.append(this.getRootElement());
-    this.init();
-  }
-
-  /**
-     * @property {function} init - Инициализирует слушатели компонента
+     * @property {function} init - Инициализирует слушатели компонентов
      * @return {void}
      */
   init() {
     this.components.forEach((component) => component.prepare());
     this.components.forEach((component) => component.init());
+  }
+
+  /**
+     * @property {function} destroy - Удаляет слушатели компонентов
+     * @return {void}
+     */
+  destroy() {
+    this.components.forEach((component) => component.destroy());
   }
 }
