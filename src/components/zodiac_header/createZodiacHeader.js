@@ -8,14 +8,6 @@ const buttons = [
     "action": 'ratio',
   },
   {
-    "icon": 'straighten',
-    "action": 'length',
-  },
-  {
-    "icon": 'brightness_7',
-    "action": 'zodiac',
-  },
-  {
     "icon": 'help_outline',
     "action": 'help',
   },

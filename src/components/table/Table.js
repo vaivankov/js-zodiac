@@ -48,7 +48,7 @@ export class Table extends ChartComponent {
     super.init();
 
     this.$sub(
-        "tableHeader: click",
+        "tableHeader:click",
         (node) => {
           if (node.dataset.action) {
             this.manageStore(node);
@@ -57,7 +57,7 @@ export class Table extends ChartComponent {
     );
 
     this.$sub(
-        "zodiacHeader:length",
+        "zodiacHeader:ratio",
         () => {
           this.resizeTable();
         }
@@ -219,6 +219,11 @@ export class Table extends ChartComponent {
     }
   }
 
+  /**
+   * @property {function} resizeTable -
+   * Прячет поля ввода
+   * @return {void}
+   */
   resizeTable() {
     this.inputs.forEach((i) => i.classList.toggle('visually-hidden'));
   }

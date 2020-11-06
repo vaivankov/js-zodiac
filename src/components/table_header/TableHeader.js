@@ -34,7 +34,7 @@ export class TableHeader extends ChartComponent {
     super.init();
 
     this.$sub(
-        'zodiacHeader:length',
+        'zodiacHeader:ratio',
         () => {
           this.$root.classes(
               'toggle',
@@ -52,7 +52,7 @@ export class TableHeader extends ChartComponent {
    */
   onClick(evt) {
     this.$emit(
-        'tableHeader: click',
+        'tableHeader:click',
         $$(evt.target)
     );
   }

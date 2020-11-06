@@ -37,11 +37,8 @@ export class ZodiacHeader extends ChartComponent {
       return;
     }
 
-    if (evt.target.dataset.action === 'length') {
-      this.$emit(
-          'zodiacHeader:length',
-          this.$root.$element
-      );
+    if (evt.target.dataset.action === 'ratio') {
+      this.$emit('zodiacHeader:ratio');
       return;
     }
   }
