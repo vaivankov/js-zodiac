@@ -5,7 +5,7 @@
 const buttons = [
   {
     "icon": 'aspect_ratio',
-    "action": 'ration',
+    "action": 'ratio',
   },
   {
     "icon": 'straighten',

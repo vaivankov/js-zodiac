@@ -101,7 +101,7 @@ function createRows(rowParams) {
                 data-position="right"
                 ></span>
             </div>
-            <div class="row__item">
+            <div class="row__item row__item--inputs">
               <input 
                 class="row__input"
                 data-position="left"

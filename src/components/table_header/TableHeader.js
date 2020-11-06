@@ -32,6 +32,16 @@ export class TableHeader extends ChartComponent {
    */
   init() {
     super.init();
+
+    this.$sub(
+        'zodiacHeader:length',
+        () => {
+          this.$root.classes(
+              'toggle',
+              'visually-hidden'
+          );
+        }
+    );
   }
 
   /**
@@ -56,7 +66,10 @@ export class TableHeader extends ChartComponent {
   onMousedown(evt) {
     const node = $$(evt.target);
 
-    node.removeClasses('block__input--error');
+    node.classes(
+        'remove',
+        'block__input--error'
+    );
 
     if (node.containsClass('block__input') && node.value !== "") {
       node.value = "";

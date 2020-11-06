@@ -34,6 +34,7 @@ export class Table extends ChartComponent {
    * @return {void}
    */
   prepare() {
+    this.inputs = this.$root.$element.querySelectorAll('.row__item--inputs');
     this.database.setNodeTree();
     createDemoCharts();
   }
@@ -52,6 +53,13 @@ export class Table extends ChartComponent {
           if (node.dataset.action) {
             this.manageStore(node);
           }
+        }
+    );
+
+    this.$sub(
+        "zodiacHeader:length",
+        () => {
+          this.resizeTable();
         }
     );
   }
@@ -81,7 +89,10 @@ export class Table extends ChartComponent {
   onMousedown(evt) {
     const node = $$(evt.target);
 
-    node.removeClasses('row__input--error');
+    node.classes(
+        'remove',
+        'row__input--error'
+    );
 
     if (node.containsClass('row__input') && node.value !== "") {
       node.value = "";
@@ -105,13 +116,22 @@ export class Table extends ChartComponent {
       inputText;
     switch (inputText) {
       case "empty":
-        node.removeClasses("row__input--error");
+        node.classes(
+            "remove",
+            "row__input--error"
+        );
         return false;
       case "includes":
-        node.removeClasses("row__input--error");
+        node.classes(
+            "remove",
+            "row__input--error"
+        );
         return true;
       default:
-        node.addClasses("row__input--error");
+        node.classes(
+            "add",
+            "row__input--error"
+        );
         return false;
     }
   }
@@ -153,7 +173,10 @@ export class Table extends ChartComponent {
           personName,
           chart
       );
-      input.removeClasses('block__input--error');
+      input.classes(
+          "remove",
+          'block__input--error'
+      );
     }
 
     if (data.action === "open") {
@@ -189,7 +212,14 @@ export class Table extends ChartComponent {
 
       this.database.pasteData(inputs);
     } else {
-      input.addClasses('block__input--error');
+      input.classes(
+          "add",
+          'block__input--error'
+      );
     }
+  }
+
+  resizeTable() {
+    this.inputs.forEach((i) => i.classList.toggle('visually-hidden'));
   }
 }

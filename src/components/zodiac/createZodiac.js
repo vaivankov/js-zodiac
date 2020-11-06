@@ -5,7 +5,7 @@
  * @return {Element} Блок с зодиаком
  */
 export function createZodiac($root) {
-  const content = '<img src="../../assets/zodiac.svg" alt="Зодиак">';
+  const content = '<img width="100%" src="../../assets/zodiac.svg" alt="Зодиак">';
   $root.setHTML(content);
   return $root;
 }

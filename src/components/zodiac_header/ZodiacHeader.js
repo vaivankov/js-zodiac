@@ -34,6 +34,15 @@ export class ZodiacHeader extends ChartComponent {
   onClick(evt) {
     if (evt.target.dataset.action === 'exit') {
       window.location.hash = "dashboard";
+      return;
+    }
+
+    if (evt.target.dataset.action === 'length') {
+      this.$emit(
+          'zodiacHeader:length',
+          this.$root.$element
+      );
+      return;
     }
   }
 

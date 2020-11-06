@@ -11,7 +11,7 @@ export class Zodiac extends ChartComponent {
    * @param {object} $root - Корневой тег элемента
    * @param {object} options - Параметры компонента
    */
-  static className = ["block__body"];
+  static className = ["block__body", "block__body--zodiac"];
   constructor($root, options) {
     super(
         $root,
