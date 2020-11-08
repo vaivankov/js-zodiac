@@ -39,11 +39,11 @@ export function createChartWrapper(args) {
   chartListWrapper
       .setHTML(`<datalist id="chartList">${chartOptions}</datalist>`);
 
-  table.append(args[0].$root);
-  table.append(args[1].$root);
   table.append(nakshatraListWrapper);
   table.append(chartListWrapper);
-  chart.append(args[2].$root);
+  table.append(args[0].$root);
+  table.append(args[1].$root);
+  table.append(args[2].$root);
   chart.append(args[3].$root);
   container.append(table);
   container.append(chart);

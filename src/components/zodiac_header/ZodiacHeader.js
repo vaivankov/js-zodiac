@@ -17,11 +17,30 @@ export class ZodiacHeader extends ChartComponent {
         $root,
         {
           name: "Zodiac Header",
+          listeners: ['click'],
           ...options,
         }
     );
 
     this.$root = createZodiacHeader($root);
+  }
+
+  /**
+   * @property {function} onClick -
+   * Закидывает в emitter событие
+   * @param {event} evt Событие
+   * @return {void}
+   */
+  onClick(evt) {
+    if (evt.target.dataset.action === 'exit') {
+      window.location.hash = "dashboard";
+      return;
+    }
+
+    if (evt.target.dataset.action === 'ratio') {
+      this.$emit('zodiacHeader:ratio');
+      return;
+    }
   }
 
   /**

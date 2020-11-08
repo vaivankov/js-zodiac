@@ -105,3 +105,6 @@ dist
 
 # LiveServer folder
 dev/
+
+# VSCode files
+.vscode

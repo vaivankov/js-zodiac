@@ -1,3 +1,4 @@
+import {createDemoCharts} from '../../store/createDemoCharts';
 import {$$} from '../../utils/Dom';
 import {ActiveRoute} from './ActiveRoute';
 
@@ -32,6 +33,7 @@ export class Router {
         this.changePageHandler
     );
     this.changePageHandler();
+    createDemoCharts();
   }
 
   /**

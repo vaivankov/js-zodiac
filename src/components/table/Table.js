@@ -33,6 +33,7 @@ export class Table extends ChartComponent {
    * @return {void}
    */
   prepare() {
+    this.inputs = this.$root.$element.querySelectorAll('.row__item--inputs');
     this.database.setNodeTree();
   }
 
@@ -45,11 +46,18 @@ export class Table extends ChartComponent {
     super.init();
 
     this.$sub(
-        "tableHeader: click",
+        "tableHeader:click",
         (node) => {
           if (node.dataset.action) {
             this.manageStore(node);
           }
+        }
+    );
+
+    this.$sub(
+        "zodiacHeader:ratio",
+        () => {
+          this.resizeTable();
         }
     );
   }
@@ -79,7 +87,10 @@ export class Table extends ChartComponent {
   onMousedown(evt) {
     const node = $$(evt.target);
 
-    node.removeClasses('row__input--error');
+    node.classes(
+        'remove',
+        'row__input--error'
+    );
 
     if (node.containsClass('row__input') && node.value !== "") {
       node.value = "";
@@ -103,13 +114,22 @@ export class Table extends ChartComponent {
       inputText;
     switch (inputText) {
       case "empty":
-        node.removeClasses("row__input--error");
+        node.classes(
+            "remove",
+            "row__input--error"
+        );
         return false;
       case "includes":
-        node.removeClasses("row__input--error");
+        node.classes(
+            "remove",
+            "row__input--error"
+        );
         return true;
       default:
-        node.addClasses("row__input--error");
+        node.classes(
+            "add",
+            "row__input--error"
+        );
         return false;
     }
   }
@@ -151,7 +171,10 @@ export class Table extends ChartComponent {
           personName,
           chart
       );
-      input.removeClasses('block__input--error');
+      input.classes(
+          "remove",
+          'block__input--error'
+      );
     }
 
     if (data.action === "open") {
@@ -174,6 +197,11 @@ export class Table extends ChartComponent {
   loadChart(personName, position, input) {
     const store = utils.checkStorage(personName);
     if (store) {
+      store.lastOpenedDate = new Date();
+      utils.checkStorage(
+          personName,
+          store
+      );
       const selector =
         `.row__input[data-position="${position}"]:not([disabled])`;
       const inputs = Array
@@ -187,7 +215,19 @@ export class Table extends ChartComponent {
 
       this.database.pasteData(inputs);
     } else {
-      input.addClasses('block__input--error');
+      input.classes(
+          "add",
+          'block__input--error'
+      );
     }
+  }
+
+  /**
+   * @property {function} resizeTable -
+   * Прячет поля ввода
+   * @return {void}
+   */
+  resizeTable() {
+    this.inputs.forEach((i) => i.classList.toggle('visually-hidden'));
   }
 }

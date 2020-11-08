@@ -96,41 +96,26 @@ class Dom {
   }
 
   /**
-   * @property {function} addClasses - Добавляет css-классы к $element
-   * @param {Array|String} name - Название класса
+   * @property {function} classes - Обрабатывает css-классы у $element
+   * @param {string} action - Действие
+   * @param {array|string} name - Название класса
    * @return {object} this
    */
-  addClasses(name) {
-    if (Array.isArray(name)) {
-      name.forEach((cl)=>{
-        this.$element.classList.add(cl);
-      });
-    } else {
-      this.$element.classList.add(name);
-    }
-
-    return this;
-  }
-
-  /**
-   * @property {function} removeClasses - Удаляет css-классы у $element
-   * @param {Array|String} name - Название класса
-   * @return {object} this
-   */
-  removeClasses(name) {
+  classes(action, name) {
     if (Array.isArray(name)) {
       name.forEach((cl) => {
-        this.$element.classList.remove(cl);
+        this.$element.classList[action](cl);
       });
     } else {
-      this.$element.classList.remove(name);
+      this.$element.classList[action](name);
     }
 
     return this;
   }
 
   /**
-   * @property {function} removeClasses - Удаляет css-классы у $element
+   * @property {function} containsClass -
+   * Проверяет наличие css-класса у $element
    * @param {string} name - Название класса
    * @return {Boolean}
    */
