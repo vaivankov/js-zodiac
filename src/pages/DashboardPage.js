@@ -1,3 +1,4 @@
+import {createChartList} from '../components/dashboard/createChartList';
 import {Page} from "../core/Page";
 import {$$} from "../utils/Dom";
 
@@ -29,24 +30,7 @@ export class DashboardPage extends Page {
                 </div>
               </div>
               <div class="dashboard__body">
-                <a href="#" class="dashboard__chart-item">
-                  <span class="dashboard__chart-name">
-                    Иванов Иван Иванович
-                  </span>
-                  <time class="dashboard__date" datetime="2012-12-23T08:23:11+07:00">сегодня в 10:30</time>
-                </a>
-                <a href="#" class="dashboard__chart-item">
-                  <span class="dashboard__chart-name">
-                    Иванов Иван Иванович
-                  </span>
-                  <time class="dashboard__date" datetime="2012-12-23T08:23:11+07:00">сегодня в 10:30</time>
-                </a>
-                <a href="#" class="dashboard__chart-item">
-                  <span class="dashboard__chart-name">
-                    Иванов Иван Иванович
-                  </span>
-                  <time class="dashboard__date" datetime="2012-12-23T08:23:11+07:00">сегодня в 10:30</time>
-                </a>
+                ${createChartList()}
               </div>
               <div class="dashboard__footer">
                 <button class="button button--load-more" type="button">

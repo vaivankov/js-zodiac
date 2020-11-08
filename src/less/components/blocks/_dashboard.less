@@ -29,6 +29,8 @@
   }
 
   &__chart-item {
+    position: relative;
+
     display: flex;
     justify-content: space-between;
     margin: 10px 0;
@@ -39,10 +41,27 @@
     &:hover {
       background-color: @color-black-opacity-30;
     }
+
+    &::after:not(:last-of-type) {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+
+      width: 100%;
+
+      border-bottom: 1px solid @color-black-opacity-30;
+    }
   }
 
   &__body {
     margin: 20px 0;
+  }
+
+  &__list-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
   }
 }
 

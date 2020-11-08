@@ -1,7 +1,6 @@
 import {$$} from "../../utils/Dom";
 import {ChartComponent} from "../../core/ChartComponent";
 import {createTable} from "./createTable";
-import {createDemoCharts} from "../../store/createDemoCharts";
 import * as utils from "../../utils/utils";
 
 /**
@@ -36,7 +35,6 @@ export class Table extends ChartComponent {
   prepare() {
     this.inputs = this.$root.$element.querySelectorAll('.row__item--inputs');
     this.database.setNodeTree();
-    createDemoCharts();
   }
 
   /**
@@ -199,6 +197,11 @@ export class Table extends ChartComponent {
   loadChart(personName, position, input) {
     const store = utils.checkStorage(personName);
     if (store) {
+      store.lastOpenedDate = new Date();
+      utils.checkStorage(
+          personName,
+          store
+      );
       const selector =
         `.row__input[data-position="${position}"]:not([disabled])`;
       const inputs = Array

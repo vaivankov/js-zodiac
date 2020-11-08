@@ -9,6 +9,7 @@ const demoCharts =
     {
       name: 'chart-Екатерина Скрынникова',
       data: {
+        lastOpenedDate: new Date(),
         atma: {index: 17,
           house: 10,
           sign: 2,
@@ -89,6 +90,7 @@ const demoCharts =
     {
       name: 'chart-Павел Петров',
       data: {
+        lastOpenedDate: new Date(),
         atma: {index: 26,
           house: 7,
           sign: 3,
@@ -169,6 +171,7 @@ const demoCharts =
     {
       name: 'chart-Дмитрий Егоров',
       data: {
+        lastOpenedDate: new Date(),
         atma: {index: 79,
           house: 7,
           sign: 9,
@@ -249,6 +252,7 @@ const demoCharts =
     {
       name: 'chart-Анастасия Смольная',
       data: {
+        lastOpenedDate: new Date(),
         atma: {index: 106,
           house: 5,
           sign: 12,
@@ -329,6 +333,7 @@ const demoCharts =
     {
       name: 'chart-Евгений Кожумяк',
       data: {
+        lastOpenedDate: new Date(),
         atma: {index: 52,
           house: 4,
           sign: 6,
@@ -410,6 +415,7 @@ const demoCharts =
     {
       name: 'chart-Валентина Нетеря',
       data: {
+        lastOpenedDate: new Date(),
         atma: {index: 96,
           house: 4,
           sign: 11,
@@ -496,7 +502,7 @@ const demoCharts =
  */
 export function createDemoCharts() {
   demoCharts.forEach((obj) => {
-    checkStorage(
+    checkStorage(obj.name) ? true : checkStorage(
         obj.name,
         obj.data
     );
