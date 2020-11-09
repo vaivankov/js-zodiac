@@ -24,6 +24,7 @@ export class Table extends ChartComponent {
         }
     );
 
+    this.param = options.param;
     this.$root = createTable($root);
   }
 
@@ -35,6 +36,14 @@ export class Table extends ChartComponent {
   prepare() {
     this.inputs = this.$root.$element.querySelectorAll('.row__item--inputs');
     this.database.setNodeTree();
+    if (this.param) {
+      this.loadChart(
+          `chart:${this.param}`,
+          'left',
+
+          $$(document.querySelector('.block__input'))
+      );
+    }
   }
 
   /**
@@ -164,7 +173,7 @@ export class Table extends ChartComponent {
     const input = $$(document
         .querySelector(selector));
     const chart = this.database.getChartState(data.position);
-    const personName = utils.getChartName(input.value);
+    const personName = utils.getChartId(input.value);
 
     if (data.action === "save") {
       utils.checkStorage(
@@ -197,6 +206,7 @@ export class Table extends ChartComponent {
   loadChart(personName, position, input) {
     const store = utils.checkStorage(personName);
     if (store) {
+      input.value = store.name;
       store.lastOpenedDate = new Date();
       utils.checkStorage(
           personName,

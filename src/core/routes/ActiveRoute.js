@@ -11,4 +11,13 @@ export class ActiveRoute {
   static get path() {
     return window.location.hash.slice(1);
   }
+
+  /**
+   * @property {function} param -
+   * Getter значения текущего адреса
+   * @return {string} Символы после "/"
+   */
+  static get param() {
+    return ActiveRoute.path.split('/')[1];
+  }
 }

@@ -15,6 +15,7 @@ export class Chart {
   constructor(options) {
     this.components = options.components || [];
     this.store = options.store;
+    this.param = options.param;
     this.database = new DataBase();
     this.emitter = new Emitter();
   }
@@ -29,6 +30,7 @@ export class Chart {
       emitter: this.emitter,
       store: this.store,
       database: this.database,
+      param: this.param,
     };
 
     this.components = this.components

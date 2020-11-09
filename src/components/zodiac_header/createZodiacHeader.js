@@ -8,10 +8,6 @@ const buttons = [
     "action": 'ratio',
   },
   {
-    "icon": 'help_outline',
-    "action": 'help',
-  },
-  {
     "icon": 'exit_to_app',
     "action": 'exit',
   },

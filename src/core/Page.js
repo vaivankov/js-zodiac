@@ -3,8 +3,8 @@
  * @module core/Page
  */
 export class Page {
-  constructor(params) {
-    this.params = params;
+  constructor(param) {
+    this.param = param;
   }
 
   /**
