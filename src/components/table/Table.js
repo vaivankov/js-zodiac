@@ -84,7 +84,10 @@ export class Table extends ChartComponent {
       return;
     }
 
-    this.database.pasteData(node);
+    this.database.pasteData(
+        null,
+        node
+    );
   }
 
   /**
@@ -207,23 +210,28 @@ export class Table extends ChartComponent {
     const store = utils.checkStorage(personName);
     if (store) {
       input.value = store.name;
-      store.lastOpenedDate = new Date();
-      utils.checkStorage(
-          personName,
-          store
-      );
+      store.lastOpenedDate = new Date().toISOString();
       const selector =
         `.row__input[data-position="${position}"]:not([disabled])`;
       const inputs = Array
           .from(document.querySelectorAll(selector))
+          .map((i)=>$$(i))
           .sort((i)=>i.dataset.planet === "lagna" ? -1 : 1);
+
+      utils.checkStorage(
+          personName,
+          store
+      );
 
       this.pasteData(
           store,
           inputs
       );
 
-      this.database.pasteData(inputs);
+      this.database.pasteData(
+          store,
+          inputs
+      );
     } else {
       input.classes(
           "add",

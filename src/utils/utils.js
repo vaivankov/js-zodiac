@@ -34,7 +34,7 @@ export function getChartId(name) {
   label: for (const key of keys) {
     if (key.match(/^chart:/)) {
       const chart = JSON.parse(localStorage[key]);
-      if (chart.name = name) {
+      if (chart.name === name) {
         id = chart.id;
         break label;
       }

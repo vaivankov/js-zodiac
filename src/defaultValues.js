@@ -5,6 +5,9 @@
 */
 export const chartState = {
   left: {
+    id: null,
+    name: "",
+    lastOpenedDate: null,
     atma: {
       index: -1,
       house: -1,
@@ -112,6 +115,9 @@ export const chartState = {
     },
   },
   right: {
+    id: null,
+    name: "",
+    lastOpenedDate: null,
     atma: {
       index: -1,
       house: -1,
