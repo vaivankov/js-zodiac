@@ -53,6 +53,16 @@
     border: 2px solid @color-main-background;
     border-radius: 5px;
 
+    &--zodiac {
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+
+      background-image: url("../../../assets/zodiac.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
     &:not(:last-child) {
       margin-bottom: 8px;
     }
@@ -103,10 +113,6 @@
 
     &__body {
       display: flex;
-
-      &--zodiac {
-        height: 100%;
-      }
 
       &--table {
         display: flex;

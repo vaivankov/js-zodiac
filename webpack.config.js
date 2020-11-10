@@ -100,7 +100,18 @@ module.exports = {
         test: /\.m?js$/,
         exclude: /node_modules/,
         use: returnLoaders()
-      }
+      },
+      {
+        test: /\.svg$/i,
+        use: [
+          {
+            loader: 'svg-url-loader',
+            options: {
+              limit: 10000,
+            },
+          },
+        ],
+      },
     ]
   }
 };
