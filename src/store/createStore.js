@@ -1,14 +1,15 @@
-import {parseObject} from "../utils/utils";
-import {chartState} from "../defaultValues";
-
 /**
  * @property {function} createStore -
  * Создаёт Store
  * @param {Function} rootReducer - Функция-обработчик State
+ * @param {Object} initialState - Начальный State
  * @return {object} - Объект с методами для работы со State
  */
-export function createStore(rootReducer) {
-  const state = parseObject(chartState);
+export function createStore(rootReducer, initialState = {}) {
+  const state = rootReducer(
+      {...initialState},
+      {type: '__INIT__'}
+  );
   let listeners = [];
 
   return {

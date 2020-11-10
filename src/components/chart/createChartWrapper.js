@@ -1,6 +1,6 @@
 import {nakshatrasList} from "../../constants";
 import {$$} from "../../utils/Dom";
-import {getSavedChartNames} from "../../utils/utils";
+import {getSavedChartsNames} from "../../utils/utils";
 
 /**
  * @module components/chart/createChartWrapper
@@ -32,7 +32,7 @@ export function createChartWrapper(args) {
   const nakshatraOptions = nakshatrasList
       .map((i) => `<option>${i}</option>`)
       .join('');
-  const chartOptions = getSavedChartNames();
+  const chartOptions = getSavedChartsNames();
 
   nakshatraListWrapper
       .setHTML(`<datalist id="nakshatraList">${nakshatraOptions}</datalist>`);

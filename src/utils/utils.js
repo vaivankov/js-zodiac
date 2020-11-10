@@ -23,13 +23,24 @@ export function getMethodName(eventName) {
 
 /**
  * @module utils/utils
- * @property {function} getChartName -
+ * @property {function} getChartId -
  * Возвращает название карты c приставкой
  * @param {string} name - Название карты
- * @return {string} "chart-" + name
+ * @return {string} "chart:" + Id
  */
-export function getChartName(name) {
-  return 'chart-' + name;
+export function getChartId(name) {
+  const keys = Object.keys(localStorage);
+  let id = undefined;
+  label: for (const key of keys) {
+    if (key.match(/^chart:/)) {
+      const chart = JSON.parse(localStorage[key]);
+      if (chart.name === name) {
+        id = chart.id;
+        break label;
+      }
+    }
+  }
+  return id ? 'chart:' + id : id;
 }
 
 /**
@@ -51,20 +62,38 @@ export function checkStorage(key, data = null) {
 
 /**
  * @module utils/utils
- * @property {function} getSavedChartNames -
+ * @property {function} getSavedChartsNames -
  * Создаёт список опций сохранённых карт
  * @return {string} keysList - Вёрстка опций
  */
-export function getSavedChartNames() {
+export function getSavedChartsNames() {
   const keys = Object.keys(localStorage);
   const keysList = keys
       .map((chartName) => {
-        if (chartName.match(/^chart-/)) {
-          const newName = chartName.split('chart-')[1];
-          return `<option>${newName}</option>`;
+        if (chartName.match(/^chart:/)) {
+          const chart = JSON.parse(localStorage[chartName]);
+          return `<option>${chart.name}</option>`;
         }
       })
       .join('');
+  return keysList;
+}
+
+/**
+ * @module utils/utils
+ * @property {function} isLocalStorageEmpty -
+ * Проверяет пустой ли LocalStorage
+ * @return {Boolean}
+ */
+export function isLocalStorageEmpty() {
+  const keys = Object.keys(localStorage);
+  let keysList = true;
+  label: for (const chartName of keys) {
+    if (chartName.match(/^chart:/)) {
+      keysList = false;
+      break label;
+    }
+  }
   return keysList;
 }
 
@@ -78,4 +107,29 @@ export function getSavedChartNames() {
 export function parseObject(obj) {
   const json = JSON.stringify(obj);
   return JSON.parse(json);
+}
+
+/**
+ * @module utils/utils
+ * @property {function} debounce -
+ * Создаёт задержку на выполнение функции
+ * @param {function} func - Функция
+ * @param {number} wait -
+ * Время задержки
+ * @return {*}
+ */
+export function debounce(func, wait) {
+  let timeout;
+  return function(...args) {
+    const callback = () => {
+      clearTimeout(timeout);
+      // eslint-disable-next-line
+      func.apply(this, args)
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(
+        callback,
+        wait
+    );
+  };
 }

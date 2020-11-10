@@ -53,11 +53,15 @@ export class DataBase {
   /**
    * @property {function} pasteData -
    * Расчёт данных выбранного input
+   * @param {object} store - состояние выбранной карты
    * @param {object} nodes - Dom instance выбранного input
    * @return {void}
    */
-  pasteData(nodes) {
+  pasteData(store, nodes) {
     Array.isArray(nodes) ? true : nodes = [nodes];
+    if (store) {
+      this.zodiacState[nodes[0].$element.dataset.position] = parseObject(store);
+    }
 
     for (const node of nodes) {
       const index = this.getNakshatraIndex(node.value);
@@ -67,32 +71,30 @@ export class DataBase {
       const currentPlanet = this.zodiacState[currentData.position][currentData.planet];
       const currentLagna = this.zodiacState[currentData.position].lagna;
 
-      if (index !== currentPlanet.index) {
-        currentPlanet.index = index;
-        currentPlanet.pada = index + 1;
-        currentPlanet.nakshatra = Math.ceil((index + 1) / 4);
-        currentPlanet.sign = Math.ceil((index + 1) / 9);
+      currentPlanet.index = index;
+      currentPlanet.pada = index + 1;
+      currentPlanet.nakshatra = Math.ceil((index + 1) / 4);
+      currentPlanet.sign = Math.ceil((index + 1) / 9);
 
-        if (currentLagna.sign > 0 && currentPlanet !== currentLagna) {
-          const house = currentPlanet.sign - currentLagna.sign + 1;
-          currentPlanet.house = house >= 1 ? house : house + 12;
-        }
+      if (currentLagna.sign > 0 && currentPlanet !== currentLagna) {
+        const house = currentPlanet.sign - currentLagna.sign + 1;
+        currentPlanet.house = house >= 1 ? house : house + 12;
+      }
 
-        this.tableNodeTree[currentData.position][currentData.planet]
-            .house.textContent = currentPlanet.house;
+      this.tableNodeTree[currentData.position][currentData.planet]
+          .house.textContent = currentPlanet.house;
 
-        if (oppositePlanet.index > -1) {
-          const relations = this.nakshatrasTable[index][oppositePlanet.index];
+      if (oppositePlanet.index > -1) {
+        const relations = this.nakshatrasTable[index][oppositePlanet.index];
 
-          this.tableNodeTree.both[currentData.planet].relations.textContent = relations;
-          this.tableNodeTree.both[currentData.planet].relations.setAttribute(
-              'style',
-              `background-color: hsl(${relations}, 100%, 70%);`
-          );
-          this.zodiacState.both[currentData.planet].relations = relations;
+        this.tableNodeTree.both[currentData.planet].relations.textContent = relations;
+        this.tableNodeTree.both[currentData.planet].relations.setAttribute(
+            'style',
+            `background-color: hsl(${relations}, 100%, 70%);`
+        );
+        this.zodiacState.both[currentData.planet].relations = relations;
 
-          this.pasteDistance(currentData.planet);
-        }
+        this.pasteDistance(currentData.planet);
       }
     }
   }
@@ -158,7 +160,7 @@ export class DataBase {
    * @property {function} getNakshatraIndex -
    * Возвращает индекс накшатры с списке накшатр
    * @param {string} value - Строка для проверки
-   * @return {Number}
+   * @return {number}
    */
   getNakshatraIndex(value) {
     return this.nakshatrasList.indexOf(value);

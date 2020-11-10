@@ -1,3 +1,4 @@
+import {getLoader} from '../../components/getLoader';
 import {createDemoCharts} from '../../store/createDemoCharts';
 import {$$} from '../../utils/Dom';
 import {ActiveRoute} from './ActiveRoute';
@@ -12,8 +13,11 @@ export class Router {
       throw new Error('Selector is not provided in Router');
     }
 
+    createDemoCharts();
+
     this.$placeholder = $$(selector);
     this.routes = routes;
+    this.loader = getLoader();
 
     this.page = null;
 
@@ -33,28 +37,33 @@ export class Router {
         this.changePageHandler
     );
     this.changePageHandler();
-    createDemoCharts();
   }
 
   /**
    * @property {function} changePageHandler -
    * Устанавливает содержимое страницы
-   * @return {void}
+   * @return {Promise}
    */
-  changePageHandler() {
+  async changePageHandler() {
     if (this.page) {
       this.page.destroy();
     }
 
-    this.$placeholder.clearHTML();
+    this.$placeholder
+        .clearHTML()
+        .append(this.loader);
 
     const Page = ActiveRoute.path.includes('chart') ?
       this.routes.chart :
       this.routes.dashboard;
 
-    this.page = new Page(ActiveRoute.path);
+    this.page = new Page(ActiveRoute.param);
 
-    this.$placeholder.append(this.page.getRoot());
+    const root = await this.page.getRoot();
+
+    this.$placeholder
+        .clearHTML()
+        .append(root);
 
     this.page.afterRender();
   }

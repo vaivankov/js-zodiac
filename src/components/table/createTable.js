@@ -14,21 +14,6 @@ const rowParams = [
     isActive: "",
   },
   {
-    name: "atmadara",
-    symbol: "А|Д",
-    isActive: "disabled",
-  },
-  {
-    name: "daraatma",
-    symbol: "Д|А",
-    isActive: "disabled",
-  },
-  {
-    name: "lagnesha",
-    symbol: "Ⓘ",
-    isActive: "disabled",
-  },
-  {
     name: "lagna",
     symbol: "Ⓛ",
     isActive: "",

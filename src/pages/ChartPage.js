@@ -6,23 +6,38 @@ import {Table} from "../components/table/Table";
 import {TableHeader} from "../components/table_header/TableHeader";
 import {ZodiacHeader} from "../components/zodiac_header/ZodiacHeader";
 import {Zodiac} from "../components/zodiac/Zodiac";
+import {StateProcessor} from './StateProcessor';
+import {LocalStorageClient} from './LocalStorageClient';
 
 /**
  * Класс страницы с картами
  * @module pages/ChartPage
  */
 export class ChartPage extends Page {
+  constructor(param) {
+    super(param);
+
+    this.storeSub = null;
+    this.processor = new StateProcessor(new LocalStorageClient(this.param));
+  }
   /**
    * @property {function} getRoot -
    * Возвращает вёрстку страницы
-   * @return {Object} Dom-instance
+   * @return {Promise} Dom-instance
    */
-  getRoot() {
-    const store = createStore(rootReducer);
+  async getRoot() {
+    const state = await this.processor.get();
+    const store = createStore(
+        rootReducer,
+        state
+    );
+
+    this.storeSub = store.subscribe(this.processor.listen);
 
     this.chart = new Chart({
       components: [TableHeader, Table, ZodiacHeader, Zodiac],
       store,
+      param: this.param,
     });
 
     return this.chart.getRootElement();
@@ -44,5 +59,6 @@ export class ChartPage extends Page {
    */
   destroy() {
     this.chart.destroy();
+    this.storeSub.unsubscribe();
   }
 }

@@ -1,5 +1,4 @@
 import {ChartComponent} from "../../core/ChartComponent";
-import {createZodiac} from "./createZodiac";
 
 /**
  * Класс визуализации зодиака
@@ -21,7 +20,7 @@ export class Zodiac extends ChartComponent {
         }
     );
 
-    this.$root = createZodiac($root);
+    this.$root = $root;
   }
 
   /**

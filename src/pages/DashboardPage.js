@@ -32,11 +32,7 @@ export class DashboardPage extends Page {
               <div class="dashboard__body">
                 ${createChartList()}
               </div>
-              <div class="dashboard__footer">
-                <button class="button button--load-more" type="button">
-                  <b>Загрузить ещё</b>
-                </button>
-              </div>
+              <div class="dashboard__footer"></div>
             </div>
       `);
   }

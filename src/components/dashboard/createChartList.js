@@ -2,14 +2,16 @@ import {checkStorage} from '../../utils/utils';
 
 function toHTML(key) {
   const model = checkStorage(key);
+  const chartId = key.split('chart:')[1];
+  const chartName = model.name;
   const date = new Date(Date.parse(model.lastOpenedDate));
   const dateISO = date.toISOString();
   const dateTime = date.toLocaleTimeString();
   const dateDate = date.toLocaleDateString();
   return `
-    <a href="#" class="dashboard__chart-item">
+    <a href="#chart/${chartId}" class="dashboard__chart-item">
       <span class="dashboard__chart-name">
-        ${key.split('chart-')[1]}
+        ${chartName}
       </span>
       <time
         class="dashboard__date"
@@ -23,7 +25,7 @@ function getAllKeys() {
   const keys = [];
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
-    if (!key.includes('chart')) {
+    if (!key.includes('chart:')) {
       continue;
     }
     keys.push(key);

@@ -24,6 +24,7 @@ export class Table extends ChartComponent {
         }
     );
 
+    this.param = options.param;
     this.$root = createTable($root);
   }
 
@@ -35,6 +36,13 @@ export class Table extends ChartComponent {
   prepare() {
     this.inputs = this.$root.$element.querySelectorAll('.row__item--inputs');
     this.database.setNodeTree();
+    if (this.param) {
+      this.loadChart(
+          `chart:${this.param}`,
+          'left',
+          $$(document.querySelector('.block__input'))
+      );
+    }
   }
 
   /**
@@ -71,11 +79,12 @@ export class Table extends ChartComponent {
   onChange(evt) {
     const node = $$(evt.target);
 
-    if (!this.validateInput(node)) {
-      return;
+    if (this.validateInput(node)) {
+      this.database.pasteData(
+          null,
+          node
+      );
     }
-
-    this.database.pasteData(node);
   }
 
   /**
@@ -164,13 +173,21 @@ export class Table extends ChartComponent {
     const input = $$(document
         .querySelector(selector));
     const chart = this.database.getChartState(data.position);
-    const personName = utils.getChartName(input.value);
+    let chartID = utils.getChartId(input.value);
 
     if (data.action === "save") {
+      chart.name = input.value;
+      chart.lastOpenedDate = new Date().toISOString();
+      if (!chartID) {
+        chart.id = Date.now();
+        chartID = 'chart:' + Date.now();
+      }
+
       utils.checkStorage(
-          personName,
+          chartID,
           chart
       );
+
       input.classes(
           "remove",
           'block__input--error'
@@ -179,7 +196,7 @@ export class Table extends ChartComponent {
 
     if (data.action === "open") {
       this.loadChart(
-          personName,
+          chartID,
           data.position,
           input
       );
@@ -197,23 +214,29 @@ export class Table extends ChartComponent {
   loadChart(personName, position, input) {
     const store = utils.checkStorage(personName);
     if (store) {
-      store.lastOpenedDate = new Date();
+      input.value = store.name;
+      store.lastOpenedDate = new Date().toISOString();
+      const selector =
+        `.row__input[data-position="${position}"]`;
+      const inputs = Array
+          .from(document.querySelectorAll(selector))
+          .map((i)=>$$(i))
+          .sort((i)=>i.dataset.planet === "lagna" ? -1 : 1);
+
       utils.checkStorage(
           personName,
           store
       );
-      const selector =
-        `.row__input[data-position="${position}"]:not([disabled])`;
-      const inputs = Array
-          .from(document.querySelectorAll(selector))
-          .sort((i)=>i.dataset.planet === "lagna" ? -1 : 1);
 
       this.pasteData(
           store,
           inputs
       );
 
-      this.database.pasteData(inputs);
+      this.database.pasteData(
+          store,
+          inputs
+      );
     } else {
       input.classes(
           "add",
