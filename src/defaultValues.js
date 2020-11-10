@@ -22,27 +22,6 @@ export const chartState = {
       nakshatra: -1,
       pada: -1,
     },
-    atmadara: {
-      index: -1,
-      house: -1,
-      sign: -1,
-      nakshatra: -1,
-      pada: -1,
-    },
-    daraatma: {
-      index: -1,
-      house: -1,
-      sign: -1,
-      nakshatra: -1,
-      pada: -1,
-    },
-    lagnesha: {
-      index: -1,
-      house: -1,
-      sign: -1,
-      nakshatra: -1,
-      pada: -1,
-    },
     lagna: {
       index: -1,
       house: 1,
@@ -126,27 +105,6 @@ export const chartState = {
       pada: -1,
     },
     dara: {
-      index: -1,
-      house: -1,
-      sign: -1,
-      nakshatra: -1,
-      pada: -1,
-    },
-    atmadara: {
-      index: -1,
-      house: -1,
-      sign: -1,
-      nakshatra: -1,
-      pada: -1,
-    },
-    daraatma: {
-      index: -1,
-      house: -1,
-      sign: -1,
-      nakshatra: -1,
-      pada: -1,
-    },
-    lagnesha: {
       index: -1,
       house: -1,
       sign: -1,
@@ -243,57 +201,6 @@ export const chartState = {
       },
     },
     dara: {
-      relations: -1,
-      distance: {
-        sign: {
-          left: -1,
-          right: -1,
-        },
-        nakshatra: {
-          left: -1,
-          right: -1,
-        },
-        pada: {
-          left: -1,
-          right: -1,
-        },
-      },
-    },
-    atmadara: {
-      relations: -1,
-      distance: {
-        sign: {
-          left: -1,
-          right: -1,
-        },
-        nakshatra: {
-          left: -1,
-          right: -1,
-        },
-        pada: {
-          left: -1,
-          right: -1,
-        },
-      },
-    },
-    daraatma: {
-      relations: -1,
-      distance: {
-        sign: {
-          left: -1,
-          right: -1,
-        },
-        nakshatra: {
-          left: -1,
-          right: -1,
-        },
-        pada: {
-          left: -1,
-          right: -1,
-        },
-      },
-    },
-    lagnesha: {
       relations: -1,
       distance: {
         sign: {
@@ -498,18 +405,6 @@ export const tableNodeTree = {
       input: null,
       house: null,
     },
-    atmadara: {
-      input: null,
-      house: null,
-    },
-    daraatma: {
-      input: null,
-      house: null,
-    },
-    lagnesha: {
-      input: null,
-      house: null,
-    },
     lagna: {
       input: null,
       house: null,
@@ -557,18 +452,6 @@ export const tableNodeTree = {
       house: null,
     },
     dara: {
-      input: null,
-      house: null,
-    },
-    atmadara: {
-      input: null,
-      house: null,
-    },
-    daraatma: {
-      input: null,
-      house: null,
-    },
-    lagnesha: {
       input: null,
       house: null,
     },
@@ -632,57 +515,6 @@ export const tableNodeTree = {
       },
     },
     dara: {
-      relations: null,
-      distance: {
-        sign: {
-          left: null,
-          right: null,
-        },
-        nakshatra: {
-          left: null,
-          right: null,
-        },
-        pada: {
-          left: null,
-          right: null,
-        },
-      },
-    },
-    atmadara: {
-      relations: null,
-      distance: {
-        sign: {
-          left: null,
-          right: null,
-        },
-        nakshatra: {
-          left: null,
-          right: null,
-        },
-        pada: {
-          left: null,
-          right: null,
-        },
-      },
-    },
-    daraatma: {
-      relations: null,
-      distance: {
-        sign: {
-          left: null,
-          right: null,
-        },
-        nakshatra: {
-          left: null,
-          right: null,
-        },
-        pada: {
-          left: null,
-          right: null,
-        },
-      },
-    },
-    lagnesha: {
       relations: null,
       distance: {
         sign: {

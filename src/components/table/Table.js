@@ -217,7 +217,7 @@ export class Table extends ChartComponent {
       input.value = store.name;
       store.lastOpenedDate = new Date().toISOString();
       const selector =
-        `.row__input[data-position="${position}"]:not([disabled])`;
+        `.row__input[data-position="${position}"]`;
       const inputs = Array
           .from(document.querySelectorAll(selector))
           .map((i)=>$$(i))
