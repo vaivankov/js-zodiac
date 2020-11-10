@@ -40,7 +40,7 @@ export function getChartId(name) {
       }
     }
   }
-  return 'chart:' + id;
+  return id ? 'chart:' + id : id;
 }
 
 /**

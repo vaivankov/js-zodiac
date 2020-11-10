@@ -40,7 +40,6 @@ export class Table extends ChartComponent {
       this.loadChart(
           `chart:${this.param}`,
           'left',
-
           $$(document.querySelector('.block__input'))
       );
     }
@@ -80,14 +79,12 @@ export class Table extends ChartComponent {
   onChange(evt) {
     const node = $$(evt.target);
 
-    if (!this.validateInput(node)) {
-      return;
+    if (this.validateInput(node)) {
+      this.database.pasteData(
+          null,
+          node
+      );
     }
-
-    this.database.pasteData(
-        null,
-        node
-    );
   }
 
   /**
@@ -176,13 +173,21 @@ export class Table extends ChartComponent {
     const input = $$(document
         .querySelector(selector));
     const chart = this.database.getChartState(data.position);
-    const personName = utils.getChartId(input.value);
+    let chartID = utils.getChartId(input.value);
 
     if (data.action === "save") {
+      chart.name = input.value;
+      chart.lastOpenedDate = new Date().toISOString();
+      if (!chartID) {
+        chart.id = Date.now();
+        chartID = 'chart:' + Date.now();
+      }
+
       utils.checkStorage(
-          personName,
+          chartID,
           chart
       );
+
       input.classes(
           "remove",
           'block__input--error'
@@ -191,7 +196,7 @@ export class Table extends ChartComponent {
 
     if (data.action === "open") {
       this.loadChart(
-          personName,
+          chartID,
           data.position,
           input
       );
