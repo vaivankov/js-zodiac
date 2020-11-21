@@ -16,4 +16,4 @@ Pure JavaScript SPA.
   - роутер страниц
   - сохранение данных карт
 
-Главная страница: [ZODIAC](https://vaivankov.github.io/zodiac/)
+Главная страница: [ZODIAC](https://vaivankov.github.io/js-zodiac/)
